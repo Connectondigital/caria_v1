@@ -807,7 +807,7 @@ const WhyChooseSection = () => {
               All of our property advisors have a profound knowledge and understanding of 
               the Northern Cyprus real estate market with many years of experience. We want 
               to make the process as easy as possible for all of our customers, whether 
-              you're seeking a permanent residence, vacation home, or investment property.
+              you are seeking a permanent residence, vacation home, or investment property.
             </p>
             <p className="text-gray-600 text-sm leading-relaxed">
               Our commitment to excellence, transparency, and client satisfaction sets us 
