@@ -436,7 +436,7 @@ const CuratedListings = ({ activeRegion }) => {
               Curated Listings
             </h2>
             <p className="text-gray-500 text-sm max-w-md">
-              Explore our handpicked selection of exceptional properties across Northern Cyprus.
+              Explore our handpicked selection of exceptional properties across Northern Cyprus
             </p>
           </div>
           <Link 
