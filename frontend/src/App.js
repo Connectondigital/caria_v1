@@ -918,11 +918,11 @@ const JoinUsSection = () => {
             <p className="text-gray-600 leading-relaxed mb-6">
               Are you an experienced agent with great knowledge of the real estate market 
               and the Northern Cyprus area? Are you looking for a modern and innovative agency? 
-              If you share our passion for high-quality real estate services, don't hesitate 
+              If you share our passion for high-quality real estate services, do not hesitate 
               to contact us.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              We're always looking for talented individuals to join our growing team. 
+              We are always looking for talented individuals to join our growing team. 
               Reach out to us at{' '}
               <a 
                 href="mailto:info@cariaestates.com" 
