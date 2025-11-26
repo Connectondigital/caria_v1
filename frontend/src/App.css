@@ -1,34 +1,165 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Caria Estates Custom Styles */
+
+/* Hero video overlay gradient */
+.hero-gradient {
+    background: linear-gradient(to top, rgba(31, 41, 55, 0.85) 0%, rgba(31, 41, 55, 0.4) 40%, transparent 70%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Property card hover effects */
+.property-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
+.property-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.property-card .property-image {
+    transition: transform 0.5s ease;
+}
+
+.property-card:hover .property-image {
+    transform: scale(1.05);
+}
+
+/* Tab underline animation */
+.tab-item {
+    position: relative;
+}
+
+.tab-item::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #1F2937;
+    transition: width 0.3s ease;
+}
+
+.tab-item.active::after,
+.tab-item:hover::after {
+    width: 100%;
+}
+
+/* Slider navigation buttons */
+.slider-nav-btn {
+    transition: all 0.3s ease;
+}
+
+.slider-nav-btn:hover {
+    background-color: #1F2937;
     color: white;
 }
 
-.App-link {
-    color: #61dafb;
+/* Blog card hover */
+.blog-card {
+    transition: transform 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+.blog-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Agent video card */
+.agent-card {
+    transition: transform 0.3s ease;
+}
+
+.agent-card:hover {
+    transform: scale(1.02);
+}
+
+/* Input focus states */
+.search-input:focus {
+    outline: none;
+    border-color: #3BB2B8;
+}
+
+/* Button transitions */
+.btn-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2d9196;
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: #1F2937;
+    color: white;
+}
+
+/* Carousel indicators */
+.carousel-dot {
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* Smooth scroll container */
+.scroll-container {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Newsletter input underline effect */
+.newsletter-input {
+    border-bottom: 1px solid #1F2937;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: #3BB2B8;
+}
+
+/* Footer link hover */
+.footer-link {
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #3BB2B8;
+}
+
+/* Play button pulse animation */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 1;
     }
-    to {
-        transform: rotate(360deg);
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
     }
+}
+
+.play-btn-pulse::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: pulse-ring 2s ease-out infinite;
 }
