@@ -327,7 +327,7 @@ const IntroSection = () => {
         <p className="text-caria-slate text-base md:text-lg leading-relaxed font-light" data-testid="intro-text">
           Caria Estates provides expert guidance and luxury real estate services in Northern Cyprus. 
           We combine local insight with global standards to offer a refined, transparent property experience. 
-          Whether you're seeking a coastal retreat, investment opportunity, or your dream Mediterranean home, 
+          Whether you are seeking a coastal retreat, investment opportunity, or your dream Mediterranean home, 
           our dedicated team is here to guide you every step of the way.
         </p>
       </div>
