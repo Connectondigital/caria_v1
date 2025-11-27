@@ -419,6 +419,61 @@ const PropertyCard = ({ property }) => {
 };
 
 // ============================================
+// CURATED PROPERTY CARD (Large card for slider)
+// ============================================
+const CuratedPropertyCard = ({ property }) => {
+  return (
+    <Link 
+      to={`/properties/${property.slug}`}
+      className="curated-property-card flex flex-col h-full bg-white rounded-lg overflow-hidden"
+      data-testid={`curated-card-${property.id}`}
+    >
+      {/* Large Image Container */}
+      <div className="relative h-60 md:h-80 lg:h-96 overflow-hidden">
+        <img 
+          src={property.image} 
+          alt={property.title}
+          className="curated-property-image w-full h-full object-cover"
+        />
+        {/* Tag Badge */}
+        <span className="absolute top-5 left-5 bg-white px-4 py-2 text-xs font-medium tracking-wider text-caria-slate rounded">
+          {property.tag}
+        </span>
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col flex-grow p-6">
+        <h3 className="font-serif text-2xl md:text-3xl font-medium text-caria-slate mb-2" data-testid={`curated-title-${property.id}`}>
+          {property.title}
+        </h3>
+        <p className="text-xs tracking-[0.15em] text-gray-400 uppercase mb-4">
+          {property.location}
+        </p>
+        <p className="text-xl md:text-2xl font-semibold text-caria-slate mb-auto">
+          {property.price}
+        </p>
+        
+        {/* Stats at bottom */}
+        <div className="flex items-center space-x-6 text-sm text-gray-500 mt-6 pt-6 border-t border-gray-100">
+          <span className="flex items-center">
+            <Bed size={18} className="mr-2" />
+            {property.beds} bed
+          </span>
+          <span className="flex items-center">
+            <Bath size={18} className="mr-2" />
+            {property.baths} bath
+          </span>
+          <span className="flex items-center">
+            <Square size={18} className="mr-2" />
+            {property.area} m²
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+// ============================================
 // SECTION 4: CURATED LISTINGS GRID
 // ============================================
 const CuratedListings = ({ activeRegion }) => {
