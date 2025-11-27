@@ -544,9 +544,10 @@ const CuratedListings = ({ activeRegion }) => {
               onClick={() => setActiveTag(tag)}
               className={`px-4 py-2 text-xs tracking-wider uppercase rounded-full transition-all ${
                 activeTag === tag 
-                  ? 'bg-caria-slate text-white' 
-                  : 'bg-caria-beige text-gray-600 hover:bg-gray-200'
+                  ? 'text-white' 
+                  : 'bg-caria-mint text-gray-600 hover:bg-gray-200'
               }`}
+              style={activeTag === tag ? { backgroundColor: '#3BB2B8' } : {}}
               data-testid={`curated-filter-${tag.toLowerCase().replace(' ', '-')}`}
             >
               {tag}
