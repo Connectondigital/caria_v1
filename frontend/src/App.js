@@ -1142,7 +1142,7 @@ const PartnerLogos = () => {
 // ============================================
 const Footer = () => {
   return (
-    <footer className="bg-caria-slate text-white py-16" data-testid="footer">
+    <footer className="text-white py-16" style={{ backgroundColor: '#0F6C74' }} data-testid="footer">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Column 1: Contact */}
