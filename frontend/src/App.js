@@ -589,7 +589,7 @@ const AdvancedSearchBar = () => {
   };
 
   return (
-    <section className="bg-caria-beige py-16 md:py-24" data-testid="search-section">
+    <section className="bg-caria-mint py-16 md:py-24" data-testid="search-section">
       <div className="max-w-5xl mx-auto px-6">
         {/* Section Title */}
         <h2 className="font-serif text-3xl md:text-4xl text-caria-slate text-center mb-12" data-testid="search-title">
