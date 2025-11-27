@@ -1266,7 +1266,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <Header isTransparent={true} />
+      <Header />
       <Hero />
       <IntroSection />
       <RegionTabs activeRegion={activeRegion} setActiveRegion={setActiveRegion} />
