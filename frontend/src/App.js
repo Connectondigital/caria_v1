@@ -318,11 +318,11 @@ const Hero = () => {
 };
 
 // ============================================
-// SECTION 2: INTRO SECTION (Beige Background)
+// SECTION 2: INTRO SECTION (Mint Background)
 // ============================================
 const IntroSection = () => {
   return (
-    <section className="bg-caria-beige py-24 md:py-32" data-testid="intro-section">
+    <section className="bg-caria-mint py-24 md:py-32" data-testid="intro-section">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <p className="text-caria-slate text-base md:text-lg leading-relaxed font-light" data-testid="intro-text">
           Caria Estates provides expert guidance and luxury real estate services in Northern Cyprus. 
