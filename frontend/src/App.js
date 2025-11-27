@@ -28,7 +28,7 @@ import {
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// Sample property data
+// Sample property data with enhanced details
 const properties = [
   {
     id: 1,
@@ -39,7 +39,28 @@ const properties = [
     beds: 4,
     baths: 3,
     area: "320",
+    plotSize: "850",
+    reference: "CE-KYR-001",
     image: "https://images.unsplash.com/photo-1694967832949-09984640b143?w=800&h=600&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1694967832949-09984640b143?w=1920&h=1080&fit=crop",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&h=1080&fit=crop"
+    ],
+    description: "This exceptional luxury villa offers breathtaking panoramic sea views over the Mediterranean coastline. Designed with contemporary elegance and premium finishes throughout, this property represents the pinnacle of coastal living in Northern Cyprus. The open-plan living spaces seamlessly connect indoor and outdoor areas, perfect for entertaining and enjoying the stunning sunsets.\n\nLocated in one of Kyrenia's most prestigious neighborhoods, the villa provides easy access to pristine beaches, world-class golf courses, and the historic Kyrenia harbor. With its sophisticated design and prime location, this property offers an unparalleled lifestyle opportunity.",
+    features: [
+      "Private infinity pool",
+      "Landscaped Mediterranean gardens",
+      "Underfloor heating",
+      "Air conditioning throughout",
+      "Smart home automation",
+      "Private parking for 2 cars",
+      "Sea view terraces",
+      "High-end German kitchen",
+      "Master suite with walk-in closet",
+      "24/7 security"
+    ],
     tag: "NEW LISTING",
     region: "KYRENIA"
   },
