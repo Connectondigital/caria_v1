@@ -86,10 +86,11 @@
 /* Button transitions */
 .btn-primary {
     transition: all 0.3s ease;
+    background-color: #3BB2B8;
 }
 
 .btn-primary:hover {
-    background-color: #2d9196;
+    background-color: #3299A0;
     transform: translateY(-1px);
 }
 
