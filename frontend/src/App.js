@@ -474,18 +474,40 @@ const CuratedPropertyCard = ({ property }) => {
 };
 
 // ============================================
-// SECTION 4: CURATED LISTINGS GRID
+// SECTION 4: CURATED LISTINGS SLIDER (Strand-style)
 // ============================================
 const CuratedListings = ({ activeRegion }) => {
-  const filteredProperties = activeRegion === "DISCOVER ALL" 
+  const sliderRef = useRef(null);
+  const [activeTag, setActiveTag] = useState('All');
+
+  // Extract unique tags from properties
+  const tags = ['All', ...new Set(properties.map(p => p.tag))];
+
+  // Filter by region first
+  const filteredByRegion = activeRegion === "DISCOVER ALL" 
     ? properties 
     : properties.filter(p => p.region === activeRegion);
+
+  // Then filter by tag
+  const filteredProperties = activeTag === "All"
+    ? filteredByRegion
+    : filteredByRegion.filter(p => p.tag === activeTag);
+
+  const scroll = (direction) => {
+    if (sliderRef.current) {
+      const scrollAmount = 600;
+      sliderRef.current.scrollBy({
+        left: direction === 'right' ? scrollAmount : -scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <section className="bg-white py-16 md:py-24" data-testid="curated-listings">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Row */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
           <div>
             <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-3" data-testid="curated-title">
               Curated Listings
@@ -494,19 +516,56 @@ const CuratedListings = ({ activeRegion }) => {
               Explore our handpicked selection of exceptional properties across Northern Cyprus
             </p>
           </div>
-          <Link 
-            to="/properties"
-            className="btn-outline mt-6 md:mt-0 inline-flex items-center justify-center px-6 py-3 border border-caria-slate text-caria-slate text-sm tracking-wider uppercase rounded-sm hover:bg-caria-slate hover:text-white"
-            data-testid="view-all-properties"
-          >
-            View all properties
-          </Link>
+          
+          {/* Navigation Buttons - Desktop only */}
+          <div className="hidden md:flex items-center space-x-3">
+            <button
+              onClick={() => scroll('left')}
+              className="slider-nav-btn w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-caria-slate hover:text-white hover:border-caria-slate"
+              data-testid="curated-prev"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="slider-nav-btn w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-caria-slate hover:text-white hover:border-caria-slate"
+              data-testid="curated-next"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
 
-        {/* Property Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProperties.slice(0, 6).map((property) => (
-            <PropertyCard key={property.id} property={property} />
+        {/* Filter Chips */}
+        <div className="flex flex-wrap gap-3 mb-8">
+          {tags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setActiveTag(tag)}
+              className={`px-4 py-2 text-xs tracking-wider uppercase rounded-full transition-all ${
+                activeTag === tag 
+                  ? 'bg-caria-slate text-white' 
+                  : 'bg-caria-beige text-gray-600 hover:bg-gray-200'
+              }`}
+              data-testid={`curated-filter-${tag.toLowerCase().replace(' ', '-')}`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
+        {/* Property Slider - 2 large cards side by side on desktop */}
+        <div 
+          ref={sliderRef}
+          className="flex space-x-8 overflow-x-auto hide-scrollbar scroll-container scroll-snap-x pb-4"
+        >
+          {filteredProperties.map((property) => (
+            <div 
+              key={property.id} 
+              className="flex-none w-full md:w-[48%] scroll-snap-start"
+            >
+              <CuratedPropertyCard property={property} />
+            </div>
           ))}
         </div>
       </div>
