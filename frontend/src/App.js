@@ -189,40 +189,91 @@ const partners = [
 // ============================================
 // SECTION 1: HEADER COMPONENT
 // ============================================
-const Header = ({ isTransparent = false }) => {
+const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useRef(() => {
+    const handleScroll = () => {
+      // Check if we've scrolled past the hero (viewport height)
+      const heroHeight = window.innerHeight;
+      setIsScrolled(window.scrollY > heroHeight * 0.8);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 ${isTransparent ? 'bg-transparent' : 'bg-caria-slate shadow-md'}`}>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-slate-900 shadow-md' 
+          : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center" data-testid="logo">
-            <span className="text-2xl font-serif font-bold text-white tracking-wider">
-              CARIA ESTATES
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/properties" className="text-white text-sm tracking-wide hover:text-caria-turquoise transition-colors" data-testid="nav-properties">
-              PROPERTIES
+        {/* Desktop Navigation - Three Column Layout */}
+        <div className="hidden lg:grid lg:grid-cols-3 lg:items-center lg:gap-8">
+          {/* Left Navigation */}
+          <nav className="flex items-center space-x-6 justify-start">
+            <Link to="/sell" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-sell">
+              SELL
             </Link>
-            <Link to="/services" className="text-white text-sm tracking-wide hover:text-caria-turquoise transition-colors" data-testid="nav-services">
-              SERVICES
+            <Link to="/buy" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-buy">
+              BUY
             </Link>
-            <Link to="/about" className="text-white text-sm tracking-wide hover:text-caria-turquoise transition-colors" data-testid="nav-about">
-              ABOUT US
+            <Link to="/rent" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-rent">
+              RENT
             </Link>
-            <Link to="/contact" className="text-white text-sm tracking-wide hover:text-caria-turquoise transition-colors" data-testid="nav-contact">
-              CONTACT
+            <Link to="/projects" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-projects">
+              PROJECTS
             </Link>
           </nav>
 
-          {/* Mobile menu button */}
+          {/* Center Logo */}
+          <Link to="/" className="flex items-center justify-center" data-testid="logo">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_empty-commit/artifacts/nptcyjqv_caria_logo.png" 
+              alt="Caria Estates"
+              className="h-12 w-auto"
+            />
+          </Link>
+
+          {/* Right Navigation */}
+          <nav className="flex items-center space-x-6 justify-end">
+            <Link to="/properties" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-properties">
+              PROPERTIES
+            </Link>
+            <Link to="/services" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-services">
+              SERVICES
+            </Link>
+            <Link to="/about" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-about">
+              ABOUT US
+            </Link>
+            <Link to="/contact" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-contact">
+              CONTACT
+            </Link>
+          </nav>
+        </div>
+
+        {/* Mobile/Tablet Navigation */}
+        <div className="lg:hidden flex items-center justify-between">
+          {/* Centered Logo */}
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <Link to="/" className="flex items-center" data-testid="mobile-logo">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_empty-commit/artifacts/nptcyjqv_caria_logo.png" 
+                alt="Caria Estates"
+                className="h-10 w-auto"
+              />
+            </Link>
+          </div>
+
+          {/* Mobile menu button - Right side */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-white"
+            className="ml-auto text-white z-10"
             data-testid="mobile-menu-btn"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -232,12 +283,18 @@ const Header = ({ isTransparent = false }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-caria-slate/95 backdrop-blur-sm">
+        <div className="lg:hidden bg-slate-900/95 backdrop-blur-sm">
           <nav className="flex flex-col px-6 py-4 space-y-4">
-            <Link to="/properties" className="text-white text-sm tracking-wide" data-testid="mobile-nav-properties">PROPERTIES</Link>
-            <Link to="/services" className="text-white text-sm tracking-wide" data-testid="mobile-nav-services">SERVICES</Link>
-            <Link to="/about" className="text-white text-sm tracking-wide" data-testid="mobile-nav-about">ABOUT US</Link>
-            <Link to="/contact" className="text-white text-sm tracking-wide" data-testid="mobile-nav-contact">CONTACT</Link>
+            <Link to="/sell" className="text-white text-sm tracking-wide" data-testid="mobile-nav-sell">SELL</Link>
+            <Link to="/buy" className="text-white text-sm tracking-wide" data-testid="mobile-nav-buy">BUY</Link>
+            <Link to="/rent" className="text-white text-sm tracking-wide" data-testid="mobile-nav-rent">RENT</Link>
+            <Link to="/projects" className="text-white text-sm tracking-wide" data-testid="mobile-nav-projects">PROJECTS</Link>
+            <div className="border-t border-white/20 pt-4">
+              <Link to="/properties" className="text-white text-sm tracking-wide block mb-4" data-testid="mobile-nav-properties">PROPERTIES</Link>
+              <Link to="/services" className="text-white text-sm tracking-wide block mb-4" data-testid="mobile-nav-services">SERVICES</Link>
+              <Link to="/about" className="text-white text-sm tracking-wide block mb-4" data-testid="mobile-nav-about">ABOUT US</Link>
+              <Link to="/contact" className="text-white text-sm tracking-wide block" data-testid="mobile-nav-contact">CONTACT</Link>
+            </div>
           </nav>
         </div>
       )}
