@@ -298,14 +298,14 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.6s' }}>
             <Link 
               to="/properties" 
-              className="btn-primary inline-flex items-center justify-center px-8 py-4 bg-caria-turquoise text-white font-medium text-sm tracking-wider uppercase rounded-sm hover:bg-opacity-90"
+              className="btn-primary inline-flex items-center justify-center px-8 py-4 text-white font-medium text-sm tracking-wider uppercase rounded-sm"
               data-testid="hero-btn-properties"
             >
               View Properties
             </Link>
             <Link 
               to="/contact" 
-              className="btn-outline inline-flex items-center justify-center px-8 py-4 border border-white text-white font-medium text-sm tracking-wider uppercase rounded-sm hover:bg-white hover:text-caria-slate"
+              className="btn-outline inline-flex items-center justify-center px-8 py-4 border border-white text-white font-medium text-sm tracking-wider uppercase rounded-sm hover:bg-white hover:text-caria-slate transition-all"
               data-testid="hero-btn-consultation"
             >
               Request Consultation
