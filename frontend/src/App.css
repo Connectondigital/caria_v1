@@ -142,11 +142,11 @@
 
 /* Footer link hover */
 .footer-link {
-    transition: color 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .footer-link:hover {
-    color: #3BB2B8;
+    opacity: 1 !important;
 }
 
 /* Play button pulse animation */
