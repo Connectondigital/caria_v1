@@ -1044,7 +1044,8 @@ const JoinUsSection = () => {
               Reach out to us at{' '}
               <a 
                 href="mailto:info@cariaestates.com" 
-                className="text-caria-turquoise hover:underline"
+                className="hover:underline transition-colors"
+                style={{ color: '#3BB2B8' }}
                 data-testid="join-us-email"
               >
                 info@cariaestates.com
