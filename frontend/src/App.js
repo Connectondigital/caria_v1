@@ -423,7 +423,7 @@ const RegionTabs = ({ activeRegion, setActiveRegion }) => {
 const PropertyCard = ({ property }) => {
   return (
     <Link 
-      to={`/properties/${property.slug}`}
+      to={`/property/${property.slug}`}
       className="property-card block bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden"
       data-testid={`property-card-${property.id}`}
     >
