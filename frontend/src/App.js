@@ -1176,15 +1176,15 @@ const Footer = () => {
 
           {/* Column 2: Services */}
           <div>
-            <h4 className="text-sm tracking-wider uppercase mb-6">Services</h4>
+            <h4 className="text-sm tracking-wider uppercase mb-6 text-white">Services</h4>
             <ul className="space-y-3">
-              <li><Link to="/buy" className="footer-link text-sm text-gray-400">Buy in Northern Cyprus</Link></li>
-              <li><Link to="/sell" className="footer-link text-sm text-gray-400">Sell your property</Link></li>
-              <li><Link to="/investment" className="footer-link text-sm text-gray-400">Investment Consultancy</Link></li>
-              <li><Link to="/legal" className="footer-link text-sm text-gray-400">Legal Advisory</Link></li>
-              <li><Link to="/rentals" className="footer-link text-sm text-gray-400">Rentals</Link></li>
-              <li><Link to="/developments" className="footer-link text-sm text-gray-400">New Developments</Link></li>
-              <li><Link to="/investors" className="footer-link text-sm text-gray-400">For Investors</Link></li>
+              <li><Link to="/buy" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Buy in Northern Cyprus</Link></li>
+              <li><Link to="/sell" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Sell your property</Link></li>
+              <li><Link to="/investment" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Investment Consultancy</Link></li>
+              <li><Link to="/legal" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Legal Advisory</Link></li>
+              <li><Link to="/rentals" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Rentals</Link></li>
+              <li><Link to="/developments" className="footer-link text-sm text-white opacity-70 hover:opacity-100">New Developments</Link></li>
+              <li><Link to="/investors" className="footer-link text-sm text-white opacity-70 hover:opacity-100">For Investors</Link></li>
             </ul>
           </div>
 
