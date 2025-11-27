@@ -19,7 +19,7 @@ import {
   Bath,
   Square,
   Maximize2,
-  Home,
+  Home as HomeIcon,
   Download,
   Check,
   MessageSquare
