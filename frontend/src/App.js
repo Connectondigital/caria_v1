@@ -664,15 +664,15 @@ const AdvancedSearchBar = () => {
 
           {/* Quick Links */}
           <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-100">
-            <button className="flex items-center text-sm text-gray-500 hover:text-caria-turquoise bg-caria-beige px-4 py-2 rounded-full">
+            <button className="flex items-center text-sm text-gray-500 hover:text-caria-turquoise bg-caria-mint px-4 py-2 rounded-full transition-colors">
               <MapPin size={14} className="mr-2" />
               Select Kyrenia area on map
             </button>
-            <button className="flex items-center text-sm text-gray-500 hover:text-caria-turquoise bg-caria-beige px-4 py-2 rounded-full">
+            <button className="flex items-center text-sm text-gray-500 hover:text-caria-turquoise bg-caria-mint px-4 py-2 rounded-full transition-colors">
               <MapPin size={14} className="mr-2" />
               Select Iskele area on map
             </button>
-            <button className="text-sm text-gray-500 hover:text-caria-turquoise">
+            <button className="text-sm text-gray-500 hover:text-caria-turquoise transition-colors">
               + more filters
             </button>
           </div>
