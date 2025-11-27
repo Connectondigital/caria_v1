@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -17,7 +17,12 @@ import {
   Search,
   Bed,
   Bath,
-  Square
+  Square,
+  Maximize2,
+  Home,
+  Download,
+  Check,
+  MessageSquare
 } from "lucide-react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
