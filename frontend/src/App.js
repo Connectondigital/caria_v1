@@ -1486,7 +1486,7 @@ const PropertyDetailPage = () => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Home size={24} className="text-[#0F5E63]" />
+              <HomeIcon size={24} className="text-[#0F5E63]" />
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wider">Reference</p>
                 <p className="text-lg font-medium text-caria-slate">{property.reference || `CE-${property.id}`}</p>
