@@ -1317,6 +1317,228 @@ const PropertyDetailPage = () => (
 );
 
 // ============================================
+// BUY / FOR SALE PAGE
+// ============================================
+const BuyPage = () => {
+  // Filter states
+  const [regionFilter, setRegionFilter] = useState("ALL");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [beds, setBeds] = useState("");
+  const [sort, setSort] = useState("newest");
+
+  // Combine all properties
+  const allProps = [...properties, ...featuredProperties];
+
+  // Helper function to extract numeric price
+  const extractPrice = (priceStr) => {
+    return parseInt(priceStr.replace(/[^0-9]/g, ''));
+  };
+
+  // Filter logic
+  const filtered = allProps.filter(property => {
+    // Region filter
+    if (regionFilter !== "ALL" && property.region !== regionFilter) {
+      return false;
+    }
+
+    // Price filters
+    const propPrice = extractPrice(property.price);
+    if (minPrice && propPrice < parseInt(minPrice)) {
+      return false;
+    }
+    if (maxPrice && propPrice > parseInt(maxPrice)) {
+      return false;
+    }
+
+    // Bedroom filter
+    if (beds && property.beds < parseInt(beds)) {
+      return false;
+    }
+
+    return true;
+  });
+
+  // Sort logic
+  const sorted = [...filtered].sort((a, b) => {
+    if (sort === "price-asc") {
+      return extractPrice(a.price) - extractPrice(b.price);
+    }
+    if (sort === "price-desc") {
+      return extractPrice(b.price) - extractPrice(a.price);
+    }
+    return 0; // newest - keep default order
+  });
+
+  // Clear all filters
+  const clearFilters = () => {
+    setRegionFilter("ALL");
+    setMinPrice("");
+    setMaxPrice("");
+    setBeds("");
+    setSort("newest");
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      
+      {/* Hero / Header Strip */}
+      <section className="bg-caria-mint pt-24 pb-10">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-xs tracking-[0.3em] uppercase text-gray-500 mb-4">
+            CARIA ESTATES · NORTHERN CYPRUS
+          </p>
+          <h1 className="font-serif text-3xl md:text-4xl text-caria-slate mb-4">
+            Properties for Sale in Northern Cyprus
+          </h1>
+          <p className="text-gray-600 max-w-3xl">
+            Browse our exclusive collection of villas, apartments, and investment opportunities 
+            across Kyrenia, Iskele, and Famagusta. Discover your dream Mediterranean property with 
+            Caria Estates.
+          </p>
+        </div>
+      </section>
+
+      {/* Filter Bar Section */}
+      <section className="bg-caria-mint border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+            {/* Left side - Filters */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 flex-1">
+              {/* Region Select */}
+              <div>
+                <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">
+                  Region
+                </label>
+                <select
+                  value={regionFilter}
+                  onChange={(e) => setRegionFilter(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:outline-none focus:border-caria-turquoise"
+                >
+                  <option value="ALL">All regions</option>
+                  <option value="KYRENIA">Kyrenia</option>
+                  <option value="ISKELE">Iskele</option>
+                  <option value="FAMAGUSTA">Famagusta</option>
+                </select>
+              </div>
+
+              {/* Min Price */}
+              <div>
+                <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">
+                  Min Price (€)
+                </label>
+                <input
+                  type="number"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                  placeholder="Min"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:outline-none focus:border-caria-turquoise"
+                />
+              </div>
+
+              {/* Max Price */}
+              <div>
+                <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">
+                  Max Price (€)
+                </label>
+                <input
+                  type="number"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  placeholder="Max"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:outline-none focus:border-caria-turquoise"
+                />
+              </div>
+
+              {/* Min Bedrooms */}
+              <div>
+                <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">
+                  Min Bedrooms
+                </label>
+                <input
+                  type="number"
+                  value={beds}
+                  onChange={(e) => setBeds(e.target.value)}
+                  placeholder="Any"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:outline-none focus:border-caria-turquoise"
+                />
+              </div>
+            </div>
+
+            {/* Right side - Sort & Clear */}
+            <div className="flex flex-col sm:flex-row gap-4 lg:ml-4">
+              {/* Sort By */}
+              <div>
+                <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">
+                  Sort By
+                </label>
+                <select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:outline-none focus:border-caria-turquoise"
+                >
+                  <option value="newest">Newest</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                </select>
+              </div>
+
+              {/* Clear Filters Button */}
+              <div className="flex items-end">
+                <button
+                  onClick={clearFilters}
+                  className="px-6 py-3 border border-caria-slate text-caria-slate text-xs tracking-wider uppercase rounded-sm hover:bg-caria-slate hover:text-white transition-all whitespace-nowrap"
+                >
+                  Clear Filters
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section className="bg-white py-10 md:py-14">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Top Info Row */}
+          <div className="flex items-center justify-between mb-8">
+            <p className="text-gray-600">
+              Showing <span className="font-medium text-caria-slate">{sorted.length}</span> properties for sale
+            </p>
+            <p className="text-xs tracking-[0.2em] uppercase text-gray-400 hidden md:block">
+              CARIA ESTATES · FOR SALE
+            </p>
+          </div>
+
+          {/* Properties Grid */}
+          {sorted.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {sorted.map((property) => (
+                <PropertyCard key={property.id} property={property} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <p className="text-gray-500 text-lg">No properties match your search criteria.</p>
+              <button
+                onClick={clearFilters}
+                className="mt-4 px-6 py-3 text-caria-turquoise text-sm tracking-wider uppercase hover:underline"
+              >
+                Clear all filters
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
 // MAIN APP COMPONENT
 // ============================================
 function App() {
