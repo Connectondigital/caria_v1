@@ -1904,6 +1904,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/properties" element={<PropertiesPage />} />
           <Route path="/properties/:slug" element={<PropertyDetailPage />} />
+          <Route path="/property/:slug" element={<PropertyDetailPage />} />
           <Route path="/services" element={<Home />} />
           <Route path="/about" element={<Home />} />
           <Route path="/contact" element={<Home />} />
