@@ -14,10 +14,13 @@ module.exports = {
                 colors: {
                         'caria': {
                                 'turquoise': '#3BB2B8',
+                                'turquoise-hover': '#3299A0',
                                 'slate': '#1F2937',
-                                'beige': '#F4EEE7',
-                                'beige-medium': '#E8E0D7',
-                                'beige-dark': '#D9D2CA',
+                                'mint': '#E6F4F4',
+                                'beige': '#E6F4F4',
+                                'beige-medium': '#E6F4F4',
+                                'beige-dark': '#E6F4F4',
+                                'footer': '#0F6C74',
                                 'gold': '#B8860B',
                         },
                         background: 'hsl(var(--background))',
