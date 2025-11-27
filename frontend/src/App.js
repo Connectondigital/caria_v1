@@ -1008,7 +1008,7 @@ const BlogSlider = () => {
                 <h3 className="font-medium text-caria-slate text-sm mb-3 line-clamp-2">
                   {article.title}
                 </h3>
-                <span className="text-xs text-caria-turquoise hover:underline">
+                <span className="text-xs hover:underline transition-colors" style={{ color: '#3BB2B8' }}>
                   read article
                 </span>
               </div>
