@@ -1358,7 +1358,7 @@ const PropertyDetailPage = () => {
         <Header />
         <div className="max-w-7xl mx-auto px-6 py-16 text-center">
           <h1 className="font-serif text-4xl text-caria-slate mb-4">Property Not Found</h1>
-          <p className="text-gray-600 mb-8">The property you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-8">The property you&apos;re looking for doesn&apos;t exist.</p>
           <Link to="/buy" className="inline-block px-8 py-3 bg-[#0F5E63] text-white text-sm tracking-wider uppercase rounded-sm hover:bg-[#0d4f53] transition-all">
             View All Properties
           </Link>
