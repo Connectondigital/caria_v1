@@ -181,13 +181,13 @@
 /* Curated property card - larger, elegant cards for slider */
 .curated-property-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(229, 231, 235, 0.5);
 }
 
 .curated-property-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .curated-property-card .curated-property-image {
