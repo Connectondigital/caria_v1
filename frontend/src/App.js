@@ -1217,14 +1217,14 @@ const Footer = () => {
 // ============================================
 const CopyrightBar = () => {
   return (
-    <div className="bg-caria-slate border-t border-gray-700 py-4" data-testid="copyright">
+    <div className="border-t py-4" style={{ backgroundColor: '#0F6C74', borderTopColor: 'rgba(255,255,255,0.1)' }} data-testid="copyright">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
+        <div className="flex flex-col md:flex-row items-center justify-between text-xs text-white opacity-70">
           <p>© 2025 Caria Estates. All rights reserved.</p>
           <div className="flex items-center space-x-4 mt-2 md:mt-0">
-            <Link to="/terms" className="hover:text-gray-300">Terms of Service</Link>
+            <Link to="/terms" className="hover:opacity-100 transition-opacity">Terms of Service</Link>
             <span>·</span>
-            <Link to="/privacy" className="hover:text-gray-300">Privacy Policy</Link>
+            <Link to="/privacy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
           </div>
         </div>
       </div>
