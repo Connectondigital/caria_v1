@@ -1330,17 +1330,346 @@ const PropertiesPage = () => (
   </div>
 );
 
-const PropertyDetailPage = () => (
-  <div className="min-h-screen bg-white pt-20">
-    <Header />
-    <div className="max-w-7xl mx-auto px-6 py-16">
-      <h1 className="font-serif text-4xl text-caria-slate mb-4">Property Details</h1>
-      <p className="text-gray-600">Property detail page coming soon...</p>
+// ============================================
+// PROPERTY DETAIL PAGE
+// ============================================
+const PropertyDetailPage = () => {
+  const { slug } = useParams();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "I would like to schedule a viewing for this property."
+  });
+
+  // Find property by slug from all properties
+  const allProps = [...properties, ...featuredProperties];
+  const property = allProps.find(p => p.slug === slug);
+
+  // Get related properties (same region, excluding current)
+  const relatedProperties = allProps
+    .filter(p => p.region === property?.region && p.id !== property?.id)
+    .slice(0, 3);
+
+  if (!property) {
+    return (
+      <div className="min-h-screen bg-white pt-20">
+        <Header />
+        <div className="max-w-7xl mx-auto px-6 py-16 text-center">
+          <h1 className="font-serif text-4xl text-caria-slate mb-4">Property Not Found</h1>
+          <p className="text-gray-600 mb-8">The property you're looking for doesn't exist.</p>
+          <Link to="/buy" className="inline-block px-8 py-3 bg-[#0F5E63] text-white text-sm tracking-wider uppercase rounded-sm hover:bg-[#0d4f53] transition-all">
+            View All Properties
+          </Link>
+        </div>
+        <Footer />
+        <CopyrightBar />
+      </div>
+    );
+  }
+
+  const images = property.images || [property.image];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you! We will contact you shortly.");
+    // In production, this would send to backend
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* HERO SECTION - Image Slider */}
+      <section className="relative h-[70vh] md:h-[80vh] mt-16 md:mt-20">
+        <div className="relative w-full h-full">
+          {/* Main Image */}
+          <img
+            src={images[currentImageIndex]}
+            alt={property.title}
+            className="w-full h-full object-cover"
+          />
+
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+          {/* Tag Badge */}
+          <div className="absolute top-6 left-6 bg-white px-4 py-2 text-xs font-medium tracking-wider text-caria-slate rounded">
+            {property.tag}
+          </div>
+
+          {/* Navigation Arrows */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all shadow-lg"
+              >
+                <ChevronLeft size={24} className="text-caria-slate" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all shadow-lg"
+              >
+                <ChevronRight size={24} className="text-caria-slate" />
+              </button>
+            </>
+          )}
+
+          {/* Image Counter */}
+          {images.length > 1 && (
+            <div className="absolute bottom-6 right-6 bg-black/70 px-4 py-2 rounded text-white text-sm">
+              {currentImageIndex + 1} / {images.length}
+            </div>
+          )}
+
+          {/* Property Info Overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+            <div className="max-w-7xl mx-auto">
+              <p className="text-[#CCEBEA] text-sm tracking-wider uppercase mb-2">
+                {property.location}
+              </p>
+              <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white font-light mb-4">
+                {property.title}
+              </h1>
+              <p className="text-3xl md:text-4xl font-light text-white">
+                {property.price}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* QUICK INFO BAR */}
+      <section className="bg-[#F2EDE8] border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <div className="flex items-center gap-3">
+              <Bed size={24} className="text-[#0F5E63]" />
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">Bedrooms</p>
+                <p className="text-lg font-medium text-caria-slate">{property.beds}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Bath size={24} className="text-[#0F5E63]" />
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">Bathrooms</p>
+                <p className="text-lg font-medium text-caria-slate">{property.baths}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Square size={24} className="text-[#0F5E63]" />
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">Built Size</p>
+                <p className="text-lg font-medium text-caria-slate">{property.area} m²</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Maximize2 size={24} className="text-[#0F5E63]" />
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">Plot Size</p>
+                <p className="text-lg font-medium text-caria-slate">{property.plotSize || property.area} m²</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Home size={24} className="text-[#0F5E63]" />
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">Reference</p>
+                <p className="text-lg font-medium text-caria-slate">{property.reference || `CE-${property.id}`}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MAIN CONTENT - Two Column Layout */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* LEFT COLUMN - Content */}
+            <div className="lg:col-span-2 space-y-12">
+              {/* Description */}
+              <div>
+                <h2 className="font-serif text-3xl text-caria-slate mb-6">Description</h2>
+                <div className="text-gray-600 leading-relaxed space-y-4">
+                  {property.description ? (
+                    property.description.split('\n').map((para, idx) => (
+                      <p key={idx}>{para}</p>
+                    ))
+                  ) : (
+                    <p>This exceptional property offers luxury living in one of Northern Cyprus's most sought-after locations.</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Features */}
+              {property.features && (
+                <div>
+                  <h2 className="font-serif text-3xl text-caria-slate mb-6">Features</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {property.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-3">
+                        <Check size={20} className="text-[#0F5E63] flex-shrink-0" />
+                        <span className="text-gray-600">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Location Map */}
+              <div>
+                <h2 className="font-serif text-3xl text-caria-slate mb-6">Location</h2>
+                <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                  <iframe
+                    src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.3865437687426!2d33.3199!3d35.3382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDIwJzE3LjUiTiAzM8KwMTknMTEuNiJF!5e0!3m2!1sen!2s!4v1234567890`}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    title="Property Location"
+                  />
+                </div>
+              </div>
+
+              {/* Download Brochure */}
+              <div>
+                <button className="flex items-center gap-3 px-6 py-3 border-2 border-[#0F5E63] text-[#0F5E63] rounded-sm hover:bg-[#0F5E63] hover:text-white transition-all">
+                  <Download size={20} />
+                  <span className="font-medium tracking-wider uppercase text-sm">Download Brochure</span>
+                </button>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN - Sidebar */}
+            <div className="lg:col-span-1 space-y-8">
+              {/* Contact Form */}
+              <div className="bg-[#F2EDE8] p-6 md:p-8 rounded-lg">
+                <h3 className="font-serif text-2xl text-caria-slate mb-6">Request Viewing</h3>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#0F5E63]"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#0F5E63]"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#0F5E63]"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      name="message"
+                      rows="4"
+                      placeholder="Message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#0F5E63] resize-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full px-6 py-4 bg-[#0F5E63] text-white text-sm tracking-wider uppercase rounded-sm hover:bg-[#0d4f53] transition-all"
+                  >
+                    Request Viewing
+                  </button>
+                </form>
+              </div>
+
+              {/* Agent Card */}
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="font-medium text-caria-slate mb-4">Your Assigned Agent</h3>
+                <div className="flex items-center gap-4 mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop"
+                    alt="Agent"
+                    className="w-16 h-16 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="font-medium text-caria-slate">Maria Konstantinou</p>
+                    <p className="text-sm text-gray-500">Senior Property Consultant</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <a
+                    href="tel:+905481234567"
+                    className="flex items-center gap-3 text-gray-600 hover:text-[#0F5E63] transition-colors"
+                  >
+                    <Phone size={18} />
+                    <span className="text-sm">+90 548 123 4567</span>
+                  </a>
+                  <a
+                    href="https://wa.me/905481234567"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-4 py-2 bg-[#25D366] text-white rounded-sm hover:bg-[#20bd5a] transition-all justify-center"
+                  >
+                    <MessageSquare size={18} />
+                    <span className="text-sm font-medium">WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* RELATED PROPERTIES */}
+      {relatedProperties.length > 0 && (
+        <section className="bg-[#CCEBEA] py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-10">You may also like</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedProperties.map((prop) => (
+                <PropertyCard key={prop.id} property={prop} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <Footer />
+      <CopyrightBar />
     </div>
-    <Footer />
-    <CopyrightBar />
-  </div>
-);
+  );
+};
 
 // ============================================
 // BUY / FOR SALE PAGE
