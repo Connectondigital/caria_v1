@@ -1147,26 +1147,26 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Column 1: Contact */}
           <div>
-            <h4 className="text-sm tracking-wider uppercase mb-6">Contact</h4>
+            <h4 className="text-sm tracking-wider uppercase mb-6 text-white">Contact</h4>
             <div className="space-y-4">
               <div>
-                <p className="font-medium mb-1">Kyrenia Office</p>
-                <p className="text-sm text-gray-400">123 Harbor Road, Kyrenia</p>
+                <p className="font-medium mb-1 text-white opacity-90">Kyrenia Office</p>
+                <p className="text-sm text-white opacity-70">123 Harbor Road, Kyrenia</p>
               </div>
               <div>
-                <p className="font-medium mb-1">Iskele Office</p>
-                <p className="text-sm text-gray-400">45 Beach Boulevard, Iskele</p>
+                <p className="font-medium mb-1 text-white opacity-90">Iskele Office</p>
+                <p className="text-sm text-white opacity-70">45 Beach Boulevard, Iskele</p>
               </div>
               <div>
-                <p className="font-medium mb-1">Famagusta Office</p>
-                <p className="text-sm text-gray-400">78 Old Town Street, Famagusta</p>
+                <p className="font-medium mb-1 text-white opacity-90">Famagusta Office</p>
+                <p className="text-sm text-white opacity-70">78 Old Town Street, Famagusta</p>
               </div>
               <div className="pt-2">
-                <p className="flex items-center text-sm text-gray-300">
+                <p className="flex items-center text-sm text-white opacity-90">
                   <Phone size={14} className="mr-2" />
                   +90 548 123 4567
                 </p>
-                <p className="flex items-center text-sm text-gray-300 mt-1">
+                <p className="flex items-center text-sm text-white opacity-90 mt-1">
                   <Mail size={14} className="mr-2" />
                   info@cariaestates.com
                 </p>
