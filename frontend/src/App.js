@@ -823,7 +823,7 @@ const FeaturedPropertiesSlider = () => {
   };
 
   return (
-    <section className="bg-caria-beige-medium py-16 md:py-24" data-testid="featured-section">
+    <section className="bg-caria-mint py-16 md:py-24" data-testid="featured-section">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
