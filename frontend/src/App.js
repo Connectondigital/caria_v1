@@ -894,7 +894,7 @@ const WhyChooseSection = () => {
       <div 
         className="h-64 bg-cover bg-center"
         style={{ 
-          backgroundColor: '#E8E0D7',
+          backgroundColor: '#E6F4F4',
           backgroundImage: `url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=400&fit=crop&q=30')`,
           backgroundBlendMode: 'overlay'
         }}
