@@ -1081,7 +1081,7 @@ const NewsletterBar = () => {
   };
 
   return (
-    <section className="bg-caria-beige py-12 md:py-16" data-testid="newsletter-section">
+    <section className="bg-caria-mint py-12 md:py-16" data-testid="newsletter-section">
       <div className="max-w-5xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           {/* Text */}
