@@ -1190,18 +1190,18 @@ const Footer = () => {
 
           {/* Column 3: Follow Us */}
           <div>
-            <h4 className="text-sm tracking-wider uppercase mb-6">Follow Us</h4>
+            <h4 className="text-sm tracking-wider uppercase mb-6 text-white">Follow Us</h4>
             <div className="flex space-x-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link text-gray-400 hover:text-caria-turquoise" data-testid="social-instagram">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link text-white opacity-70 hover:opacity-100 transition-opacity" data-testid="social-instagram">
                 <Instagram size={20} />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-link text-gray-400 hover:text-caria-turquoise" data-testid="social-facebook">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-link text-white opacity-70 hover:opacity-100 transition-opacity" data-testid="social-facebook">
                 <Facebook size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link text-gray-400 hover:text-caria-turquoise" data-testid="social-linkedin">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link text-white opacity-70 hover:opacity-100 transition-opacity" data-testid="social-linkedin">
                 <Linkedin size={20} />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="footer-link text-gray-400 hover:text-caria-turquoise" data-testid="social-youtube">
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="footer-link text-white opacity-70 hover:opacity-100 transition-opacity" data-testid="social-youtube">
                 <Youtube size={20} />
               </a>
             </div>
