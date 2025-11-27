@@ -476,7 +476,7 @@ const PropertyCard = ({ property }) => {
 const CuratedPropertyCard = ({ property }) => {
   return (
     <Link 
-      to={`/properties/${property.slug}`}
+      to={`/property/${property.slug}`}
       className="curated-property-card flex flex-col h-full bg-white rounded-lg overflow-hidden"
       data-testid={`curated-card-${property.id}`}
     >
