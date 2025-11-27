@@ -330,45 +330,14 @@ const Hero = () => {
         />
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 hero-gradient" />
+      {/* Gradient Overlay - subtle for readability */}
+      <div className="absolute inset-0 bg-black/20" />
 
-      {/* Content - Bottom Left Aligned */}
-      <div className="absolute inset-0 flex items-end">
-        <div className="max-w-7xl w-full mx-auto px-6 pb-20 md:pb-32">
-          {/* Small Label */}
-          <p className="text-white/80 text-xs md:text-sm tracking-[0.3em] uppercase mb-4 animate-fade-in" data-testid="hero-label">
-            CARIA ESTATES · NORTHERN CYPRUS
-          </p>
-          
-          {/* Main Heading */}
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-medium leading-tight mb-6 max-w-3xl animate-fade-in" style={{ animationDelay: '0.2s' }} data-testid="hero-heading">
-            Exclusive Luxury Properties<br />in Northern Cyprus
-          </h1>
-          
-          {/* Description */}
-          <p className="text-white/90 text-base md:text-lg mb-8 max-w-xl animate-fade-in" style={{ animationDelay: '0.4s' }} data-testid="hero-description">
-            Discover exceptional homes and investment opportunities along the Mediterranean coast with our expert guidance.
-          </p>
-
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            <Link 
-              to="/properties" 
-              className="btn-primary inline-flex items-center justify-center px-8 py-4 text-white font-medium text-sm tracking-wider uppercase rounded-sm"
-              data-testid="hero-btn-properties"
-            >
-              View Properties
-            </Link>
-            <Link 
-              to="/contact" 
-              className="btn-outline inline-flex items-center justify-center px-8 py-4 border border-white text-white font-medium text-sm tracking-wider uppercase rounded-sm hover:bg-white hover:text-caria-slate transition-all"
-              data-testid="hero-btn-consultation"
-            >
-              Request Consultation
-            </Link>
-          </div>
-        </div>
+      {/* Centered Brand Title */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-wide text-center" data-testid="hero-brand">
+          CARIA ESTATES <sup className="text-2xl md:text-3xl">®</sup>
+        </h1>
       </div>
     </section>
   );
