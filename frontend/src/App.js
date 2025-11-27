@@ -1511,7 +1511,7 @@ const PropertyDetailPage = () => {
                       <p key={idx}>{para}</p>
                     ))
                   ) : (
-                    <p>This exceptional property offers luxury living in one of Northern Cyprus's most sought-after locations.</p>
+                    <p>This exceptional property offers luxury living in one of Northern Cyprus&apos;s most sought-after locations.</p>
                   )}
                 </div>
               </div>
