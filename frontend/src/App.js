@@ -649,7 +649,10 @@ const AdvancedSearchBar = () => {
                   Clear All
                 </button>
                 <button
-                  className="flex-1 px-4 py-3 bg-caria-turquoise text-white text-xs tracking-wider uppercase rounded-sm hover:bg-caria-slate flex items-center justify-center"
+                  className="flex-1 px-4 py-3 text-white text-xs tracking-wider uppercase rounded-sm flex items-center justify-center transition-all"
+                  style={{ backgroundColor: '#3BB2B8' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3299A0'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3BB2B8'}
                   data-testid="search-submit"
                 >
                   <Search size={16} className="mr-2" />
