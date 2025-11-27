@@ -193,7 +193,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     const handleScroll = () => {
       // Check if we've scrolled past the hero (viewport height)
       const heroHeight = window.innerHeight;
