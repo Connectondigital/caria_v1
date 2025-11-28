@@ -212,16 +212,45 @@ const partners = [
   { id: 5, name: "Partner 5" },
 ];
 
-// Development Projects Data
+// Development Projects Data (Enhanced for Detail Pages)
 const projects = [
   {
     id: 1,
     slug: "hanko-west",
     name: "Hanko West",
     location: "Kyrenia",
+    fullLocation: "Kyrenia · Northern Cyprus",
     description: "Seaside Luxury Apartments with Panoramic Views",
+    tagline: "Sea-view apartments in Kyrenia, Northern Cyprus",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
-    fullDescription: "A premium residential development featuring modern architecture and world-class amenities."
+    heroImage: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop",
+    fullDescription: "A premium residential development featuring modern architecture and world-class amenities.",
+    story: "Hanko West represents a new standard in Mediterranean coastal living. This exclusive development combines contemporary Scandinavian design principles with the natural beauty of Northern Cyprus's coastline. Each apartment has been carefully crafted to maximize sea views and natural light, creating spaces that feel both luxurious and welcoming.\n\nPerfect for discerning investors and second-home buyers, Hanko West offers a lifestyle of refined comfort. The development features premium materials, smart home technology, and access to world-class amenities. Whether you're seeking a permanent residence or a vacation retreat with excellent rental potential, Hanko West delivers an unmatched living experience.",
+    keyFacts: {
+      units: "69 Apartments",
+      bedrooms: "1–3 bedrooms",
+      completion: "2027",
+      priceFrom: "€250,000",
+      developer: "Caria Estates"
+    },
+    unitTypes: [
+      { type: "1-Bedroom Apartment", size: "65 m²", priceFrom: "€250,000", note: "Sea view" },
+      { type: "2-Bedroom Apartment", size: "95 m²", priceFrom: "€385,000", note: "Large terrace" },
+      { type: "3-Bedroom Penthouse", size: "145 m²", priceFrom: "€595,000", note: "Rooftop terrace" }
+    ],
+    amenities: "Hanko West residents enjoy exclusive access to a range of premium amenities designed for modern living. The development features a stunning infinity pool overlooking the Mediterranean, a fully-equipped fitness center, and a wellness spa with sauna and treatment rooms.\n\nAdditional facilities include a contemporary co-working space, stylish residents' lounge, beautifully landscaped gardens, secure underground parking, and 24/7 concierge service. Every detail has been considered to enhance your lifestyle and provide maximum comfort.",
+    amenityImages: [
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&h=400&fit=crop"
+    ],
+    locationInfo: "Hanko West enjoys a prime position in Kyrenia, one of Northern Cyprus's most sought-after coastal destinations. The development is just 2 minutes walk from pristine beaches, 5 minutes drive from Kyrenia's historic harbor and castle, and 30 minutes from Ercan International Airport.\n\nThe area offers an exceptional lifestyle with numerous restaurants, cafes, shops, and entertainment venues within easy reach. Kyrenia combines a relaxed Mediterranean atmosphere with all modern conveniences, making it perfect for both permanent living and holiday retreats.",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop"
+    ],
+    investmentInfo: "Hanko West presents an excellent investment opportunity with strong rental potential in Northern Cyprus's thriving tourism market. Properties in Kyrenia consistently achieve high occupancy rates, with rental yields averaging 6-8% annually.\n\nCaria Estates offers comprehensive property management services, including rental programs, maintenance, and concierge support. Whether you're seeking a second home or a pure investment, our team provides end-to-end support to maximize your returns."
   },
   {
     id: 2,
