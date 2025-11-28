@@ -2692,6 +2692,152 @@ const ServicesPage = () => {
 };
 
 // ============================================
+// ABOUT US PAGE
+// ============================================
+const AboutPage = () => {
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* 1) HERO SECTION */}
+      <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-[#F4FAF9]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-caria-slate font-light mb-8">
+            About Us
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            Caria Estates is built on trust, experience and a commitment to delivering exceptional real estate services in Northern Cyprus.
+          </p>
+        </div>
+      </section>
+
+      {/* 2) OUR GOAL SECTION - Centered Content */}
+      <section className="py-20 md:py-32">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center space-y-8">
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+              Simply put, your satisfaction is our goal. When you buy your vacation home with us, we aim to bring happiness to your family by assisting you to make decisions with no regrets.
+            </p>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+              We understand that buying a property abroad is not easy. For this reason, we work on your behalf to make your buying experience smooth from beginning to end. Together with you, we avoid obstacles and prevent unpleasant surprises.
+            </p>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+              From the first moment you contact us, we support you with travel arrangements, property tours, and personalized guidance based on your interests. For Caria Estates, closing the transaction is not the end of the story — it is the beginning. We continue supporting you after your move, even late at night if needed.
+            </p>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+              With our experience, professionalism, and strong background, we provide exceptional service and long-lasting customer satisfaction.
+            </p>
+          </div>
+          <div className="w-24 h-px bg-gray-200 mx-auto mt-16" />
+        </div>
+      </section>
+
+      {/* 3 & 4) OUR TEAM SECTION */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-12 text-center">
+            Our Team
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=1000&fit=crop"
+                alt="Our Team"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Content */}
+            <div className="space-y-6">
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Our team consists of experienced, enthusiastic and trusted professionals who are always ready to guide you through every step of buying property abroad.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                We ensure you receive the highest level of service with sincerity, care and expertise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) OUR GOAL SECTION - Card Version */}
+      <section className="py-20 md:py-32 bg-[#F4FAF9]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+            {/* Image */}
+            <div className="relative h-80 md:h-96 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=600&fit=crop"
+                alt="Our Goal"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Content */}
+            <div className="p-8 md:p-12 text-center">
+              <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-6">
+                Our Goal
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                We always aim to provide the best service with our extensive experience. Our goal is to deliver complete customer satisfaction — offering exclusive apartment and villa options in Northern Cyprus and international regions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6) ASSOCIATE PARTNERS SECTION */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-12 text-center">
+            Associate Partners
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="space-y-6 lg:order-2">
+              <p className="text-lg text-gray-600 leading-relaxed">
+                As Caria Estates International, we collaborate with highly experienced partners in Italy and Cyprus to offer more personalized, reliable and professional service to our clients.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Our global network ensures you receive world-class expertise and local knowledge, no matter where your property journey takes you.
+              </p>
+            </div>
+            {/* Image */}
+            <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden lg:order-1">
+              <img
+                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=1000&fit=crop"
+                alt="Associate Partners"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7) CONTACT CTA SECTION */}
+      <section className="py-20 md:py-32 bg-[#F4FAF9]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-6">
+            Would you like to learn more?
+          </h2>
+          <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+            Schedule a consultation with our team. We are always here for you.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-block px-10 py-4 bg-[#1BAFA2] text-white text-sm tracking-wider uppercase rounded-md hover:bg-[#189890] transition-all shadow-sm"
+          >
+            Contact Us
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
 // MAIN APP COMPONENT
 // ============================================
 function App() {
