@@ -2585,7 +2585,7 @@ function App() {
           <Route path="/buy" element={<BuyPage />} />
           <Route path="/sell" element={<Home />} />
           <Route path="/projects" element={<ProjectsOverviewPage />} />
-          <Route path="/projects/:slug" element={<Home />} />
+          <Route path="/projects/:slug" element={<ProjectDetailPage />} />
           <Route path="/investment" element={<Home />} />
           <Route path="/legal" element={<Home />} />
           <Route path="/rentals" element={<Home />} />
