@@ -212,6 +212,64 @@ const partners = [
   { id: 5, name: "Partner 5" },
 ];
 
+// Development Projects Data
+const projects = [
+  {
+    id: 1,
+    slug: "hanko-west",
+    name: "Hanko West",
+    location: "Kyrenia",
+    description: "Seaside Luxury Apartments with Panoramic Views",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+    fullDescription: "A premium residential development featuring modern architecture and world-class amenities."
+  },
+  {
+    id: 2,
+    slug: "caria-hills",
+    name: "Caria Hills",
+    location: "Esentepe",
+    description: "Modern Villa Community with Mountain Views",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
+    fullDescription: "Exclusive hillside villas combining contemporary design with natural beauty."
+  },
+  {
+    id: 3,
+    slug: "palm-view-residences",
+    name: "Palm View Residences",
+    location: "Famagusta",
+    description: "Beachfront Living with Private Beach Access",
+    image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&h=600&fit=crop",
+    fullDescription: "Luxury beachfront apartments offering direct beach access and resort-style living."
+  },
+  {
+    id: 4,
+    slug: "blue-horizon-towers",
+    name: "Blue Horizon Towers",
+    location: "Iskele",
+    description: "High-Rise Residential with Sea Views",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+    fullDescription: "Modern high-rise development with stunning Mediterranean views and premium facilities."
+  },
+  {
+    id: 5,
+    slug: "royal-bay-villas",
+    name: "Royal Bay Villas",
+    location: "Kyrenia",
+    description: "Exclusive Sea-View Villas with Private Pools",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop",
+    fullDescription: "Ultra-luxury villas featuring private infinity pools and breathtaking coastal views."
+  },
+  {
+    id: 6,
+    slug: "caria-downtown",
+    name: "Caria Downtown",
+    location: "Lefkoşa",
+    description: "Urban Smart Apartments in City Center",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+    fullDescription: "Contemporary urban living with smart home technology in the heart of the capital."
+  }
+];
+
 // ============================================
 // SECTION 1: HEADER COMPONENT
 // ============================================
