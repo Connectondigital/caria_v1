@@ -3133,7 +3133,7 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/about-us" element={<AboutPage />} />
-          <Route path="/contact" element={<Home />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/buy" element={<BuyPage />} />
           <Route path="/sell" element={<Home />} />
           <Route path="/projects" element={<ProjectsOverviewPage />} />
