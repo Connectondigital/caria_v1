@@ -1952,6 +1952,186 @@ const BuyPage = () => {
 };
 
 // ============================================
+// PROJECTS OVERVIEW PAGE
+// ============================================
+const ProjectsOverviewPage = () => {
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* HERO SECTION */}
+      <section className="relative h-[60vh] md:h-[70vh] mt-16 md:mt-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop"
+            alt="Caria Developments"
+            className="w-full h-full object-cover filter blur-sm"
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+
+        <div className="relative h-full flex items-center justify-center text-center px-6">
+          <div className="max-w-4xl">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-light mb-6 animate-fade-in">
+              Our Developments
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 font-light animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              Premium Projects by Caria Estates
+            </p>
+            <p className="text-base md:text-lg text-white/80 mt-6 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              Explore our exclusive collection of residential and investment developments in Northern Cyprus.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECT CARDS GRID */}
+      <section className="py-20 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+            {projects.map((project, index) => (
+              <Link
+                key={project.id}
+                to={`/projects/${project.slug}`}
+                className="group animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="overflow-hidden bg-white">
+                  {/* Project Image */}
+                  <div className="relative h-72 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Project Info */}
+                  <div className="py-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="font-serif text-2xl text-caria-slate group-hover:text-[#0F5E63] transition-colors">
+                        {project.name}
+                      </h3>
+                      <ChevronRight 
+                        size={20} 
+                        className="text-gray-400 group-hover:text-[#0F5E63] transition-colors"
+                      />
+                    </div>
+                    <p className="text-sm text-gray-500 tracking-wider uppercase mb-3">
+                      {project.location}
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION DIVIDER */}
+      <div className="border-t border-gray-100" />
+
+      {/* WHY INVEST WITH CARIA SECTION */}
+      <section className="py-20 md:py-32 bg-[#F2EDE8]">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-center text-caria-slate mb-16">
+            Why Invest With Caria
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* Feature 1 */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-[#0F5E63] rounded-full">
+                <svg className="w-8 h-8 text-[#0F5E63]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <h3 className="font-medium text-lg text-caria-slate mb-3">
+                Strong ROI Opportunities
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Premium locations with proven investment returns and rental yields
+              </p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-[#0F5E63] rounded-full">
+                <MapPin className="w-8 h-8 text-[#0F5E63]" />
+              </div>
+              <h3 className="font-medium text-lg text-caria-slate mb-3">
+                Prime Locations
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Strategic developments in the most desirable areas of Northern Cyprus
+              </p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-[#0F5E63] rounded-full">
+                <svg className="w-8 h-8 text-[#0F5E63]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="font-medium text-lg text-caria-slate mb-3">
+                Scandinavian-Quality
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Premium construction standards with Nordic design principles
+              </p>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-[#0F5E63] rounded-full">
+                <svg className="w-8 h-8 text-[#0F5E63]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="font-medium text-lg text-caria-slate mb-3">
+                Full Investment Consultancy
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Expert guidance through every step of your investment journey
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT CTA BLOCK */}
+      <section className="py-20 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 border border-gray-200 rounded-lg p-10 md:p-16">
+            <div className="text-center lg:text-left">
+              <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-4">
+                Interested in our developments?
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Contact our team to learn more about investment opportunities.
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              className="px-10 py-4 bg-[#0F5E63] text-white text-sm tracking-wider uppercase rounded-sm hover:bg-[#0d4f53] transition-all whitespace-nowrap"
+            >
+              Get in Touch
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
 // MAIN APP COMPONENT
 // ============================================
 function App() {
