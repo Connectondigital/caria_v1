@@ -2568,6 +2568,130 @@ const ProjectDetailPage = () => {
 };
 
 // ============================================
+// SERVICES PAGE
+// ============================================
+const ServicesPage = () => {
+  const services = [
+    {
+      id: 1,
+      title: "After Sale Services",
+      description: "We believe after-sale service is one of the most important elements when buying property. We support you with every detail after your purchase.",
+      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop"
+    },
+    {
+      id: 2,
+      title: "Consulting Services",
+      description: "Whenever you need guidance during your buying process or have questions about real estate, we are always one call away.",
+      image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop"
+    },
+    {
+      id: 3,
+      title: "Home Decoration",
+      description: "We make the entire furniture-buying and setup process smooth and comfortable, following each step on your behalf.",
+      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=600&fit=crop"
+    },
+    {
+      id: 4,
+      title: "Transfer",
+      description: "For airport transfers or any transportation needs, we arrange everything for you safely and efficiently.",
+      image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop"
+    },
+    {
+      id: 5,
+      title: "Vacation Planner",
+      description: "After settling into your new home, we help you discover the region and enjoy the best experiences Northern Cyprus has to offer.",
+      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop"
+    },
+    {
+      id: 6,
+      title: "Home Insurance",
+      description: "We strongly recommend full home insurance for your new property. We handle the entire process quickly and reliably.",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* HERO SECTION */}
+      <section className="pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-caria-slate font-light mb-8">
+            Services
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12">
+            Premium real estate, investment, lifestyle and after-sales services tailored for international buyers in Northern Cyprus.
+          </p>
+          <div className="w-24 h-px bg-gray-200 mx-auto" />
+        </div>
+      </section>
+
+      {/* SERVICES GRID SECTION */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            {services.map((service, index) => (
+              <div 
+                key={service.id} 
+                className="group animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Service Image */}
+                <div className="relative h-80 md:h-96 overflow-hidden rounded-lg mb-6">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Service Content */}
+                <div>
+                  <h2 className="font-serif text-2xl md:text-3xl text-caria-slate mb-4">
+                    {service.title}
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  <button 
+                    className="inline-flex items-center gap-2 text-[#1BAFA2] text-sm font-medium tracking-wider uppercase hover:gap-3 transition-all"
+                  >
+                    Learn More
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BOTTOM CTA SECTION */}
+      <section className="py-20 md:py-32 bg-[#F4FAF9]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-6">
+            Need More Information?
+          </h2>
+          <p className="text-gray-600 text-lg mb-10">
+            Our dedicated team is here to assist you with any questions about our services.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-block px-10 py-4 bg-[#1BAFA2] text-white text-sm tracking-wider uppercase rounded-md hover:bg-[#189890] transition-all shadow-sm"
+          >
+            Get in Touch
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
 // MAIN APP COMPONENT
 // ============================================
 function App() {
