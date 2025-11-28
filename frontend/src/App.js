@@ -2703,7 +2703,7 @@ function App() {
           <Route path="/properties" element={<PropertiesPage />} />
           <Route path="/properties/:slug" element={<PropertyDetailPage />} />
           <Route path="/property/:slug" element={<PropertyDetailPage />} />
-          <Route path="/services" element={<Home />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<Home />} />
           <Route path="/contact" element={<Home />} />
           <Route path="/buy" element={<BuyPage />} />
