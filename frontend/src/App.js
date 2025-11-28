@@ -2838,6 +2838,287 @@ const AboutPage = () => {
 };
 
 // ============================================
+// CONTACT PAGE
+// ============================================
+const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    region: "",
+    message: ""
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you for contacting us! We will get back to you within the same day.");
+    // Reset form
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      region: "",
+      message: ""
+    });
+  };
+
+  const offices = [
+    {
+      name: "Kyrenia Office",
+      address: "123 Harbor Road, Kyrenia",
+      phone: "+90 533 123 4567",
+      email: "info@cariaestates.com"
+    },
+    {
+      name: "Iskele Office",
+      address: "45 Beach Boulevard, Iskele",
+      phone: "+90 533 987 6543",
+      email: "iskele@cariaestates.com"
+    },
+    {
+      name: "Famagusta Office",
+      address: "76 Old Town Street, Famagusta",
+      phone: "+90 533 825 4589",
+      email: "famagusta@cariaestates.com"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* 1) HERO SECTION */}
+      <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-caria-slate font-light mb-8">
+            Contact Us
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            We are here to assist you with anything you need about buying property or investing in Northern Cyprus.
+          </p>
+        </div>
+      </section>
+
+      {/* 2) TWO-COLUMN LAYOUT */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* LEFT: CONTACT FORM */}
+            <div className="bg-white rounded-lg p-8 md:p-10 shadow-sm border border-gray-100">
+              <h2 className="font-serif text-3xl text-caria-slate mb-8">
+                Get in Touch
+              </h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Full Name */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    required
+                    className="peer w-full px-4 py-3 border border-gray-200 rounded-md text-gray-700 focus:outline-none focus:border-[#1BAFA2] transition-colors"
+                    placeholder=" "
+                  />
+                  <label className="absolute left-4 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-[#1BAFA2]">
+                    Full Name
+                  </label>
+                </div>
+
+                {/* Email */}
+                <div className="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="peer w-full px-4 py-3 border border-gray-200 rounded-md text-gray-700 focus:outline-none focus:border-[#1BAFA2] transition-colors"
+                    placeholder=" "
+                  />
+                  <label className="absolute left-4 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-[#1BAFA2]">
+                    Email Address
+                  </label>
+                </div>
+
+                {/* Phone */}
+                <div className="relative">
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="peer w-full px-4 py-3 border border-gray-200 rounded-md text-gray-700 focus:outline-none focus:border-[#1BAFA2] transition-colors"
+                    placeholder=" "
+                  />
+                  <label className="absolute left-4 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-[#1BAFA2]">
+                    Phone Number
+                  </label>
+                </div>
+
+                {/* Preferred Region */}
+                <div className="relative">
+                  <select
+                    name="region"
+                    value={formData.region}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-md text-gray-700 focus:outline-none focus:border-[#1BAFA2] transition-colors appearance-none"
+                  >
+                    <option value="">Select Preferred Region</option>
+                    <option value="kyrenia">Kyrenia</option>
+                    <option value="iskele">Iskele</option>
+                    <option value="famagusta">Famagusta</option>
+                    <option value="lefke">Lefke</option>
+                    <option value="guzelyurt">Guzelyurt</option>
+                  </select>
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                </div>
+
+                {/* Message */}
+                <div className="relative">
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows="5"
+                    required
+                    className="peer w-full px-4 py-3 border border-gray-200 rounded-md text-gray-700 focus:outline-none focus:border-[#1BAFA2] transition-colors resize-none"
+                    placeholder=" "
+                  />
+                  <label className="absolute left-4 -top-2.5 bg-white px-2 text-sm text-gray-600 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-[#1BAFA2]">
+                    Message
+                  </label>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full px-8 py-4 bg-[#1BAFA2] text-white text-sm tracking-wider uppercase rounded-md hover:bg-[#189890] transition-all shadow-sm"
+                >
+                  Send Message
+                </button>
+
+                {/* Note */}
+                <p className="text-sm text-gray-500 text-center">
+                  We will get back to you within the same day.
+                </p>
+              </form>
+            </div>
+
+            {/* RIGHT: OFFICE INFORMATION */}
+            <div className="space-y-8">
+              <h2 className="font-serif text-3xl text-caria-slate mb-8">
+                Our Offices
+              </h2>
+
+              {/* Office Cards */}
+              <div className="space-y-6">
+                {offices.map((office, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-lg p-6 shadow-sm border border-gray-100"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 bg-[#E6F4F4] rounded-full flex items-center justify-center">
+                          <MapPin className="w-5 h-5 text-[#1BAFA2]" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-medium text-lg text-caria-slate mb-2">
+                          {office.name}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-2">{office.address}</p>
+                        <div className="space-y-1">
+                          <a
+                            href={`tel:${office.phone}`}
+                            className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#1BAFA2] transition-colors"
+                          >
+                            <Phone size={14} />
+                            {office.phone}
+                          </a>
+                          <a
+                            href={`mailto:${office.email}`}
+                            className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#1BAFA2] transition-colors"
+                          >
+                            <Mail size={14} />
+                            {office.email}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 3) GOOGLE MAP */}
+              <div className="rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d206253.4359!2d33.1!3d35.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDE4JzAwLjAiTiAzM8KwMDYnMDAuMCJF!5e0!3m2!1sen!2s!4v1234567890"
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  title="Caria Estates Locations"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) WHATSAPP CTA */}
+      <section className="py-12 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="flex items-center justify-center gap-4">
+            <MessageSquare className="w-6 h-6 text-[#25D366]" />
+            <div className="text-left">
+              <p className="text-sm text-gray-500 mb-1">WhatsApp Support</p>
+              <a
+                href="https://wa.me/905331234567"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-medium text-[#1BAFA2] hover:text-[#189890] transition-colors"
+              >
+                +90 533 123 4567
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4) CONTACT CTA SECTION */}
+      <section className="py-20 md:py-32 bg-[#F4FAF9]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-6">
+            Looking for your dream home in Northern Cyprus?
+          </h2>
+          <p className="text-lg text-gray-600 mb-10">
+            We&apos;re just a message away.
+          </p>
+          <Link
+            to="/properties"
+            className="inline-block px-10 py-4 bg-[#1BAFA2] text-white text-sm tracking-wider uppercase rounded-md hover:bg-[#189890] transition-all shadow-sm"
+          >
+            Start Your Journey
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
 // MAIN APP COMPONENT
 // ============================================
 function App() {
