@@ -2164,6 +2164,410 @@ const ProjectsOverviewPage = () => {
 };
 
 // ============================================
+// PROJECT DETAIL PAGE
+// ============================================
+const ProjectDetailPage = () => {
+  const { slug } = useParams();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "I'm interested in learning more about this development.",
+    consent: false
+  });
+
+  // Find project by slug
+  const project = projects.find(p => p.slug === slug);
+
+  // Get related projects (exclude current)
+  const relatedProjects = projects.filter(p => p.id !== project?.id).slice(0, 3);
+
+  if (!project) {
+    return (
+      <div className="min-h-screen bg-white pt-20">
+        <Header />
+        <div className="max-w-7xl mx-auto px-6 py-16 text-center">
+          <h1 className="font-serif text-4xl text-caria-slate mb-4">Project Not Found</h1>
+          <p className="text-gray-600 mb-8">The project you&apos;re looking for doesn&apos;t exist.</p>
+          <Link to="/projects" className="inline-block px-8 py-3 bg-[#0F5E63] text-white text-sm tracking-wider uppercase rounded-sm hover:bg-[#0d4f53] transition-all">
+            View All Projects
+          </Link>
+        </div>
+        <Footer />
+        <CopyrightBar />
+      </div>
+    );
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({ 
+      ...formData, 
+      [name]: type === 'checkbox' ? checked : value 
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you for your inquiry! We will contact you shortly.");
+  };
+
+  const scrollToUnits = () => {
+    document.getElementById('units-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* 1) HERO SECTION - FULL SCREEN */}
+      <section className="relative h-screen">
+        <div className="absolute inset-0">
+          <img
+            src={project.heroImage || project.image}
+            alt={project.name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/30" />
+        </div>
+
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
+          <p className="text-white/90 text-xs md:text-sm tracking-[0.3em] uppercase mb-4 animate-fade-in">
+            CARIA ESTATES · DEVELOPMENT
+          </p>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl text-white font-light mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            {project.name}
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 font-light mb-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            {project.tagline || project.description}
+          </p>
+          <p className="text-sm md:text-base text-white/80 tracking-wider animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            {project.fullLocation || `${project.location} · Northern Cyprus`}
+          </p>
+        </div>
+
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="flex flex-col items-center text-white/70">
+            <span className="text-xs tracking-wider uppercase mb-2">Scroll to explore</span>
+            <ChevronDown size={20} />
+          </div>
+        </div>
+      </section>
+
+      {/* 2) INTRO / STORY SECTION */}
+      <section className="py-20 md:py-32">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-8 text-center">
+            About the development
+          </h2>
+          <div className="text-gray-600 leading-relaxed space-y-6 text-lg">
+            {project.story ? (
+              project.story.split('\n').map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))
+            ) : (
+              <p>{project.fullDescription}</p>
+            )}
+          </div>
+          <div className="text-center mt-12">
+            <button
+              onClick={scrollToUnits}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#0F5E63] text-white text-sm tracking-wider uppercase rounded-sm hover:bg-[#0d4f53] transition-all"
+            >
+              View available units
+              <ChevronRight size={16} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 3) KEY FACTS STRIP */}
+      <section className="py-16 bg-[#CCEBEA]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {project.keyFacts && (
+              <>
+                <div className="text-center p-6 bg-white rounded-lg">
+                  <Building2 className="w-8 h-8 text-[#0F5E63] mx-auto mb-3" />
+                  <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">Units</p>
+                  <p className="font-medium text-caria-slate">{project.keyFacts.units}</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-lg">
+                  <Bed className="w-8 h-8 text-[#0F5E63] mx-auto mb-3" />
+                  <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">Bedrooms</p>
+                  <p className="font-medium text-caria-slate">{project.keyFacts.bedrooms}</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-lg">
+                  <Calendar className="w-8 h-8 text-[#0F5E63] mx-auto mb-3" />
+                  <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">Completion</p>
+                  <p className="font-medium text-caria-slate">{project.keyFacts.completion}</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-lg">
+                  <span className="text-3xl text-[#0F5E63] mx-auto mb-3 block">€</span>
+                  <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">From</p>
+                  <p className="font-medium text-caria-slate">{project.keyFacts.priceFrom}</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-lg">
+                  <HomeIcon className="w-8 h-8 text-[#0F5E63] mx-auto mb-3" />
+                  <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">Developer</p>
+                  <p className="font-medium text-caria-slate">{project.keyFacts.developer}</p>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 4) APARTMENTS / UNITS OVERVIEW */}
+      <section id="units-section" className="py-20 md:py-32 bg-[#F2EDE8]">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-6 text-center">
+            Apartments & Floor Plans
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Choose from a variety of apartment types designed for modern Mediterranean living.
+          </p>
+
+          {project.unitTypes && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {project.unitTypes.map((unit, idx) => (
+                <div key={idx} className="bg-white p-8 rounded-lg">
+                  <h3 className="font-serif text-2xl text-caria-slate mb-4">{unit.type}</h3>
+                  <div className="space-y-3 mb-6">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-500 text-sm">Size</span>
+                      <span className="font-medium text-caria-slate">{unit.size}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-500 text-sm">From</span>
+                      <span className="font-medium text-[#0F5E63]">{unit.priceFrom}</span>
+                    </div>
+                    {unit.note && (
+                      <div className="pt-3 border-t border-gray-100">
+                        <p className="text-sm text-gray-600 italic">{unit.note}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="text-center">
+            <button className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#0F5E63] text-[#0F5E63] text-sm tracking-wider uppercase rounded-sm hover:bg-[#0F5E63] hover:text-white transition-all">
+              <Download size={18} />
+              Download brochure / floorplans
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) AMENITIES / LIFESTYLE SECTION */}
+      {project.amenities && (
+        <section className="py-20 md:py-32">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-12 text-center">
+              Amenities & Common Areas
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="text-gray-600 leading-relaxed space-y-6">
+                {project.amenities.split('\n').map((para, idx) => (
+                  <p key={idx}>{para}</p>
+                ))}
+              </div>
+              {project.amenityImages && (
+                <div className="grid grid-cols-2 gap-4">
+                  {project.amenityImages.map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={`Amenity ${idx + 1}`}
+                      className="w-full h-64 object-cover rounded-lg"
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 6) LOCATION SECTION */}
+      {project.locationInfo && (
+        <section className="py-20 md:py-32 bg-white">
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-12 text-center">
+              Location
+            </h2>
+            <div className="text-gray-600 leading-relaxed space-y-6 text-lg mb-12">
+              {project.locationInfo.split('\n').map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
+            </div>
+            <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=675&fit=crop"
+                alt="Location Map"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 7) IMAGE STRIP / GALLERY */}
+      {project.galleryImages && (
+        <section className="py-20 md:py-32 bg-[#F2EDE8]">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {project.galleryImages.map((img, idx) => (
+                <div key={idx} className="aspect-[4/3] overflow-hidden rounded-lg">
+                  <img
+                    src={img}
+                    alt={`Gallery ${idx + 1}`}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 8) INVESTOR / USE CASE SECTION */}
+      {project.investmentInfo && (
+        <section className="py-20 md:py-32">
+          <div className="max-w-3xl mx-auto px-6">
+            <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-12 text-center">
+              For living or investment
+            </h2>
+            <div className="text-gray-600 leading-relaxed space-y-6 text-lg">
+              {project.investmentInfo.split('\n').map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 9) PROJECT CONTACT FORM */}
+      <section className="py-20 md:py-32 bg-[#CCEBEA]">
+        <div className="max-w-2xl mx-auto px-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-6 text-center">
+            Interested in this development?
+          </h2>
+          <p className="text-gray-600 text-center mb-12">
+            Leave your details and our Caria Estates advisors will contact you about availability, pricing and viewing options.
+          </p>
+
+          <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-lg space-y-6">
+            <div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#0F5E63]"
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#0F5E63]"
+              />
+            </div>
+            <div>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#0F5E63]"
+              />
+            </div>
+            <div>
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Message"
+                value={formData.message}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm focus:outline-none focus:border-[#0F5E63] resize-none"
+              />
+            </div>
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                name="consent"
+                id="consent"
+                checked={formData.consent}
+                onChange={handleInputChange}
+                required
+                className="mt-1"
+              />
+              <label htmlFor="consent" className="text-sm text-gray-600">
+                I agree to be contacted by Caria Estates about this project.
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="w-full px-8 py-4 bg-[#0F5E63] text-white text-sm tracking-wider uppercase rounded-sm hover:bg-[#0d4f53] transition-all"
+            >
+              Send inquiry
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* 10) RELATED PROJECTS */}
+      {relatedProjects.length > 0 && (
+        <section className="py-20 md:py-32 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-12 text-center">
+              More developments by Caria Estates
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {relatedProjects.map((proj) => (
+                <Link
+                  key={proj.id}
+                  to={`/projects/${proj.slug}`}
+                  className="group"
+                >
+                  <div className="overflow-hidden rounded-lg mb-4">
+                    <img
+                      src={proj.image}
+                      alt={proj.name}
+                      className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <h3 className="font-serif text-xl text-caria-slate group-hover:text-[#0F5E63] transition-colors mb-1">
+                    {proj.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 tracking-wider uppercase">
+                    {proj.location}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
 // MAIN APP COMPONENT
 // ============================================
 function App() {
