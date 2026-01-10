@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom"
 import {
   ChevronLeft,
   ChevronRight,
-  Play,
   Menu,
   X,
   Phone,
@@ -193,10 +192,10 @@ const featuredProperties = [
 
 // Agent data
 const agents = [
-  { id: 1, name: "Maria Konstantinou", region: "Kyrenia", thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=600&fit=crop" },
-  { id: 2, name: "Ahmet Yilmaz", region: "Iskele", thumbnail: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=600&fit=crop" },
-  { id: 3, name: "Elena Petrova", region: "Famagusta", thumbnail: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=600&fit=crop" },
-  { id: 4, name: "Kemal Ozturk", region: "Kyrenia", thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop" },
+  { id: 1, name: "Hakan Okur", region: "Esentepe", thumbnail: "/hakan-okur.png" },
+  { id: 2, name: "Yeliz Okur", region: "Iskele", thumbnail: "/yeliz-okur.png" },
+  { id: 3, name: "Elena Petrova", region: "Famagusta", thumbnail: "/elena-petrova.jpg" },
+  { id: 4, name: "Hale Öztürk", region: "Kyrenia", thumbnail: "/hale-ozturk.jpg" },
 ];
 
 // Blog articles
@@ -828,7 +827,7 @@ const AdvancedSearchBar = () => {
 const ContactAgentSlider = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const filters = ['All', 'Kyrenia', 'Iskele', 'Famagusta'];
+  const filters = ['All', 'Kyrenia', 'Esentepe', 'Iskele', 'Famagusta'];
 
   const filteredAgents = activeFilter === 'All'
     ? agents
@@ -903,12 +902,7 @@ const ContactAgentSlider = () => {
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-              {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="play-btn-pulse relative w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <Play size={24} className="text-white ml-1" fill="white" />
-                </div>
-              </div>
+
 
               {/* Agent Info */}
               <div className="absolute bottom-4 left-4 right-4">
@@ -1739,13 +1733,13 @@ const PropertyDetailPage = () => {
                 <h3 className="font-medium text-caria-slate mb-4">Your Assigned Agent</h3>
                 <div className="flex items-center gap-4 mb-4">
                   <img
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop"
+                    src="/hakan-okur.png"
                     alt="Agent"
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div>
-                    <p className="font-medium text-caria-slate">Maria Konstantinou</p>
-                    <p className="text-sm text-gray-500">Senior Property Consultant</p>
+                    <p className="font-medium text-caria-slate">Hakan Okur</p>
+                    <p className="text-sm text-gray-500">Property Advisor</p>
                   </div>
                 </div>
                 <div className="space-y-3">
@@ -2685,12 +2679,21 @@ const ServicesPage = () => {
                   <p className="text-gray-600 leading-relaxed mb-6">
                     {service.description}
                   </p>
-                  <button
+                  <Link
+                    to={
+                      service.id === 1 ? "/after-sale-services" :
+                        service.id === 2 ? "/consulting-services" :
+                          service.id === 3 ? "/home-decoration" :
+                            service.id === 4 ? "/transfer-services" :
+                              service.id === 5 ? "/vacation-planner" :
+                                service.id === 6 ? "/home-insurance" :
+                                  "/contact"
+                    }
                     className="inline-flex items-center gap-2 text-[#1BAFA2] text-sm font-medium tracking-wider uppercase hover:gap-3 transition-all"
                   >
                     Learn More
                     <ChevronRight size={16} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -3150,6 +3153,985 @@ const ContactPage = () => {
 };
 
 // ============================================
+// AFTER SALE SERVICES PAGE
+// ============================================
+const AfterSaleServicesPage = () => {
+  const listItems = [
+    "Paying electricity bills monthly",
+    "Paying water bills monthly",
+    "Paying annual property tax in Turkey",
+    "Checking out property in Alanya Turkey periodically",
+    "Checking mailbox on weekly bases",
+    "Key holding for emergencies",
+    "Welcome pack shopping (only contents are charged for)",
+    "Collection and delivering laundry (laundry service will be charged)",
+    "Obtaining quotes and overseeing works and/or repairs",
+    "Accepting deliveries to your property in Turkey Northern Cyprus",
+    "Ventilating the property in Turkey Italy Northern Cyprus",
+    "Watering indoor & outdoor plants and flowers",
+    "Additional integrity checks after severe weather",
+    "Checking hot & cold water supplies along with electricity and gas.",
+    "Immediate contact of the apartment owner in Alanya upon discovery of any faults to prevent and minimize further damage and expenses.",
+    "In-house accounting and preparation of monthly & year end statements for clients"
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FDFCFB] font-sans">
+      <Header />
+
+      {/* 1) HERO SECTION - Scandinavian Minimalist */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&h=1080&fit=crop"
+            alt="Scandinavian Minimalist Interior"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/15" />
+        </div>
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light mb-6 drop-shadow-md">
+            After Sale Services
+          </h1>
+          <div className="w-16 h-px bg-white mx-auto mb-8 opacity-60" />
+        </div>
+      </section>
+
+      {/* 2) INTRO CONTENT - Wide whitespace, elegant fonts */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="space-y-16 text-center">
+            {/* Split paragraphs as per structured list */}
+            <div className="space-y-12">
+              <p className="text-2xl md:text-3xl font-serif text-caria-slate leading-relaxed font-light">
+                At Caria Estate International we feel that customer service is not just part of our business, service is our business.
+              </p>
+
+              <div className="space-y-8 text-lg text-gray-600 leading-loose font-light text-left">
+                <p>
+                  We practice our business with a personal touch focused on the highest degree of professional services, delivered in a very individualized manner to best serve the needs of the homeowner or investor.
+                </p>
+                <p className="text-gray-400 italic">
+                  More services for apartments in Alanya beach front, apartment in Cikcilli complexes.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-12 items-center py-12 border-y border-gray-50">
+              <div className="flex-1 order-2 md:order-1 text-left">
+                <div className="space-y-6 text-lg text-gray-600 leading-loose font-light">
+                  <p className="font-medium text-caria-turquoise">
+                    We offer prompt, personalized and reliable service at competitive fees.
+                  </p>
+                  <p className="text-xl font-serif text-caria-slate">
+                    Your satisfaction is our first priority!
+                  </p>
+                  <p>
+                    We have a proven track record of customer and client satisfaction.
+                  </p>
+                  <p>
+                    The keys to our success are flexibility, versatility, education, experience and loyalty to our clients.
+                  </p>
+                </div>
+              </div>
+              <div className="flex-1 order-1 md:order-2">
+                <img
+                  src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&h=800&fit=crop"
+                  alt="Minimalist Home Detail"
+                  className="rounded-lg shadow-sm w-full grayscale-[10%] hover:grayscale-0 transition-all duration-1000"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3) SERVICES LIST - Two columns, whitespace, dividers */}
+      <section className="py-24 md:py-32 bg-[#FAF9F7]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2">
+            {listItems.map((item, index) => (
+              <div key={index} className="group py-6 border-b border-gray-200/60 last:border-b-0 md:last:border-b">
+                <div className="flex items-start gap-4">
+                  <span className="text-caria-turquoise mt-1 font-serif text-lg opacity-40 group-hover:opacity-100 transition-opacity">•</span>
+                  <p className="text-caria-slate font-light leading-relaxed text-[17px] group-hover:translate-x-1 transition-transform duration-300">
+                    {item}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4) DECORATIVE GALLERY - Scandinavian feel */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="h-96 md:h-[500px] rounded-lg overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=800&h=1000&fit=crop"
+                alt="Minimalist Lighting"
+                className="w-full h-full object-cover grayscale-[20%]"
+              />
+            </div>
+            <div className="h-96 md:h-[500px] rounded-lg overflow-hidden mt-12 md:mt-0 lg:translate-y-12">
+              <img
+                src="https://images.unsplash.com/photo-1594913785162-e678ac0524dc?w=800&h=1000&fit=crop"
+                alt="Scandinavian Interior Detail"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="hidden lg:block h-[500px] rounded-lg overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1505693413171-293669746a57?w=800&h=1000&fit=crop"
+                alt="Modern Minimal Home"
+                className="w-full h-full object-cover grayscale-[10%]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) CLOSING CTA */}
+      <section className="py-24 md:py-32 bg-[#FDFCFB] border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate font-light mb-8">
+            Have questions about our After Sale support?
+          </h2>
+          <Link
+            to="/contact"
+            className="inline-block px-12 py-5 bg-caria-slate text-white text-sm tracking-[0.2em] uppercase hover:bg-black transition-all duration-500 rounded-sm"
+          >
+            Connect with us
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
+// HOME DECORATION PAGE
+// ============================================
+const HomeDecorationPage = () => {
+  const packages = [
+    {
+      name: "SILVER PACKAGE",
+      price: "€ 4,900",
+      items: [
+        "LIVINGROOM 3 & 2 & 1 SEATER SOFA",
+        "LIVINGROOM COFFE TABLE",
+        "DINING ROOM TABLE FOR 4",
+        "DINING ROOM 4 CHAIRS",
+        "MASTER BEDROOM 3 DOORS WARDROBE",
+        "MASTER BEDROOM 160x200 MATTRESS",
+        "MASTER BEDROOM 160x200 BED FRAME",
+        "MASTER BEDROOM 2 NIGHT STANDS",
+        "2ND BEDROOM 2 DOORS WARDROBE",
+        "2ND BEDROOM 2 - 90x190 MATTRESS",
+        "2ND BEDROOM 2 – 90x190 BED FRAME",
+        "2ND BEDROOM 1 NIGHT STAND"
+      ]
+    },
+    {
+      name: "GOLD PACKAGE",
+      price: "€ 6,900",
+      featured: true,
+      items: [
+        "LIVINGROOM 3 & 2 & 1 SEATER SOFA",
+        "LIVINGROOM COFFE TABLE",
+        "DINING ROOM TABLE FOR 4",
+        "DINING ROOM 4 CHAIRS",
+        "MASTER BEDROOM 4 DOORS WARDROBE",
+        "MASTER BEDROOM 160x200 MATTRESS",
+        "MASTER BEDROOM 160x200 BED FRAME (WITH STORAGE)",
+        "MASTER BEDROOM 160 cm HEADPIECE",
+        "MASTER BEDROOM 2 NIGHT STANDS",
+        "2ND BEDROOM 3 DOORS WARDROBE",
+        "2ND BEDROOM 2 - 90x200 MATTRESS",
+        "2ND BEDROOM 2 – 90x200 BED FRAME",
+        "2ND BEDROOM 90 cm 2 HEADPIECES",
+        "2ND BEDROOM 1 NIGHT STAND"
+      ]
+    },
+    {
+      name: "PLATINUM PACKAGE",
+      price: "€ 9,900",
+      items: [
+        "LIVINGROOM 3 & 2 & 1 SEATER SOFA",
+        "LIVINGROOM COFFE TABLE",
+        "DINING ROOM TABLE FOR 6",
+        "DINING ROOM 6 CHAIRS",
+        "MASTER BEDROOM 4 DOORS WARDROBE",
+        "MASTER BEDROOM 160x200 MATTRESS",
+        "MASTER BEDROOM 160x200 BED FRAME",
+        "MASTER BEDROOM 160 cm HEADPIECE",
+        "MASTER BEDROOM 2 NIGHT STANDS",
+        "2ND BEDROOM 3 DOORS WARDROBE",
+        "2ND BEDROOM 2 - 90x200 MATTRESS",
+        "2ND BEDROOM 2 – 90x200 BED FRAME",
+        "2ND BEDROOM 90 cm 2 HEADPIECES",
+        "2ND BEDROOM 1 NIGHT STAND",
+        "GARDEN FURNITURE BAMBU TABLE FOR 4",
+        "GARDEN FURNITURE 4 BAMBU CHAIRS"
+      ]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FDFCFB] font-sans">
+      <Header />
+
+      {/* 1) HERO SECTION */}
+      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop"
+            alt="Scandinavian Living Room"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20" />
+        </div>
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <p className="text-white/80 uppercase tracking-[0.3em] text-sm mb-4">Interior Design</p>
+          <h1 className="font-serif text-5xl md:text-6xl text-white font-light tracking-tight mb-6">
+            Home Decoration
+          </h1>
+          <div className="w-12 h-px bg-white/40 mx-auto" />
+        </div>
+      </section>
+
+      {/* 2) PRICING CARDS - Catalog Style */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {packages.map((pkg, idx) => (
+              <div
+                key={idx}
+                className={`flex flex-col border border-gray-100 p-8 md:p-10 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 ${pkg.featured ? 'bg-[#FAF9F7] shadow-lg scale-105' : 'bg-white'
+                  }`}
+              >
+                <div className="mb-10 text-center">
+                  <h3 className="font-serif text-xl text-caria-slate tracking-widest uppercase mb-4">
+                    {pkg.name}
+                  </h3>
+                  <div className="text-3xl font-light text-caria-turquoise mb-4">
+                    {pkg.price}
+                  </div>
+                  <div className={`w-8 h-px mx-auto ${pkg.featured ? 'bg-caria-turquoise' : 'bg-gray-200'}`} />
+                </div>
+
+                <div className="flex-grow space-y-4">
+                  {pkg.items.map((item, i) => (
+                    <div key={i} className="flex items-start gap-4 py-1 border-b border-gray-50 last:border-0">
+                      <div className="w-1 h-1 rounded-full bg-caria-turquoise/40 mt-2 flex-shrink-0" />
+                      <p className="text-xs lg:text-[13px] text-gray-500 uppercase tracking-wider leading-relaxed">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-12 text-center">
+                  <Link
+                    to="/contact"
+                    className={`inline-block w-full py-4 text-xs tracking-[0.2em] uppercase transition-all duration-300 ${pkg.featured
+                      ? 'bg-caria-turquoise text-white hover:bg-aria-slate'
+                      : 'border border-gray-200 text-caria-slate hover:bg-caria-slate hover:text-white'
+                      }`}
+                  >
+                    Inquire Details
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3) GALLERY SECTION */}
+      <section className="py-24 bg-[#FDFCFB]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-8">
+              <div className="h-96 rounded-sm overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1594913785162-e678ac0524dc?w=1000&h=800&fit=crop"
+                  alt="Minimalist Bedroom"
+                  className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-1000"
+                />
+              </div>
+              <p className="text-gray-400 font-light italic text-center">
+                Refined details for a peaceful atmosphere.
+              </p>
+            </div>
+            <div className="space-y-8 md:mt-16">
+              <div className="h-96 rounded-sm overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1615876234886-fd9a39faa97f?w=1000&h=800&fit=crop"
+                  alt="Luxury Dining room"
+                  className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-1000"
+                />
+              </div>
+              <p className="text-gray-400 font-light italic text-center">
+                Nordic elegance for every corner of your home.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4) PROFESSIONAL SIGNATURE SECTION */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="space-y-8">
+            <div className="w-12 h-px bg-caria-turquoise mx-auto mb-10" />
+            <p className="text-xl md:text-2xl font-serif text-caria-slate leading-relaxed font-light italic">
+              "We as your real estate agent in Tuekey Northern Cyprus Italy are here to give you the services for your apartments villas in Alanya Oba Cikcilli Famagusta Kyrenia Lake Iseo Sarnico Magliolo"
+            </p>
+            <div className="w-12 h-px bg-caria-turquoise mx-auto mt-10" />
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
+// CONSULTING SERVICES PAGE
+// ============================================
+const ConsultingServicesPage = () => {
+  const includeList = [
+    "Real estate market studies in Turkey Norther Cyprus Italy",
+    "Portfolio services",
+    "Legal advisory",
+    "Property valuation in Turkey Northern Cyprus",
+    "Translation service",
+    "Finalizing uncompleted real estate transaction (title deed transfer - move in permission (iskan) - electric/water connection)"
+  ];
+
+  const mattersList = [
+    "if you couldnt get your title deed registration for somehow for your property in alanya avsallar cikcilli",
+    "if you are having difficulties to get your move in permission (iskan)",
+    "if you dont have water and/or electic subscription",
+    "if you are thinking about seeling your property",
+    "if you need any legal advice for any matter related with real estate in Turkey Northern Cyprus Italy"
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FDFCFB] font-sans">
+      <Header />
+
+      {/* 1) HERO SECTION */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop"
+            alt="Modern Minimal Office"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/15" />
+        </div>
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light mb-6 drop-shadow-md">
+            Consulting Services
+          </h1>
+          <div className="w-16 h-px bg-white mx-auto mb-8 opacity-60" />
+        </div>
+      </section>
+
+      {/* 2) INTRO CONTENT */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="space-y-16">
+            <div className="space-y-12">
+              <p className="text-2xl md:text-3xl font-serif text-caria-slate leading-relaxed font-light text-center">
+                Caria Estates International (Certified real estate agent in Turkey Northern Cyprus Italy) with highly educated and experineced background is here to help you out and advice you.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-8">
+                <div className="space-y-8 text-lg text-gray-600 leading-loose font-light">
+                  <p>
+                    This service is suited to any client who would prefer a more individual approach and guidance. Our consultancy is tailored made to your requirements no matter how big or small your concern is.
+                  </p>
+                </div>
+                <div>
+                  <img
+                    src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?w=800&h=600&fit=crop"
+                    alt="Architectural meeting"
+                    className="rounded-lg shadow-sm w-full grayscale-[10%] hover:grayscale-0 transition-all duration-1000"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* FREE OF CHARGE HIGHLIGHT - Distinctive Box */}
+            <div className="relative overflow-hidden bg-[#FAF9F7] p-12 md:p-16 rounded-sm text-center border border-gray-100/50">
+              <div className="absolute top-0 left-0 w-1 h-full bg-caria-turquoise opacity-20" />
+              <p className="text-gray-500 font-light text-sm tracking-[0.2em] uppercase mb-4">Professional Guidance</p>
+              <h3 className="font-serif text-3xl md:text-4xl text-caria-slate mb-6">
+                Our consulting service is <br className="hidden md:block" />
+                <span className="text-caria-turquoise italic font-medium relative inline-block mt-2">
+                  absolutely FREE of CHARGE
+                  <span className="absolute -bottom-2 left-0 w-full h-px bg-caria-turquoise/30" />
+                </span>
+              </h3>
+              <p className="text-gray-600 font-light leading-relaxed max-w-2xl mx-auto mt-8">
+                Please feel free to contact with us for any legal advice related with real estate in Turkey.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3) WHAT INCLUDES */}
+      <section className="py-24 md:py-32 bg-[#FAF9F7]">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-16 text-center font-light">
+            What does our consultancy service include;
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2">
+            {includeList.map((item, index) => (
+              <div key={index} className="group py-6 border-b border-gray-200/60 last:border-b-0 md:last:border-b">
+                <div className="flex items-start gap-4">
+                  <span className="text-caria-turquoise mt-1 font-serif text-lg opacity-40 group-hover:opacity-100 transition-opacity">•</span>
+                  <p className="text-caria-slate font-light leading-relaxed text-[17px] group-hover:translate-x-1 transition-transform duration-300">
+                    {item}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4) MATTERS SECTION */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="space-y-12">
+            <h2 className="font-serif text-2xl md:text-3xl text-caria-slate leading-relaxed font-light text-center">
+              If you are having one of the matters below please contact us at your convenience. We would be happy to assist you at our earliest for your property in Turkey Northern Cyprus Italy;
+            </h2>
+
+            <div className="space-y-8">
+              {mattersList.map((item, index) => (
+                <div key={index} className="flex items-start gap-6 p-6 rounded-sm bg-[#FAF9F7] hover:bg-white border border-transparent hover:border-gray-100 transition-all duration-300 group">
+                  <div className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-caria-turquoise mt-3 flex-shrink-0 transition-colors" />
+                  <p className="text-gray-600 font-light leading-relaxed text-lg">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) CLOSING NOTE */}
+      <section className="py-24 bg-[#FAF9F7]/50 border-t border-gray-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="space-y-10">
+            <p className="text-xl font-serif text-caria-slate leading-loose text-balance italic font-light">
+              For your Consulting Services for apartment in Cikcilli Oba Kestel Mahmutlar Avsallar We as your real estate agent in Alanya will be here to serve the best
+            </p>
+            <div className="w-16 h-px bg-caria-turquoise/40 mx-auto" />
+            <Link
+              to="/contact"
+              className="inline-block px-12 py-5 bg-caria-slate text-white text-sm tracking-[0.2em] uppercase hover:bg-black transition-all duration-500 rounded-sm"
+            >
+              Get Professional Advice
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+const TransferPage = () => {
+  const transferRates = [
+    {
+      country: "TURKEY",
+      rates: [
+        { label: "Antalya Airport - Alanya", price: "€ 60" },
+        { label: "Alanya GZP Airport - Alanya", price: "€ 30" },
+        { label: "Alanya - Antalya Airport", price: "€ 60" }
+      ]
+    },
+    {
+      country: "CYPRUS",
+      rates: [
+        { label: "Ercan Airport - Kyrenia or Esentepe", price: "€ 50" },
+        { label: "Ercan Airport - Long Beach or İskele", price: "€ 60" }
+      ]
+    },
+    {
+      country: "ITALY",
+      rates: [
+        { label: "Bergamo Airport - Lake Iseo", price: "€ 130" },
+        { label: "Milano MXP Airport - Lake Iseo", price: "€ 210" }
+      ]
+    }
+  ];
+
+  const rentalRates = [
+    { country: "Turkey", price: "€ 30", detail: "per day for economy car" },
+    { country: "Cyprus", price: "€ 35", detail: "per day for economy car" },
+    { country: "Italy", price: "€ 70", detail: "per day for economy car" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FDFCFB] font-sans">
+      <Header />
+
+      {/* 1) HERO SECTION */}
+      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1920&h=1080&fit=crop"
+            alt="Luxury Airport Transfer"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/25" />
+        </div>
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <p className="text-white/80 uppercase tracking-[0.3em] text-sm mb-4">Quality Transportation</p>
+          <h1 className="font-serif text-5xl md:text-6xl text-white font-light tracking-tight mb-6">
+            Transfer Services
+          </h1>
+          <div className="w-12 h-px bg-white/40 mx-auto" />
+        </div>
+      </section>
+
+      {/* 2) INTRO TEXT */}
+      <section className="py-24 bg-white border-b border-gray-50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-xl md:text-2xl font-serif text-caria-slate leading-relaxed font-light mb-12">
+            Whenever you need transportation during your visit to your holiday house in Alanya Northern Cyprus we are ready to arrange your personal needs at anytime.
+          </p>
+          <div className="space-y-6 text-lg text-gray-600 leading-loose font-light max-w-3xl mx-auto">
+            <p>
+              All you need to do is to give us a call or send us an email with your flight details. We will make sure the our associate company will meet you at the airport or at your holiday house for safe transportation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 3) TRANSFER RATES */}
+      <section className="py-24 md:py-32 bg-[#FAF9F7]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-3xl text-caria-slate mb-4">Private transfers rates</h2>
+            <div className="w-12 h-px bg-caria-turquoise mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {transferRates.map((group, idx) => (
+              <div key={idx} className="bg-white p-10 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-500">
+                <h3 className="font-serif text-xl text-caria-turquoise tracking-widest mb-8 border-b border-gray-50 pb-4">
+                  {group.country}
+                </h3>
+                <div className="space-y-8">
+                  {group.rates.map((rate, i) => (
+                    <div key={i} className="flex flex-col gap-2">
+                      <span className="text-xs text-gray-400 uppercase tracking-widest font-medium">Route</span>
+                      <p className="text-caria-slate font-light leading-snug">{rate.label}</p>
+                      <span className="text-caria-turquoise font-medium text-lg">{rate.price}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4) CAR RENTAL */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row gap-16 items-center">
+            <div className="flex-1 space-y-8 text-center md:text-left">
+              <h2 className="font-serif text-3xl text-caria-slate leading-tight">
+                If you need to rent a car we will assist you with the best rate in town.
+              </h2>
+              <p className="text-gray-500 font-light italic">
+                Pleasee see the approximete car rental rates below;
+              </p>
+              <div className="space-y-6">
+                {rentalRates.map((rate, idx) => (
+                  <div key={idx} className="flex justify-between items-center py-4 border-b border-gray-50 group hover:translate-x-1 transition-transform">
+                    <span className="text-caria-slate tracking-widest uppercase text-sm">{rate.country}</span>
+                    <div className="text-right">
+                      <span className="text-caria-turquoise font-medium block">{rate.price}</span>
+                      <span className="text-[11px] text-gray-400 uppercase tracking-tighter">{rate.detail}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[13px] text-gray-400 leading-relaxed pt-4">
+                Above car rental rates can be vary according to season and availability.
+              </p>
+            </div>
+            <div className="flex-1">
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=1000&fit=crop"
+                  alt="Premium Car Detail"
+                  className="rounded-sm shadow-2xl grayscale-[20%] hover:grayscale-0 transition-all duration-1000"
+                />
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-caria-turquoise opacity-5 -z-10" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) CLOSING & LOCATIONS */}
+      <section className="py-24 bg-[#FAF9F7]/50">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="space-y-12">
+            <p className="text-xl md:text-2xl font-serif text-caria-slate leading-relaxed font-light italic px-4">
+              "Please call us for your transfer in Alanya, transfer in Northern Cyprus, Kyrenia transfer, Long Beach Cyprus transfer."
+            </p>
+            <div className="w-16 h-px bg-caria-turquoise/40 mx-auto" />
+            <Link
+              to="/contact"
+              className="inline-block px-12 py-5 bg-caria-slate text-white text-sm tracking-[0.2em] uppercase hover:bg-black transition-all duration-500 rounded-sm"
+            >
+              Order Transfer
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+const VacationPlannerPage = () => {
+  const destinations = [
+    {
+      country: "TURKEY",
+      spots: ["Cappadocia", "Black Sea Region", "Pamukkale / Ephesus", "Göcek / Fethiye"]
+    },
+    {
+      country: "CYPRUS",
+      spots: ["Karpaz", "Lefke / Güzelyurt", "Larnaka", "Aiya Napa"]
+    },
+    {
+      country: "ITALY",
+      spots: ["Florence / Tuscany", "Dolomitis / Moena", "Ligurian Sea / Portofino", "Napoli / Amalfi"]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FDFCFB] font-sans">
+      <Header />
+
+      {/* 1) HERO SECTION */}
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1920&h=1080&fit=crop"
+            alt="Scenic Mediterranean Coast"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/15" />
+        </div>
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <p className="text-white/80 uppercase tracking-[0.4em] text-sm mb-4">Life is a Journey</p>
+          <h1 className="font-serif text-5xl md:text-6xl text-white font-light tracking-tight mb-8">
+            Vacation Planner
+          </h1>
+          <div className="w-16 h-px bg-white/40 mx-auto" />
+        </div>
+      </section>
+
+      {/* 2) INTRO SECTION - Magazine Style */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="space-y-16">
+            <div className="space-y-8">
+              <p className="text-gray-400 uppercase tracking-widest text-xs font-medium">The New Chapter</p>
+              <p className="text-2xl md:text-3xl font-serif text-caria-slate leading-relaxed font-light">
+                We as Caria Estates International (Licensed real estate agent in Alanya Northern Cyprus Italy) believe that once you buy your holiday house and settle down then your new life begins.
+              </p>
+              <p className="text-lg text-gray-500 leading-loose font-light italic">
+                You get used to routine life in the area you will be living in.
+              </p>
+            </div>
+
+            {/* WHAT'S NEXT 1 */}
+            <div className="py-12 border-y border-gray-50 text-center">
+              <h2 className="font-serif text-3xl md:text-4xl text-caria-turquoise font-light italic opacity-80">
+                And after a while, what's next? ...
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6 text-lg text-gray-600 leading-loose font-light">
+                <p>
+                  Now it is time to discover the surroundings and other parts of Turkey.
+                </p>
+                <p>
+                  Because when you buy an apartment in Turkey, Cyprus or in Italy you are not just buying walls and place to swim and sunbath, this is your new life for the rest of your life.
+                </p>
+                <p className="text-caria-slate font-medium">
+                  So you should enjoy enjoy every day of your life in your new holiday home and live a quality life you deserve.
+                </p>
+              </div>
+              <div className="h-[400px] overflow-hidden rounded-sm">
+                <img
+                  src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&h=1000&fit=crop"
+                  alt="Minimalist Travel"
+                  className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-1000"
+                />
+              </div>
+            </div>
+
+            {/* WHAT'S NEXT 2 */}
+            <div className="py-12 border-y border-gray-50 text-center">
+              <h2 className="font-serif text-2xl md:text-3xl text-caria-slate font-light tracking-wide uppercase">
+                What are we going to do as your real estate agent in Turkey Kyrenia Lake Iseo? ...
+              </h2>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3) ACTIVITIES GALLERY */}
+      <section className="py-24 bg-[#FAF9F7]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row gap-20 items-center">
+            <div className="flex-1 order-2 md:order-1">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="h-48 md:h-64 bg-gray-100 rounded-sm">
+                  <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=400&fit=crop" alt="Hiking" className="w-full h-full object-cover grayscale" />
+                </div>
+                <div className="h-48 md:h-64 bg-gray-100 rounded-sm mt-8">
+                  <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=400&h=400&fit=crop" alt="Dining" className="w-full h-full object-cover grayscale" />
+                </div>
+              </div>
+            </div>
+            <div className="flex-1 order-1 md:order-2 space-y-8">
+              <p className="text-xl text-gray-700 leading-relaxed font-light">
+                We will arrange speacial acitivities such as trekking, hiking, fishing, fine dining and visiting close historical sites.
+              </p>
+              <div className="w-12 h-px bg-caria-turquoise" />
+              <h3 className="font-serif text-3xl text-caria-slate italic">
+                After all those activities, what is going to be our next step? ...
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4) DESTINATIONS - Life Begins */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6 text-center mb-24">
+          <p className="text-2xl font-serif text-caria-slate leading-relaxed font-light">
+            Now your new Turkish, Cypriot & Italian life will begin. We will discover other parts of these countries.
+          </p>
+          <p className="mt-8 text-gray-500 font-light max-w-2xl mx-auto">
+            We as your real estate agent in Alanya Northern Cyprus Italy will arrange trips to famous destinations of the country you bought your holiday house.
+          </p>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+            {destinations.map((dest, idx) => (
+              <div key={idx} className="space-y-8">
+                <div className="border-b border-gray-100 pb-4">
+                  <h3 className="font-serif text-xl text-caria-turquoise tracking-[0.2em]">{dest.country}</h3>
+                </div>
+                <div className="space-y-6">
+                  {dest.spots.map((spot, i) => (
+                    <div key={i} className="group overflow-hidden">
+                      <p className="text-sm text-gray-400 uppercase tracking-widest font-light group-hover:text-caria-slate group-hover:translate-x-2 transition-all duration-300 cursor-default">
+                        {spot}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5) COUNTRY INFO LINK SECTION */}
+      <section className="py-24 bg-[#FDFCFB] border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-lg text-gray-500 font-light mb-12 italic">
+            Please visit our country info pages for properties and apartment and villas in Northern Cyprus Turkey Italy
+          </p>
+          <Link
+            to="/contact"
+            className="inline-block px-12 py-5 bg-caria-slate text-white text-sm tracking-[0.2em] uppercase hover:bg-black transition-all duration-500 rounded-sm"
+          >
+            Plan My Journey
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+const HomeInsurancePage = () => {
+  const insurancePricing = [
+    { country: "Turkey", price: "€ 150", detail: "(-/+) per year" },
+    { country: "Cyprus", price: "€ 200", detail: "(-/+) per year" },
+    { country: "Italy", price: "€ 350", detail: "(-/+) per year" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FDFCFB] font-sans">
+      <Header />
+
+      {/* 1) HERO SECTION */}
+      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1449156001437-3320bed3a388?w=1920&h=1080&fit=crop"
+            alt="Secure and Peaceful Home"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20" />
+        </div>
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <p className="text-white/80 uppercase tracking-[0.4em] text-xs mb-4">Peace of Mind</p>
+          <h1 className="font-serif text-5xl md:text-6xl text-white font-light tracking-tight mb-8">
+            Home Insurance
+          </h1>
+          <div className="w-16 h-px bg-white/40 mx-auto" />
+        </div>
+      </section>
+
+      {/* 2) INTRO TEXT */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="space-y-12 text-center md:text-left">
+            <div className="space-y-6">
+              <p className="text-2xl md:text-3xl font-serif text-caria-slate leading-relaxed font-light">
+                You have purchased your holiday house and settle down with your furinutre and equipments. So whats next?
+              </p>
+              <div className="w-12 h-px bg-caria-turquoise mx-auto md:mx-0" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start py-8">
+              <div className="space-y-8 text-lg text-gray-600 leading-loose font-light">
+                <p>
+                  First thing you should do with your property is to have an insurance. We strongly suggest every clients of us to have full cover insurance for just in case situations for any property in Alanya Mahmutlar Kyrenia Famagusta Lake Iseo and Sarnico.
+                </p>
+                <p className="text-caria-turquoise font-serif text-2xl italic leading-relaxed">
+                  "Because you never know what life will bring to you."
+                </p>
+              </div>
+              <div className="space-y-8 text-lg text-gray-600 leading-loose font-light">
+                <p>
+                  To prevent any surprises we should take our procoutions and have our insurance done.
+                </p>
+                <div className="p-8 bg-[#FAF9F7] border-l-2 border-caria-turquoise">
+                  <p className="font-serif text-xl text-caria-slate mb-2">Efficiency & Speed</p>
+                  <p className="text-caria-slate/70">
+                    Of course your real estate agent in Alanya, Kyrenia and Italy, We will be assisting you to have your insurance <span className="text-caria-turquoise font-medium">just in an hour</span>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3) PRICING BLOCKS */}
+      <section className="py-24 bg-[#FAF9F7]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="font-serif text-3xl text-caria-slate font-light">Annual Full Cover Insurance</h2>
+            <p className="text-gray-400 text-sm tracking-widest uppercase">Based on 2 bedroom apartment estimates</p>
+            <div className="w-12 h-px bg-gray-200 mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {insurancePricing.map((item, idx) => (
+              <div key={idx} className="bg-white p-12 text-center border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                <h3 className="font-serif text-xl text-gray-400 uppercase tracking-[0.2em] mb-8 group-hover:text-caria-turquoise transition-colors">
+                  {item.country}
+                </h3>
+                <div className="space-y-2">
+                  <span className="text-5xl font-serif text-caria-slate font-light block">
+                    {item.price}
+                  </span>
+                  <span className="text-xs text-gray-400 uppercase tracking-tighter">
+                    {item.detail}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <p className="text-gray-500 font-light italic text-sm">
+              We will get quotes from different compaines for best price and decide which one to get.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4) PEACEFUL GALLARY */}
+      <section className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex gap-8">
+            <div className="flex-1 h-80 rounded-sm overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1512918766674-ed62b90daa95?w=800&h=800&fit=crop" alt="Peaceful Interior" className="w-full h-full object-cover grayscale-[20%]" />
+            </div>
+            <div className="flex-1 h-80 rounded-sm overflow-hidden translate-y-12">
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=800&fit=crop" alt="Architectural Detail" className="w-full h-full object-cover grayscale-[10%]" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5) CLOSING CTA */}
+      <section className="py-24 md:py-32 bg-[#FDFCFB] border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-serif text-3xl text-caria-slate font-light mb-8">
+            Protect your investment today.
+          </h2>
+          <Link
+            to="/contact"
+            className="inline-block px-12 py-5 bg-caria-slate text-white text-sm tracking-[0.2em] uppercase hover:bg-black transition-all duration-500 rounded-sm"
+          >
+            Get a Quote
+          </Link>
+          <p className="mt-12 text-gray-400 text-xs tracking-widest uppercase">
+            Your licensed real estate agent in Alanya, Kyrenia, Lake Iseo
+          </p>
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
+
+// ============================================
 // MAIN APP COMPONENT
 // ============================================
 function App() {
@@ -3162,6 +4144,12 @@ function App() {
           <Route path="/properties/:slug" element={<PropertyDetailPage />} />
           <Route path="/property/:slug" element={<PropertyDetailPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/after-sale-services" element={<AfterSaleServicesPage />} />
+          <Route path="/consulting-services" element={<ConsultingServicesPage />} />
+          <Route path="/home-decoration" element={<HomeDecorationPage />} />
+          <Route path="/transfer-services" element={<TransferPage />} />
+          <Route path="/vacation-planner" element={<VacationPlannerPage />} />
+          <Route path="/home-insurance" element={<HomeInsurancePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
