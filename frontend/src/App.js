@@ -38,7 +38,7 @@ const properties = [
     slug: "luxury-villa-kyrenia",
     title: "Luxury Sea View Villa",
     location: "Kyrenia, Northern Cyprus",
-    price: "€850,000",
+    price: "£850,000",
     beds: 4,
     baths: 3,
     area: "320",
@@ -72,7 +72,7 @@ const properties = [
     slug: "penthouse-iskele",
     title: "Modern Penthouse",
     location: "Iskele, Northern Cyprus",
-    price: "€425,000",
+    price: "£425,000",
     beds: 3,
     baths: 2,
     area: "185",
@@ -85,7 +85,7 @@ const properties = [
     slug: "beachfront-apartment-famagusta",
     title: "Beachfront Apartment",
     location: "Famagusta, Northern Cyprus",
-    price: "€295,000",
+    price: "£295,000",
     beds: 2,
     baths: 2,
     area: "120",
@@ -98,7 +98,7 @@ const properties = [
     slug: "mediterranean-villa-kyrenia",
     title: "Mediterranean Villa",
     location: "Kyrenia, Northern Cyprus",
-    price: "€1,250,000",
+    price: "£1,250,000",
     beds: 5,
     baths: 4,
     area: "450",
@@ -111,7 +111,7 @@ const properties = [
     slug: "coastal-residence-iskele",
     title: "Coastal Residence",
     location: "Iskele, Northern Cyprus",
-    price: "€520,000",
+    price: "£520,000",
     beds: 3,
     baths: 3,
     area: "210",
@@ -124,14 +124,178 @@ const properties = [
     slug: "luxury-duplex-famagusta",
     title: "Luxury Duplex",
     location: "Famagusta, Northern Cyprus",
-    price: "€680,000",
+    price: "£680,000",
     beds: 4,
     baths: 3,
     area: "280",
     image: "https://images.unsplash.com/photo-1714495412938-addb0ed62c1e?w=800&h=600&fit=crop",
     tag: "FOR SALE",
     region: "FAMAGUSTA"
-  }
+  },
+  {
+    id: 11,
+    slug: "luxury-villa-ozankoy-494383",
+    title: "Girne Ozanköy'de 4+1 Özel Tasarım Lüks Villa",
+    location: "Ozankoy, Kyrenia",
+    price: "£1,160,000",
+    beds: 4,
+    baths: 4,
+    area: "308",
+    image: "/assets/images/properties/prop-11/image-0.jpeg",
+    images: ["/assets/images/properties/prop-11/image-0.jpeg"],
+    tag: "NEW LISTING",
+    region: "KYRENIA",
+    description: "Exceptional luxury villa located in one of Kyrenia's most prestigious areas, just 50 meters from the sea. Features 4 en-suite bedrooms, a 77 m² rooftop terrace with jacuzzi, and a private saltwater heated pool. Equipped with a smart home system and high-quality modern architecture. Delivery: September 2026.\n\nGirne Ozanköy'de denize sadece 50 metre mesafede yer alan olağanüstü lüks villa. 4 ebeveyn banyolu yatak odası, 77 m² jakuzili çatı terası ve özel tuzlu su ısıtmalı havuz sunmaktadır. Akıllı ev sistemi ve yüksek kaliteli modern mimari ile donatılmıştır. Teslim: Eylül 2026."
+  },
+  {
+    id: 12,
+    slug: "modern-villa-esentepe-494123",
+    title: "Esentepe Modern Villa – Sahile Yürüme Mesafesinde",
+    location: "Esentepe, Kyrenia",
+    price: "£525,000",
+    beds: 3,
+    baths: 3,
+    area: "170",
+    image: "/assets/images/properties/prop-12/image-0.jpeg",
+    images: ["/assets/images/properties/prop-12/image-0.jpeg"],
+    tag: "NEW LISTING",
+    region: "KYRENIA",
+    description: "Modern 3+1 villa in Esentepe within walking distance to the beach. Features a private pool, large garden areas, and modern interior design. Ideal for both holiday living and permanent residence.\n\nEsentepe'de sahile yürüme mesafesinde satılık modern 3+1 villa. Özel havuz, geniş bahçe alanları ve modern iç tasarım sunmaktadır. Tatil veya kalıcı yaşam için idealdir."
+  },
+  {
+    id: 13,
+    slug: "sea-view-studio-long-beach-494120",
+    title: "Long Beach Grand Sapphire Studio Apartment",
+    location: "Long Beach, Iskele",
+    price: "£95,000",
+    beds: 0,
+    baths: 1,
+    area: "45",
+    image: "/assets/images/properties/prop-13/image-0.jpeg",
+    images: ["/assets/images/properties/prop-13/image-0.jpeg"],
+    tag: "NEW LISTING",
+    region: "ISKELE",
+    description: "Fully furnished studio apartment in the prestigious Grand Sapphire project at Iskele Long Beach. Sea and pool views, 2026 delivery with payment plans available. High investment potential.\n\nİskele Long Beach'in prestijli Grand Sapphire projesinde tam eşyalı stüdyo daire. Deniz ve havuz manzaralı, 2026 teslim ve ödeme planı avantajıyla. Yüksek yatırım potansiyeli."
+  },
+  {
+    id: 14,
+    slug: "luxury-studio-long-beach-491211",
+    title: "Iskele Long Beach Opportunity Studio",
+    location: "Long Beach, Iskele",
+    price: "£99,000",
+    beds: 0,
+    baths: 1,
+    area: "45",
+    image: "/assets/images/properties/prop-14/image-0.jpeg",
+    images: ["/assets/images/properties/prop-14/image-0.jpeg"],
+    tag: "NEW LISTING",
+    region: "ISKELE",
+    description: "Investment opportunity studio apartment in Long Beach, Iskele. Close to the beach and local amenities. Modern 1+0 layout suitable for short-term rentals.\n\nİskele Long Beach'te yatırım fırsatı stüdyo daire. Sahile ve yerel olanaklara yakın. Kısa dönem kiralama için uygun modern 1+0 plan."
+  },
+  {
+    id: 15,
+    slug: "contemporary-villa-dogankoy-494379",
+    title: "Dogankoy Contemporary 3-Bed Villa",
+    location: "Dogankoy, Kyrenia",
+    price: "£475,000",
+    beds: 3,
+    baths: 3,
+    area: "210",
+    image: "/assets/images/properties/prop-15/image-0.jpeg",
+    images: ["/assets/images/properties/prop-15/image-0.jpeg"],
+    tag: "NEW LISTING",
+    region: "KYRENIA",
+    description: "Contemporary 3-bedroom villa in Dogankoy, Kyrenia. Features private swimming pool, sleek modern design, and proximity to Kyrenia city center while maintaining a quiet neighborhood feel.\n\nGirne Doğanköy'de çağdaş 3 yatak odalı villa. Özel yüzme havuzu, şık modern tasarım ve Girne şehir merkezine yakınlık sunarken sakin bir mahalle atmosferi sağlar."
+  },
+  {
+    id: 16,
+    slug: "scenic-flat-esentepe-459983",
+    title: "Esentepe Scenic Studio with Garden",
+    location: "Esentepe, Kyrenia",
+    price: "£140,000",
+    beds: 0,
+    baths: 1,
+    area: "65",
+    image: "/assets/images/properties/prop-16/image-0.jpg",
+    images: ["/assets/images/properties/prop-16/image-0.jpg"],
+    tag: "NEW LISTING",
+    region: "KYRENIA",
+    description: "Scenic studio apartment in Esentepe featuring a private garden and access to a communal pool. Located in a project with extensive social facilities and mountain/sea views.\n\nEsentepe'de özel bahçeli ve ortak havuza erişimi olan manzaralı stüdyo daire. Kapsamlı sosyal olanaklara ve dağ/deniz manzarasına sahip bir projede yer almaktadır."
+  },
+  {
+    id: 17,
+    slug: "private-villa-catalkoy-482100",
+    title: "Catalkoy Garden Villa",
+    location: "Catalkoy, Kyrenia",
+    price: "£260,000",
+    beds: 2,
+    baths: 2,
+    area: "200",
+    image: "/assets/images/properties/prop-17/image-0.jpg",
+    images: [
+      "/assets/images/properties/prop-17/image-0.jpg",
+      "/assets/images/properties/prop-17/image-1.jpg",
+      "/assets/images/properties/prop-17/image-2.jpg",
+      "/assets/images/properties/prop-17/image-3.jpg",
+      "/assets/images/properties/prop-17/image-4.jpg",
+      "/assets/images/properties/prop-17/image-5.jpg"
+    ],
+    tag: "NEW LISTING",
+    region: "KYRENIA",
+    description: "2-bedroom villa in Catalkoy with a large private garden. Located in a peaceful residential area, close to schools and supermarkets. Modern finishings and move-in ready.\n\nÇatalköy'de geniş özel bahçeli 2 yatak odalı villa. Huzurlu bir yerleşim yerinde, okullara ve süpermarketlere yakın konumdadır. Modern döşenmiş ve taşınmaya hazırdır."
+  },
+  {
+    id: 18,
+    slug: "modern-villa-yeni-bogazici-491329",
+    title: "Yeni Bogazici 3-Bed Luxury Villa",
+    location: "Yeni Bogazici, Famagusta",
+    price: "£264,500",
+    beds: 3,
+    baths: 3,
+    area: "210",
+    image: "/assets/images/properties/prop-18/image-0.jpeg",
+    images: ["/assets/images/properties/prop-18/image-0.jpeg"],
+    tag: "NEW LISTING",
+    region: "FAMAGUSTA",
+    description: "Luxury 3-bedroom villa in Yeni Bogazici, near Famagusta. Close to the sea and local attractions. High-quality construction with spacious living areas and terrace.\n\nYeni Boğaziçi'nde, Gazimağusa yakınlarında lüks 3 yatak odalı villa. Denize ve yerel cazibe merkezlerine yakın. Geniş yaşam alanları ve teraslı yüksek kaliteli yapı."
+  },
+  {
+    id: 19,
+    slug: "seafront-flat-gaziveren-451390",
+    title: "Gaziveren Seafront Flat - Dedeman Concept",
+    location: "Gaziveren, Lefke",
+    price: "£149,100",
+    beds: 1,
+    baths: 1,
+    area: "61",
+    image: "/assets/images/properties/prop-19/image-0.jpeg",
+    images: [
+      "/assets/images/properties/prop-19/image-0.jpeg",
+      "/assets/images/properties/prop-19/image-1.jpeg",
+      "/assets/images/properties/prop-19/image-2.jpeg",
+      "/assets/images/properties/prop-19/image-3.jpeg",
+      "/assets/images/properties/prop-19/image-4.jpeg",
+      "/assets/images/properties/prop-19/image-5.jpeg"
+    ],
+    tag: "NEW LISTING",
+    region: "FAMAGUSTA",
+    description: "Seafront flat in Gaziveren under the Dedeman Hotels & Resorts concept. Includes a 10-year rental guarantee. High-end hotel facilities including spa, pools, and private beach access.\n\nGaziveren'de Dedeman Hotels & Resorts konsepti altında satılık denize sıfır daire. 10 yıllık kiralama garantisi içermektedir. Spa, havuzlar ve özel plaj erişimi gibi üst düzey otel olanakları sunar."
+  },
+  {
+    id: 20,
+    slug: "exclusive-villa-edremit-phoenix",
+    title: "Edremit Luxury 3-Bed Villa",
+    location: "Edremit, Kyrenia",
+    price: "£500,000",
+    beds: 3,
+    baths: 3,
+    area: "220",
+    image: "/assets/images/properties/prop-20/image-0.jpeg",
+    images: ["/assets/images/properties/prop-20/image-0.jpeg"],
+    tag: "NEW LISTING",
+    region: "KYRENIA",
+    description: "Luxury 3-bedroom villa in Edremit, Kyrenia, located near the main road for easy access. Features a sea view, central air conditioning, fireplace, and a private swimming pool.\n\nGirne Edremit'te kolay erişim için ana yola yakın konumda lüks 3 yatak odalı villa. Deniz manzarası, merkezi klima, şömine ve özel yüzme havuzu özelliklerine sahiptir."
+  },
 ];
 
 // Featured properties for second slider
@@ -141,7 +305,7 @@ const featuredProperties = [
     slug: "elite-villa-esentepe",
     title: "Elite Hillside Villa",
     location: "Esentepe, Northern Cyprus",
-    price: "€1,850,000",
+    price: "£1,850,000",
     beds: 6,
     baths: 5,
     area: "580",
@@ -154,7 +318,7 @@ const featuredProperties = [
     slug: "oceanfront-mansion-kyrenia",
     title: "Oceanfront Mansion",
     location: "Kyrenia, Northern Cyprus",
-    price: "€2,400,000",
+    price: "£2,400,000",
     beds: 7,
     baths: 6,
     area: "720",
@@ -167,7 +331,7 @@ const featuredProperties = [
     slug: "designer-penthouse-iskele",
     title: "Designer Penthouse",
     location: "Iskele, Northern Cyprus",
-    price: "€890,000",
+    price: "£890,000",
     beds: 4,
     baths: 3,
     area: "310",
@@ -180,7 +344,7 @@ const featuredProperties = [
     slug: "garden-villa-famagusta",
     title: "Garden Villa Estate",
     location: "Famagusta, Northern Cyprus",
-    price: "€1,100,000",
+    price: "£1,100,000",
     beds: 5,
     baths: 4,
     area: "420",
@@ -233,13 +397,13 @@ const projects = [
       units: "69 Apartments",
       bedrooms: "1–3 bedrooms",
       completion: "2027",
-      priceFrom: "€250,000",
+      priceFrom: "£250,000",
       developer: "Caria Estates"
     },
     unitTypes: [
-      { type: "1-Bedroom Apartment", size: "65 m²", priceFrom: "€250,000", note: "Sea view" },
-      { type: "2-Bedroom Apartment", size: "95 m²", priceFrom: "€385,000", note: "Large terrace" },
-      { type: "3-Bedroom Penthouse", size: "145 m²", priceFrom: "€595,000", note: "Rooftop terrace" }
+      { type: "1-Bedroom Apartment", size: "65 m²", priceFrom: "£250,000", note: "Sea view" },
+      { type: "2-Bedroom Apartment", size: "95 m²", priceFrom: "£385,000", note: "Large terrace" },
+      { type: "3-Bedroom Penthouse", size: "145 m²", priceFrom: "£595,000", note: "Rooftop terrace" }
     ],
     amenities: "Hanko West residents enjoy exclusive access to a range of premium amenities designed for modern living. The development features a stunning infinity pool overlooking the Mediterranean, a fully-equipped fitness center, and a wellness spa with sauna and treatment rooms.\n\nAdditional facilities include a contemporary co-working space, stylish residents' lounge, beautifully landscaped gardens, secure underground parking, and 24/7 concierge service. Every detail has been considered to enhance your lifestyle and provide maximum comfort.",
     amenityImages: [
@@ -308,153 +472,164 @@ const projects = [
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState(null);
+  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
 
   // Scroll effect for header
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      // Transition when we leave the very top area
+      setIsScrolled(window.scrollY > 80);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const megaMenuContent = {
-    SELL: {
-      "Our Expertise": ["Market Analysis", "Valuation", "Selling Guide", "Success Stories"],
-      "Selling Services": ["Photography", "Marketing Strategy", "Legal Support", "Negotiation"]
-    },
-    BUY: {
-      "Properties": ["All Listings", "Villas", "Apartments", "Commercial"],
-      "Buyer Guide": ["Buying Process", "Legal Advice", "Mortgages", "Relocation"]
-    },
-    RENT: {
-      "Rentals": ["Long Term", "Short Term", "Holiday Lets"],
-      "Tenant Services": ["Search Assistance", "Contracts", "Maintenance"]
-    },
-    PROJECTS: {
-      "Developments": ["New Projects", "Under Construction", "Completed"],
-      "Investments": ["ROI Analysis", "Prime Locations", "Investor Guide"]
-    }
-  };
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isScrolled
-        ? 'bg-white/80 backdrop-blur-md shadow-sm'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${isScrolled
+        ? 'bg-white/95 backdrop-blur-md shadow-sm'
         : 'bg-transparent text-white'
         }`}
+      onMouseLeave={() => setMegaMenuOpen(false)}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        {/* Desktop Navigation - Three Column Layout */}
-        <div className="hidden lg:grid lg:grid-cols-3 lg:items-center lg:gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-5">
+        <div className="flex items-center justify-between lg:grid lg:grid-cols-3 lg:items-center">
           {/* Left Navigation */}
-          <nav className="flex items-center space-x-8 justify-start">
-            {['SELL', 'BUY', 'RENT', 'PROJECTS'].map((item) => (
+          <nav className="hidden lg:flex items-center space-x-10 justify-start">
+            {['PROPERTIES', 'SERVICES'].map((item) => (
               <div
                 key={item}
-                onMouseEnter={() => setMegaMenuOpen(item)}
-                onMouseLeave={() => setMegaMenuOpen(null)}
-                className="relative py-6"
+                onMouseEnter={() => setMegaMenuOpen(true)}
+                className="relative py-2"
               >
                 <Link
-                  to={`/${item.toLowerCase()}`}
-                  className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}
+                  to={item === 'PROPERTIES' ? '/properties' : '/services'}
+                  className={`text-[11px] tracking-[0.25em] font-medium transition-all duration-300 hover:opacity-100 ${isScrolled ? 'text-caria-slate' : 'text-white opacity-80 font-light'}`}
                 >
                   {item}
                 </Link>
-
-                {/* Mega Menu Panel */}
-                <div
-                  className={`absolute top-full left-0 w-[600px] bg-white shadow-xl border-t border-gray-50 p-10 grid grid-cols-2 gap-10 transition-all duration-300 transform ${megaMenuOpen === item ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
-                >
-                  {Object.entries(megaMenuContent[item]).map(([title, links]) => (
-                    <div key={title}>
-                      <h4 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-4">{title}</h4>
-                      <ul className="space-y-3">
-                        {links.map((link) => (
-                          <li key={link}>
-                            <Link to={`/${item.toLowerCase()}`} className="text-sm text-caria-slate hover:text-caria-turquoise transition-colors font-light">
-                              {link}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
               </div>
             ))}
           </nav>
 
           {/* Center Logo */}
-          <Link to="/" className="flex items-center justify-center" data-testid="logo">
-            <img
-              src="/logo.png"
-              alt="Caria Estates"
-              className="h-12 w-auto filter contrast-125"
-              style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
-            />
-          </Link>
+          <div className="flex items-center justify-center">
+            <Link to="/" className="flex items-center" data-testid="logo">
+              <img
+                src="/logo.png"
+                alt="Caria Estates"
+                className="h-10 w-auto transition-all duration-700"
+                style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
+              />
+            </Link>
+          </div>
 
           {/* Right Navigation */}
-          <nav className="flex items-center space-x-8 justify-end">
-            <Link to="/properties" className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}>
-              PROPERTIES
-            </Link>
-            <Link to="/services" className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}>
-              SERVICES
-            </Link>
-            <Link to="/about" className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}>
-              ABOUT US
-            </Link>
-            <Link to="/contact" className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}>
-              CONTACT
-            </Link>
+          <nav className="hidden lg:flex items-center space-x-10 justify-end">
+            {['ABOUT', 'CONTACT'].map((item) => (
+              <div
+                key={item}
+                onMouseEnter={() => setMegaMenuOpen(true)}
+                className="relative py-2"
+              >
+                <Link
+                  to={item === 'ABOUT' ? '/about' : '/contact'}
+                  className={`text-[11px] tracking-[0.25em] font-medium transition-all duration-300 hover:opacity-100 ${isScrolled ? 'text-caria-slate' : 'text-white opacity-80 font-light'}`}
+                >
+                  {item}
+                </Link>
+              </div>
+            ))}
           </nav>
-        </div>
 
-        {/* Mobile/Tablet Navigation */}
-        <div className="lg:hidden flex items-center justify-between">
-          <Link to="/" className="flex items-center" data-testid="mobile-logo">
-            <img
-              src="/logo.png"
-              alt="Caria Estates"
-              className="h-10 w-auto"
-              style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
-            />
-          </Link>
-
+          {/* Mobile menu button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`ml-auto z-10 ${isScrolled ? 'text-caria-slate' : 'text-white'}`}
-            data-testid="mobile-menu-btn"
+            className={`lg:hidden z-10 ${isScrolled ? 'text-caria-slate' : 'text-white'}`}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
+      {/* Unified Mega Menu Panel */}
+      <div
+        className={`absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-50 overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)] ${megaMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <div className="max-w-7xl mx-auto px-10 py-16 grid grid-cols-4 gap-12">
+          {/* Properties Column */}
+          <div>
+            <h4 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-6 border-b border-gray-100 pb-2">Properties</h4>
+            <ul className="space-y-4">
+              {["All Listings", "Exclusive Villas", "Sea View Apartments", "New Developments", "Investment Land"].map(link => (
+                <li key={link}>
+                  <Link to="/properties" className="text-sm text-caria-slate hover:text-caria-turquoise transition-colors font-light flex items-center group">
+                    <span className="w-0 group-hover:w-2 h-[1px] bg-caria-turquoise mr-0 group-hover:mr-2 transition-all duration-300"></span>
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services Column */}
+          <div>
+            <h4 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-6 border-b border-gray-100 pb-2">Services</h4>
+            <ul className="space-y-4">
+              {["After Sales", "Property Management", "Legal Consulting", "Decoration Packages", "Transfer Services"].map(link => (
+                <li key={link}>
+                  <Link to="/services" className="text-sm text-caria-slate hover:text-caria-turquoise transition-colors font-light flex items-center group">
+                    <span className="w-0 group-hover:w-2 h-[1px] bg-caria-turquoise mr-0 group-hover:mr-2 transition-all duration-300"></span>
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Destinations Column */}
+          <div>
+            <h4 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-6 border-b border-gray-100 pb-2">Destinations</h4>
+            <ul className="space-y-4">
+              {["Kyrenia", "Esentepe", "Iskele", "Famagusta", "Nicosia"].map(link => (
+                <li key={link}>
+                  <Link to="/properties" className="text-sm text-caria-slate hover:text-caria-turquoise transition-colors font-light flex items-center group">
+                    <span className="w-0 group-hover:w-2 h-[1px] bg-caria-turquoise mr-0 group-hover:mr-2 transition-all duration-300"></span>
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Visual Column */}
+          <div className="relative rounded-lg overflow-hidden group cursor-pointer h-full min-h-[200px]">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=600&fit=crop"
+              alt="Luxury Living"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-black/30 flex items-end p-6">
+              <span className="text-white text-[10px] tracking-[0.2em] font-light border-b border-white/40 pb-1">VIEW FEATURED VILLA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/95 backdrop-blur-md h-screen">
-          <nav className="flex flex-col px-6 py-12 space-y-8">
-            {['SELL', 'BUY', 'RENT', 'PROJECTS'].map((item) => (
-              <Link key={item} to={`/${item.toLowerCase()}`} className="text-caria-slate text-2xl font-serif tracking-wide">{item}</Link>
+        <div className="lg:hidden bg-white h-screen fixed inset-0 z-[60] py-24 px-8 overflow-y-auto">
+          <button onClick={() => setMobileMenuOpen(false)} className="absolute top-8 right-8 text-caria-slate"><X size={32} /></button>
+          <nav className="flex flex-col space-y-8">
+            {['PROPERTIES', 'SERVICES', 'ABOUT', 'CONTACT'].map((item) => (
+              <Link key={item} to={`/${item.toLowerCase()}`} className="text-3xl font-serif text-caria-slate tracking-tight">{item}</Link>
             ))}
-            <div className="border-t border-gray-100 pt-8 space-y-4">
-              <Link to="/properties" className="text-gray-500 text-sm tracking-widest block uppercase">Properties</Link>
-              <Link to="/services" className="text-gray-500 text-sm tracking-widest block uppercase">Services</Link>
-              <Link to="/about" className="text-gray-500 text-sm tracking-widest block uppercase">About Us</Link>
-              <Link to="/contact" className="text-gray-500 text-sm tracking-widest block uppercase">Contact</Link>
-            </div>
           </nav>
         </div>
       )}
     </header>
   );
 };
-
 // ============================================
 // SECTION 2: HERO COMPONENT (Full-screen Video)
 // ============================================
@@ -471,8 +646,7 @@ const Hero = () => {
           poster="https://images.unsplash.com/photo-1694967832949-09984640b143?w=1920&h=1080&fit=crop"
           className="w-full h-full object-cover"
         >
-          <source src="/assets/videos/hero.mp4" type="video/mp4" />
-          <source src="https://player.vimeo.com/external/494254214.sd.mp4?s=d01072a2ac05ca598a444d375d045c478df8832a&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
+          <source src="/assets/videos/Media1.mp4" type="video/mp4" />
         </video>
         {/* Cinematic Overlay Layer */}
         <div className="absolute inset-0 bg-black/40 z-0" />
@@ -795,7 +969,7 @@ const AdvancedSearchBar = () => {
               <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">Price Min</label>
               <input
                 type="text"
-                placeholder="€ Min"
+                placeholder="£ Min"
                 value={priceMin}
                 onChange={(e) => setPriceMin(e.target.value)}
                 className="search-input w-full px-4 py-3 border border-gray-200 rounded-sm text-sm"
@@ -808,7 +982,7 @@ const AdvancedSearchBar = () => {
               <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">Price Max</label>
               <input
                 type="text"
-                placeholder="€ Max"
+                placeholder="£ Max"
                 value={priceMax}
                 onChange={(e) => setPriceMax(e.target.value)}
                 className="search-input w-full px-4 py-3 border border-gray-200 rounded-sm text-sm"
@@ -1773,8 +1947,8 @@ const PropertyDetailPage = () => {
                 <div className="flex items-center gap-4 mb-4">
                   <img
                     src="/hakan-okur.png"
-                    alt="Agent"
-                    className="w-16 h-16 rounded-full object-cover"
+                    alt="Hakan Okur"
+                    className="w-16 h-16 rounded-full object-cover shadow-sm"
                   />
                   <div>
                     <p className="font-medium text-caria-slate">Hakan Okur</p>
@@ -1798,6 +1972,15 @@ const PropertyDetailPage = () => {
                     <MessageSquare size={18} />
                     <span className="text-sm font-medium">WhatsApp</span>
                   </a>
+                  <button
+                    onClick={() => {
+                      setFormData({ ...formData, message: "I am interested in a viewing trip for property " + (property.reference || property.id) });
+                    }}
+                    className="w-full mt-4 flex items-center gap-3 px-4 py-3 bg-[#0F5E63] text-white rounded-sm hover:bg-[#0d4f53] transition-all justify-center"
+                  >
+                    <Calendar size={18} />
+                    <span className="text-sm font-medium uppercase tracking-wider">Request a Viewing Trip</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1935,7 +2118,7 @@ const BuyPage = () => {
               {/* Min Price */}
               <div>
                 <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">
-                  Min Price (€)
+                  Min Price (£)
                 </label>
                 <input
                   type="number"
@@ -1949,7 +2132,7 @@ const BuyPage = () => {
               {/* Max Price */}
               <div>
                 <label className="text-xs text-gray-500 tracking-wider uppercase mb-2 block">
-                  Max Price (€)
+                  Max Price (£)
                 </label>
                 <input
                   type="number"
@@ -2367,7 +2550,7 @@ const ProjectDetailPage = () => {
                   <p className="font-medium text-caria-slate">{project.keyFacts.completion}</p>
                 </div>
                 <div className="text-center p-6 bg-white rounded-lg">
-                  <span className="text-3xl text-[#0F5E63] mx-auto mb-3 block">€</span>
+                  <span className="text-3xl text-[#0F5E63] mx-auto mb-3 block">£</span>
                   <p className="text-sm text-gray-500 uppercase tracking-wider mb-2">From</p>
                   <p className="font-medium text-caria-slate">{project.keyFacts.priceFrom}</p>
                 </div>
@@ -3360,7 +3543,7 @@ const HomeDecorationPage = () => {
   const packages = [
     {
       name: "SILVER PACKAGE",
-      price: "€ 4,900",
+      price: "£ 4,900",
       items: [
         "LIVINGROOM 3 & 2 & 1 SEATER SOFA",
         "LIVINGROOM COFFE TABLE",
@@ -3378,7 +3561,7 @@ const HomeDecorationPage = () => {
     },
     {
       name: "GOLD PACKAGE",
-      price: "€ 6,900",
+      price: "£ 6,900",
       featured: true,
       items: [
         "LIVINGROOM 3 & 2 & 1 SEATER SOFA",
@@ -3399,7 +3582,7 @@ const HomeDecorationPage = () => {
     },
     {
       name: "PLATINUM PACKAGE",
-      price: "€ 9,900",
+      price: "£ 9,900",
       items: [
         "LIVINGROOM 3 & 2 & 1 SEATER SOFA",
         "LIVINGROOM COFFE TABLE",
@@ -3702,31 +3885,31 @@ const TransferPage = () => {
     {
       country: "TURKEY",
       rates: [
-        { label: "Antalya Airport - Alanya", price: "€ 60" },
-        { label: "Alanya GZP Airport - Alanya", price: "€ 30" },
-        { label: "Alanya - Antalya Airport", price: "€ 60" }
+        { label: "Antalya Airport - Alanya", price: "£ 60" },
+        { label: "Alanya GZP Airport - Alanya", price: "£ 30" },
+        { label: "Alanya - Antalya Airport", price: "£ 60" }
       ]
     },
     {
       country: "CYPRUS",
       rates: [
-        { label: "Ercan Airport - Kyrenia or Esentepe", price: "€ 50" },
-        { label: "Ercan Airport - Long Beach or İskele", price: "€ 60" }
+        { label: "Ercan Airport - Kyrenia or Esentepe", price: "£ 50" },
+        { label: "Ercan Airport - Long Beach or İskele", price: "£ 60" }
       ]
     },
     {
       country: "ITALY",
       rates: [
-        { label: "Bergamo Airport - Lake Iseo", price: "€ 130" },
-        { label: "Milano MXP Airport - Lake Iseo", price: "€ 210" }
+        { label: "Bergamo Airport - Lake Iseo", price: "£ 130" },
+        { label: "Milano MXP Airport - Lake Iseo", price: "£ 210" }
       ]
     }
   ];
 
   const rentalRates = [
-    { country: "Turkey", price: "€ 30", detail: "per day for economy car" },
-    { country: "Cyprus", price: "€ 35", detail: "per day for economy car" },
-    { country: "Italy", price: "€ 70", detail: "per day for economy car" }
+    { country: "Turkey", price: "£ 30", detail: "per day for economy car" },
+    { country: "Cyprus", price: "£ 35", detail: "per day for economy car" },
+    { country: "Italy", price: "£ 70", detail: "per day for economy car" }
   ];
 
   return (
@@ -4033,9 +4216,9 @@ const VacationPlannerPage = () => {
 
 const HomeInsurancePage = () => {
   const insurancePricing = [
-    { country: "Turkey", price: "€ 150", detail: "(-/+) per year" },
-    { country: "Cyprus", price: "€ 200", detail: "(-/+) per year" },
-    { country: "Italy", price: "€ 350", detail: "(-/+) per year" }
+    { country: "Turkey", price: "£ 150", detail: "(-/+) per year" },
+    { country: "Cyprus", price: "£ 200", detail: "(-/+) per year" },
+    { country: "Italy", price: "£ 350", detail: "(-/+) per year" }
   ];
 
   return (
