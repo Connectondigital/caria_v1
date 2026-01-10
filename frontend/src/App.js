@@ -308,42 +308,83 @@ const projects = [
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [megaMenuOpen, setMegaMenuOpen] = useState(null);
 
+  // Scroll effect for header
   useEffect(() => {
     const handleScroll = () => {
-      // Check if we've scrolled past the hero (viewport height)
-      const heroHeight = window.innerHeight;
-      setIsScrolled(window.scrollY > heroHeight * 0.8);
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const megaMenuContent = {
+    SELL: {
+      "Our Expertise": ["Market Analysis", "Valuation", "Selling Guide", "Success Stories"],
+      "Selling Services": ["Photography", "Marketing Strategy", "Legal Support", "Negotiation"]
+    },
+    BUY: {
+      "Properties": ["All Listings", "Villas", "Apartments", "Commercial"],
+      "Buyer Guide": ["Buying Process", "Legal Advice", "Mortgages", "Relocation"]
+    },
+    RENT: {
+      "Rentals": ["Long Term", "Short Term", "Holiday Lets"],
+      "Tenant Services": ["Search Assistance", "Contracts", "Maintenance"]
+    },
+    PROJECTS: {
+      "Developments": ["New Projects", "Under Construction", "Completed"],
+      "Investments": ["ROI Analysis", "Prime Locations", "Investor Guide"]
+    }
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-slate-900 shadow-md'
-        : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isScrolled
+        ? 'bg-white/80 backdrop-blur-md shadow-sm'
+        : 'bg-transparent text-white'
         }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         {/* Desktop Navigation - Three Column Layout */}
         <div className="hidden lg:grid lg:grid-cols-3 lg:items-center lg:gap-8">
           {/* Left Navigation */}
-          <nav className="flex items-center space-x-6 justify-start">
-            <Link to="/sell" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-sell">
-              SELL
-            </Link>
-            <Link to="/buy" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-buy">
-              BUY
-            </Link>
-            <Link to="/rent" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-rent">
-              RENT
-            </Link>
-            <Link to="/projects" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-projects">
-              PROJECTS
-            </Link>
+          <nav className="flex items-center space-x-8 justify-start">
+            {['SELL', 'BUY', 'RENT', 'PROJECTS'].map((item) => (
+              <div
+                key={item}
+                onMouseEnter={() => setMegaMenuOpen(item)}
+                onMouseLeave={() => setMegaMenuOpen(null)}
+                className="relative py-6"
+              >
+                <Link
+                  to={`/${item.toLowerCase()}`}
+                  className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}
+                >
+                  {item}
+                </Link>
+
+                {/* Mega Menu Panel */}
+                <div
+                  className={`absolute top-full left-0 w-[600px] bg-white shadow-xl border-t border-gray-50 p-10 grid grid-cols-2 gap-10 transition-all duration-300 transform ${megaMenuOpen === item ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                >
+                  {Object.entries(megaMenuContent[item]).map(([title, links]) => (
+                    <div key={title}>
+                      <h4 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-4">{title}</h4>
+                      <ul className="space-y-3">
+                        {links.map((link) => (
+                          <li key={link}>
+                            <Link to={`/${item.toLowerCase()}`} className="text-sm text-caria-slate hover:text-caria-turquoise transition-colors font-light">
+                              {link}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </nav>
 
           {/* Center Logo */}
@@ -351,22 +392,23 @@ const Header = () => {
             <img
               src="/logo.png"
               alt="Caria Estates"
-              className="h-12 w-auto"
+              className="h-12 w-auto filter contrast-125"
+              style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
             />
           </Link>
 
           {/* Right Navigation */}
-          <nav className="flex items-center space-x-6 justify-end">
-            <Link to="/properties" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-properties">
+          <nav className="flex items-center space-x-8 justify-end">
+            <Link to="/properties" className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}>
               PROPERTIES
             </Link>
-            <Link to="/services" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-services">
+            <Link to="/services" className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}>
               SERVICES
             </Link>
-            <Link to="/about" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-about">
+            <Link to="/about" className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}>
               ABOUT US
             </Link>
-            <Link to="/contact" className="text-white text-xs tracking-widest hover:text-caria-turquoise transition-colors" data-testid="nav-contact">
+            <Link to="/contact" className={`text-xs tracking-[0.2em] font-medium transition-colors ${isScrolled ? 'text-caria-slate hover:text-caria-turquoise' : 'text-white hover:text-white/70'}`}>
               CONTACT
             </Link>
           </nav>
@@ -374,21 +416,18 @@ const Header = () => {
 
         {/* Mobile/Tablet Navigation */}
         <div className="lg:hidden flex items-center justify-between">
-          {/* Centered Logo */}
-          <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Link to="/" className="flex items-center" data-testid="mobile-logo">
-              <img
-                src="/logo.png"
-                alt="Caria Estates"
-                className="h-10 w-auto"
-              />
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center" data-testid="mobile-logo">
+            <img
+              src="/logo.png"
+              alt="Caria Estates"
+              className="h-10 w-auto"
+              style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
+            />
+          </Link>
 
-          {/* Mobile menu button - Right side */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="ml-auto text-white z-10"
+            className={`ml-auto z-10 ${isScrolled ? 'text-caria-slate' : 'text-white'}`}
             data-testid="mobile-menu-btn"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -398,17 +437,16 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-slate-900/95 backdrop-blur-sm">
-          <nav className="flex flex-col px-6 py-4 space-y-4">
-            <Link to="/sell" className="text-white text-sm tracking-wide" data-testid="mobile-nav-sell">SELL</Link>
-            <Link to="/buy" className="text-white text-sm tracking-wide" data-testid="mobile-nav-buy">BUY</Link>
-            <Link to="/rent" className="text-white text-sm tracking-wide" data-testid="mobile-nav-rent">RENT</Link>
-            <Link to="/projects" className="text-white text-sm tracking-wide" data-testid="mobile-nav-projects">PROJECTS</Link>
-            <div className="border-t border-white/20 pt-4">
-              <Link to="/properties" className="text-white text-sm tracking-wide block mb-4" data-testid="mobile-nav-properties">PROPERTIES</Link>
-              <Link to="/services" className="text-white text-sm tracking-wide block mb-4" data-testid="mobile-nav-services">SERVICES</Link>
-              <Link to="/about" className="text-white text-sm tracking-wide block mb-4" data-testid="mobile-nav-about">ABOUT US</Link>
-              <Link to="/contact" className="text-white text-sm tracking-wide block" data-testid="mobile-nav-contact">CONTACT</Link>
+        <div className="lg:hidden bg-white/95 backdrop-blur-md h-screen">
+          <nav className="flex flex-col px-6 py-12 space-y-8">
+            {['SELL', 'BUY', 'RENT', 'PROJECTS'].map((item) => (
+              <Link key={item} to={`/${item.toLowerCase()}`} className="text-caria-slate text-2xl font-serif tracking-wide">{item}</Link>
+            ))}
+            <div className="border-t border-gray-100 pt-8 space-y-4">
+              <Link to="/properties" className="text-gray-500 text-sm tracking-widest block uppercase">Properties</Link>
+              <Link to="/services" className="text-gray-500 text-sm tracking-widest block uppercase">Services</Link>
+              <Link to="/about" className="text-gray-500 text-sm tracking-widest block uppercase">About Us</Link>
+              <Link to="/contact" className="text-gray-500 text-sm tracking-widest block uppercase">Contact</Link>
             </div>
           </nav>
         </div>
@@ -418,13 +456,13 @@ const Header = () => {
 };
 
 // ============================================
-// SECTION 1: HERO COMPONENT (Full-screen Video)
+// SECTION 2: HERO COMPONENT (Full-screen Video)
 // ============================================
 const Hero = () => {
   return (
-    <section className="relative h-screen w-full overflow-hidden" data-testid="hero-section">
-      {/* Background Video - using image fallback */}
-      <div className="absolute inset-0">
+    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center" data-testid="hero-section">
+      {/* Background Video Layer */}
+      <div className="absolute inset-0 z-[-1]">
         <video
           autoPlay
           muted
@@ -433,26 +471,27 @@ const Hero = () => {
           poster="https://images.unsplash.com/photo-1694967832949-09984640b143?w=1920&h=1080&fit=crop"
           className="w-full h-full object-cover"
         >
-          <source src="/videos/caria-hero.mp4" type="video/mp4" />
+          <source src="/assets/videos/hero.mp4" type="video/mp4" />
+          <source src="https://player.vimeo.com/external/494254214.sd.mp4?s=d01072a2ac05ca598a444d375d045c478df8832a&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
         </video>
-        {/* Fallback image if video doesn't load */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1694967832949-09984640b143?w=1920&h=1080&fit=crop')`,
-            zIndex: -1
-          }}
-        />
+        {/* Cinematic Overlay Layer */}
+        <div className="absolute inset-0 bg-black/40 z-0" />
       </div>
 
-      {/* Gradient Overlay - subtle for readability */}
-      <div className="absolute inset-0 bg-black/20" />
-
-      {/* Centered Brand Title */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-light tracking-wide text-center" data-testid="hero-brand">
+      {/* Centered Content Layer */}
+      <div className="relative z-10 text-center px-6">
+        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-light tracking-wide mb-8">
           CARIA ESTATES <sup className="text-2xl md:text-3xl">®</sup>
         </h1>
+        <p className="text-white/90 text-lg md:text-xl font-light tracking-widest mb-12 max-w-2xl mx-auto uppercase">
+          Exclusive Mediterranean Living
+        </p>
+        <Link
+          to="/properties"
+          className="px-10 py-4 border border-white text-white text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-caria-slate transition-all duration-500"
+        >
+          Explore Properties
+        </Link>
       </div>
     </section>
   );
