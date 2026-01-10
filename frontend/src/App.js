@@ -1,14 +1,15 @@
 import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import "@/App.css";
 import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Play, 
-  Menu, 
-  X, 
-  Phone, 
-  Mail, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Menu,
+  X,
+  Phone,
+  Mail,
   MapPin,
   Instagram,
   Facebook,
@@ -321,12 +322,11 @@ const Header = () => {
   }, []);
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-slate-900 shadow-md' 
-          : 'bg-transparent'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-slate-900 shadow-md'
+        : 'bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         {/* Desktop Navigation - Three Column Layout */}
@@ -349,8 +349,8 @@ const Header = () => {
 
           {/* Center Logo */}
           <Link to="/" className="flex items-center justify-center" data-testid="logo">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_empty-commit/artifacts/nptcyjqv_caria_logo.png" 
+            <img
+              src="/logo.png"
               alt="Caria Estates"
               className="h-12 w-auto"
             />
@@ -378,8 +378,8 @@ const Header = () => {
           {/* Centered Logo */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <Link to="/" className="flex items-center" data-testid="mobile-logo">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_empty-commit/artifacts/nptcyjqv_caria_logo.png" 
+              <img
+                src="/logo.png"
                 alt="Caria Estates"
                 className="h-10 w-auto"
               />
@@ -437,11 +437,11 @@ const Hero = () => {
           <source src="/videos/caria-hero.mp4" type="video/mp4" />
         </video>
         {/* Fallback image if video doesn't load */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ 
+          style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1694967832949-09984640b143?w=1920&h=1080&fit=crop')`,
-            zIndex: -1 
+            zIndex: -1
           }}
         />
       </div>
@@ -467,9 +467,9 @@ const IntroSection = () => {
     <section className="bg-caria-mint py-24 md:py-32" data-testid="intro-section">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <p className="text-caria-slate text-base md:text-lg leading-relaxed font-light" data-testid="intro-text">
-          Caria Estates provides expert guidance and luxury real estate services in Northern Cyprus. 
-          We combine local insight with global standards to offer a refined, transparent property experience. 
-          Whether you are seeking a coastal retreat, investment opportunity, or your dream Mediterranean home, 
+          Caria Estates provides expert guidance and luxury real estate services in Northern Cyprus.
+          We combine local insight with global standards to offer a refined, transparent property experience.
+          Whether you are seeking a coastal retreat, investment opportunity, or your dream Mediterranean home,
           our dedicated team is here to guide you every step of the way.
         </p>
       </div>
@@ -491,11 +491,10 @@ const RegionTabs = ({ activeRegion, setActiveRegion }) => {
             <button
               key={region}
               onClick={() => setActiveRegion(region)}
-              className={`tab-item text-xs md:text-sm tracking-[0.15em] pb-2 ${
-                activeRegion === region 
-                  ? 'text-caria-slate active' 
-                  : 'text-gray-400 hover:text-gray-600'
-              }`}
+              className={`tab-item text-xs md:text-sm tracking-[0.15em] pb-2 ${activeRegion === region
+                ? 'text-caria-slate active'
+                : 'text-gray-400 hover:text-gray-600'
+                }`}
               data-testid={`tab-${region.toLowerCase().replace(' ', '-')}`}
             >
               {region}
@@ -512,15 +511,15 @@ const RegionTabs = ({ activeRegion, setActiveRegion }) => {
 // ============================================
 const PropertyCard = ({ property }) => {
   return (
-    <Link 
+    <Link
       to={`/property/${property.slug}`}
       className="property-card block bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden"
       data-testid={`property-card-${property.id}`}
     >
       {/* Image Container */}
       <div className="relative h-64 overflow-hidden">
-        <img 
-          src={property.image} 
+        <img
+          src={property.image}
           alt={property.title}
           className="property-image w-full h-full object-cover"
         />
@@ -565,15 +564,15 @@ const PropertyCard = ({ property }) => {
 // ============================================
 const CuratedPropertyCard = ({ property }) => {
   return (
-    <Link 
+    <Link
       to={`/property/${property.slug}`}
       className="curated-property-card flex flex-col h-full bg-white rounded-lg overflow-hidden"
       data-testid={`curated-card-${property.id}`}
     >
       {/* Large Image Container */}
       <div className="relative h-60 md:h-80 lg:h-96 overflow-hidden">
-        <img 
-          src={property.image} 
+        <img
+          src={property.image}
           alt={property.title}
           className="curated-property-image w-full h-full object-cover"
         />
@@ -594,7 +593,7 @@ const CuratedPropertyCard = ({ property }) => {
         <p className="text-xl md:text-2xl font-semibold text-caria-slate mb-auto">
           {property.price}
         </p>
-        
+
         {/* Stats at bottom */}
         <div className="flex items-center space-x-6 text-sm text-gray-500 mt-6 pt-6 border-t border-gray-100">
           <span className="flex items-center">
@@ -618,7 +617,7 @@ const CuratedPropertyCard = ({ property }) => {
 // ============================================
 // SECTION 4: CURATED LISTINGS SLIDER (Strand-style)
 // ============================================
-const CuratedListings = ({ activeRegion }) => {
+const CuratedListings = ({ activeRegion, properties }) => {
   const sliderRef = useRef(null);
   const [activeTag, setActiveTag] = useState('All');
 
@@ -626,8 +625,8 @@ const CuratedListings = ({ activeRegion }) => {
   const tags = ['All', ...new Set(properties.map(p => p.tag))];
 
   // Filter by region first
-  const filteredByRegion = activeRegion === "DISCOVER ALL" 
-    ? properties 
+  const filteredByRegion = activeRegion === "DISCOVER ALL"
+    ? properties
     : properties.filter(p => p.region === activeRegion);
 
   // Then filter by tag
@@ -658,7 +657,7 @@ const CuratedListings = ({ activeRegion }) => {
               Explore our handpicked selection of exceptional properties across Northern Cyprus
             </p>
           </div>
-          
+
           {/* Navigation Buttons - Desktop only */}
           <div className="hidden md:flex items-center space-x-3">
             <button
@@ -684,11 +683,10 @@ const CuratedListings = ({ activeRegion }) => {
             <button
               key={tag}
               onClick={() => setActiveTag(tag)}
-              className={`px-4 py-2 text-xs tracking-wider uppercase rounded-full transition-all ${
-                activeTag === tag 
-                  ? 'text-white' 
-                  : 'bg-caria-mint text-gray-600 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 text-xs tracking-wider uppercase rounded-full transition-all ${activeTag === tag
+                ? 'text-white'
+                : 'bg-caria-mint text-gray-600 hover:bg-gray-200'
+                }`}
               style={activeTag === tag ? { backgroundColor: '#3BB2B8' } : {}}
               data-testid={`curated-filter-${tag.toLowerCase().replace(' ', '-')}`}
             >
@@ -698,13 +696,13 @@ const CuratedListings = ({ activeRegion }) => {
         </div>
 
         {/* Property Slider - 2 large cards side by side on desktop */}
-        <div 
+        <div
           ref={sliderRef}
           className="flex space-x-8 overflow-x-auto hide-scrollbar scroll-container scroll-snap-x pb-4"
         >
           {filteredProperties.map((property) => (
-            <div 
-              key={property.id} 
+            <div
+              key={property.id}
               className="flex-none w-full md:w-[48%] scroll-snap-start"
             >
               <CuratedPropertyCard property={property} />
@@ -831,9 +829,9 @@ const ContactAgentSlider = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [currentIndex, setCurrentIndex] = useState(0);
   const filters = ['All', 'Kyrenia', 'Iskele', 'Famagusta'];
-  
-  const filteredAgents = activeFilter === 'All' 
-    ? agents 
+
+  const filteredAgents = activeFilter === 'All'
+    ? agents
     : agents.filter(a => a.region === activeFilter);
 
   const nextSlide = () => {
@@ -852,7 +850,7 @@ const ContactAgentSlider = () => {
           <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-4 md:mb-0" data-testid="agents-title">
             Contact your Caria advisor
           </h2>
-          
+
           {/* Navigation Buttons */}
           <div className="flex items-center space-x-3">
             <button
@@ -878,11 +876,10 @@ const ContactAgentSlider = () => {
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`text-xs tracking-wider ${
-                activeFilter === filter 
-                  ? 'text-caria-slate underline underline-offset-4' 
-                  : 'text-gray-400 hover:text-gray-600'
-              }`}
+              className={`text-xs tracking-wider ${activeFilter === filter
+                ? 'text-caria-slate underline underline-offset-4'
+                : 'text-gray-400 hover:text-gray-600'
+                }`}
               data-testid={`agent-filter-${filter.toLowerCase()}`}
             >
               {filter}
@@ -893,19 +890,19 @@ const ContactAgentSlider = () => {
         {/* Agent Cards Slider */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredAgents.map((agent) => (
-            <div 
+            <div
               key={agent.id}
               className="agent-card relative rounded-lg overflow-hidden aspect-[3/4] group cursor-pointer"
               data-testid={`agent-card-${agent.id}`}
             >
-              <img 
+              <img
                 src={agent.thumbnail}
                 alt={agent.name}
                 className="w-full h-full object-cover"
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              
+
               {/* Play Button */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="play-btn-pulse relative w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center">
@@ -928,11 +925,10 @@ const ContactAgentSlider = () => {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`carousel-dot h-2 rounded-full transition-all ${
-                idx === currentIndex 
-                  ? 'w-6 bg-caria-slate active' 
-                  : 'w-2 bg-gray-300'
-              }`}
+              className={`carousel-dot h-2 rounded-full transition-all ${idx === currentIndex
+                ? 'w-6 bg-caria-slate active'
+                : 'w-2 bg-gray-300'
+                }`}
               data-testid={`agent-dot-${idx}`}
             />
           ))}
@@ -945,13 +941,13 @@ const ContactAgentSlider = () => {
 // ============================================
 // SECTION 7: FEATURED PROPERTIES SLIDER
 // ============================================
-const FeaturedPropertiesSlider = () => {
+const FeaturedPropertiesSlider = ({ featuredProperties }) => {
   const [activeFilter, setActiveFilter] = useState('All');
   const sliderRef = useRef(null);
   const filters = ['All', 'Kyrenia', 'Esentepe', 'Iskele', 'Famagusta'];
-  
-  const filteredProperties = activeFilter === 'All' 
-    ? featuredProperties 
+
+  const filteredProperties = activeFilter === 'All'
+    ? featuredProperties
     : featuredProperties.filter(p => p.region === activeFilter || p.location.includes(activeFilter));
 
   const scroll = (direction) => {
@@ -972,7 +968,7 @@ const FeaturedPropertiesSlider = () => {
           <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-4 md:mb-0" data-testid="featured-title">
             Featured Properties
           </h2>
-          
+
           {/* Navigation Buttons */}
           <div className="flex items-center space-x-3">
             <button
@@ -998,11 +994,10 @@ const FeaturedPropertiesSlider = () => {
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`text-xs tracking-wider ${
-                activeFilter === filter 
-                  ? 'text-caria-slate underline underline-offset-4' 
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
+              className={`text-xs tracking-wider ${activeFilter === filter
+                ? 'text-caria-slate underline underline-offset-4'
+                : 'text-gray-500 hover:text-gray-700'
+                }`}
               data-testid={`featured-filter-${filter.toLowerCase()}`}
             >
               {filter}
@@ -1011,7 +1006,7 @@ const FeaturedPropertiesSlider = () => {
         </div>
 
         {/* Properties Slider */}
-        <div 
+        <div
           ref={sliderRef}
           className="flex space-x-6 overflow-x-auto hide-scrollbar scroll-container pb-4"
         >
@@ -1033,9 +1028,9 @@ const WhyChooseSection = () => {
   return (
     <section className="relative" data-testid="why-choose-section">
       {/* Top Textured Background */}
-      <div 
+      <div
         className="h-64 bg-cover bg-center"
-        style={{ 
+        style={{
           backgroundColor: '#E6F4F4',
           backgroundImage: `url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=400&fit=crop&q=30')`,
           backgroundBlendMode: 'overlay'
@@ -1063,15 +1058,15 @@ const WhyChooseSection = () => {
               Why choose Caria Estates?
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              We provide personal and flawless service to our selling and buying customers. 
-              All of our property advisors have a profound knowledge and understanding of 
-              the Northern Cyprus real estate market with many years of experience. We want 
-              to make the process as easy as possible for all of our customers, whether 
+              We provide personal and flawless service to our selling and buying customers.
+              All of our property advisors have a profound knowledge and understanding of
+              the Northern Cyprus real estate market with many years of experience. We want
+              to make the process as easy as possible for all of our customers, whether
               you are seeking a permanent residence, vacation home, or investment property.
             </p>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Our commitment to excellence, transparency, and client satisfaction sets us 
-              apart. We offer end-to-end support from property search to legal completion, 
+              Our commitment to excellence, transparency, and client satisfaction sets us
+              apart. We offer end-to-end support from property search to legal completion,
               ensuring your journey to owning property in Northern Cyprus is seamless.
             </p>
           </div>
@@ -1108,7 +1103,7 @@ const BlogSlider = () => {
           <h2 className="font-serif text-3xl md:text-4xl text-caria-slate" data-testid="blog-title">
             Get Inspired
           </h2>
-          
+
           {/* Navigation Buttons */}
           <div className="flex items-center space-x-3">
             <button
@@ -1129,18 +1124,18 @@ const BlogSlider = () => {
         </div>
 
         {/* Blog Cards Slider */}
-        <div 
+        <div
           ref={sliderRef}
           className="flex space-x-6 overflow-x-auto hide-scrollbar scroll-container pb-4"
         >
           {blogArticles.map((article) => (
-            <article 
+            <article
               key={article.id}
               className="blog-card flex-none w-72 bg-white rounded-lg overflow-hidden shadow-md cursor-pointer"
               data-testid={`blog-card-${article.id}`}
             >
               <div className="aspect-square overflow-hidden">
-                <img 
+                <img
                   src={article.image}
                   alt={article.title}
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -1176,16 +1171,16 @@ const JoinUsSection = () => {
               Join us!
             </h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Are you an experienced agent with great knowledge of the real estate market 
-              and the Northern Cyprus area? Are you looking for a modern and innovative agency? 
-              If you share our passion for high-quality real estate services, do not hesitate 
+              Are you an experienced agent with great knowledge of the real estate market
+              and the Northern Cyprus area? Are you looking for a modern and innovative agency?
+              If you share our passion for high-quality real estate services, do not hesitate
               to contact us.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              We are always looking for talented individuals to join our growing team. 
+              We are always looking for talented individuals to join our growing team.
               Reach out to us at{' '}
-              <a 
-                href="mailto:info@cariaestates.com" 
+              <a
+                href="mailto:info@cariaestates.com"
                 className="hover:underline transition-colors"
                 style={{ color: '#3BB2B8' }}
                 data-testid="join-us-email"
@@ -1265,7 +1260,7 @@ const PartnerLogos = () => {
       <div className="max-w-5xl mx-auto px-6">
         <div className="flex items-center justify-center space-x-12 md:space-x-16 opacity-50">
           {partners.map((partner) => (
-            <div 
+            <div
               key={partner.id}
               className="w-24 h-12 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-400"
               data-testid={`partner-${partner.id}`}
@@ -1379,6 +1374,24 @@ const CopyrightBar = () => {
 // ============================================
 const Home = () => {
   const [activeRegion, setActiveRegion] = useState("DISCOVER ALL");
+  const [allProperties, setAllProperties] = useState([...properties]);
+  const [featured, setFeatured] = useState([...featuredProperties]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${API}/properties`);
+        if (response.data && response.data.length > 0) {
+          setAllProperties(response.data);
+          // For demo, we just split them or filter
+          setFeatured(response.data.filter(p => p.tag === 'PREMIUM' || p.tag === 'EXCLUSIVE'));
+        }
+      } catch (error) {
+        console.error("Error fetching properties:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -1386,10 +1399,10 @@ const Home = () => {
       <Hero />
       <IntroSection />
       <RegionTabs activeRegion={activeRegion} setActiveRegion={setActiveRegion} />
-      <CuratedListings activeRegion={activeRegion} />
+      <CuratedListings activeRegion={activeRegion} properties={allProperties} />
       <AdvancedSearchBar />
       <ContactAgentSlider />
-      <FeaturedPropertiesSlider />
+      <FeaturedPropertiesSlider featuredProperties={featured} />
       <WhyChooseSection />
       <BlogSlider />
       <JoinUsSection />
@@ -1404,21 +1417,39 @@ const Home = () => {
 // ============================================
 // PLACEHOLDER PAGES
 // ============================================
-const PropertiesPage = () => (
-  <div className="min-h-screen bg-white pt-20">
-    <Header />
-    <div className="max-w-7xl mx-auto px-6 py-16">
-      <h1 className="font-serif text-4xl text-caria-slate mb-8">All Properties</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[...properties, ...featuredProperties].map((property) => (
-          <PropertyCard key={property.id} property={property} />
-        ))}
+const PropertiesPage = () => {
+  const [allProperties, setAllProperties] = useState([...properties, ...featuredProperties]);
+
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const response = await axios.get(`${API}/properties`);
+        if (response.data && response.data.length > 0) {
+          setAllProperties(response.data);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchAll();
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white pt-20">
+      <Header />
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <h1 className="font-serif text-4xl text-caria-slate mb-8">All Properties</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {allProperties.map((property) => (
+            <PropertyCard key={property.id} property={property} />
+          ))}
+        </div>
       </div>
+      <Footer />
+      <CopyrightBar />
     </div>
-    <Footer />
-    <CopyrightBar />
-  </div>
-);
+  );
+};
 
 // ============================================
 // PROPERTY DETAIL PAGE
@@ -1827,7 +1858,7 @@ const BuyPage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       {/* Hero / Header Strip */}
       <section className="bg-caria-mint pt-24 pb-10">
         <div className="max-w-7xl mx-auto px-6">
@@ -1838,8 +1869,8 @@ const BuyPage = () => {
             Properties for Sale in Northern Cyprus
           </h1>
           <p className="text-gray-600 max-w-3xl">
-            Browse our exclusive collection of villas, apartments, and investment opportunities 
-            across Kyrenia, Iskele, and Famagusta. Discover your dream Mediterranean property with 
+            Browse our exclusive collection of villas, apartments, and investment opportunities
+            across Kyrenia, Iskele, and Famagusta. Discover your dream Mediterranean property with
             Caria Estates.
           </p>
         </div>
@@ -2044,8 +2075,8 @@ const ProjectsOverviewPage = () => {
                       <h3 className="font-serif text-2xl text-caria-slate group-hover:text-[#0F5E63] transition-colors">
                         {project.name}
                       </h3>
-                      <ChevronRight 
-                        size={20} 
+                      <ChevronRight
+                        size={20}
                         className="text-gray-400 group-hover:text-[#0F5E63] transition-colors"
                       />
                     </div>
@@ -2201,9 +2232,9 @@ const ProjectDetailPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({ 
-      ...formData, 
-      [name]: type === 'checkbox' ? checked : value 
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
     });
   };
 
@@ -2632,8 +2663,8 @@ const ServicesPage = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {services.map((service, index) => (
-              <div 
-                key={service.id} 
+              <div
+                key={service.id}
                 className="group animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -2654,7 +2685,7 @@ const ServicesPage = () => {
                   <p className="text-gray-600 leading-relaxed mb-6">
                     {service.description}
                   </p>
-                  <button 
+                  <button
                     className="inline-flex items-center gap-2 text-[#1BAFA2] text-sm font-medium tracking-wider uppercase hover:gap-3 transition-all"
                   >
                     Learn More
@@ -2913,7 +2944,7 @@ const ContactPage = () => {
               <h2 className="font-serif text-3xl text-caria-slate mb-8">
                 Get in Touch
               </h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Full Name */}
                 <div className="relative">

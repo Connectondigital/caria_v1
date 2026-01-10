@@ -1,74 +1,20 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List
-import uuid
-from datetime import datetime, timezone
-
+from pydantic import BaseModel, Field
+from typing import List, Optional
+import pymysql
+import json
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
-
-# Create the main app without a prefix
 app = FastAPI()
 
-# Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
-
-
-# Define Models
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
-    
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-
-class StatusCheckCreate(BaseModel):
-    client_name: str
-
-# Add your routes to the router instead of directly to app
-@api_router.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
-    
-    # Convert to dict and serialize datetime to ISO string for MongoDB
-    doc = status_obj.model_dump()
-    doc['timestamp'] = doc['timestamp'].isoformat()
-    
-    _ = await db.status_checks.insert_one(doc)
-    return status_obj
-
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
-    return status_checks
-
-# Include the router in the main app
-app.include_router(api_router)
-
+# Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
@@ -78,12 +24,101 @@ app.add_middleware(
 )
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
+# Fallback Data
+SAMPLE_PROPERTIES = [
+  {
+    "id": 1,
+    "slug": "luxury-villa-kyrenia",
+    "title": "Luxury Sea View Villa",
+    "location": "Kyrenia, Northern Cyprus",
+    "price": "€850,000",
+    "beds": 4,
+    "baths": 3,
+    "area": "320",
+    "plotSize": "850",
+    "reference": "CE-KYR-001",
+    "image": "https://images.unsplash.com/photo-1694967832949-09984640b143?w=800&h=600&fit=crop",
+    "tag": "NEW LISTING",
+    "region": "KYRENIA"
+  },
+  {
+    "id": 2,
+    "slug": "penthouse-iskele",
+    "title": "Modern Penthouse",
+    "location": "Iskele, Northern Cyprus",
+    "price": "€425,000",
+    "beds": 3,
+    "baths": 2,
+    "area": "185",
+    "image": "https://images.unsplash.com/photo-1642976975710-1d8890dbf5ab?w=800&h=600&fit=crop",
+    "tag": "FOR SALE",
+    "region": "ISKELE"
+  },
+  {
+    "id": 3,
+    "slug": "beachfront-apartment-famagusta",
+    "title": "Beachfront Apartment",
+    "location": "Famagusta, Northern Cyprus",
+    "price": "€295,000",
+    "beds": 2,
+    "baths": 2,
+    "area": "120",
+    "image": "https://images.unsplash.com/photo-1739140019682-05bd100b5a5e?w=800&h=600&fit=crop",
+    "tag": "EXCLUSIVE",
+    "region": "FAMAGUSTA"
+  }
+]
+
+# Database Connection Helper
+def get_db_connection():
+    try:
+        connection = pymysql.connect(
+            host=os.environ.get('DB_HOST', 'localhost'),
+            user=os.environ.get('DB_USER', 'root'),
+            password=os.environ.get('DB_PASSWORD', ''),
+            database=os.environ.get('DB_NAME', 'caria_db'),
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        return connection
+    except Exception as e:
+        logger.error(f"Database connection error: {e}")
+        return None
+
+# Routes
+api_router = APIRouter(prefix="/api")
+
+@api_router.get("/")
+async def root():
+    return {"status": "online", "message": "Caria Estates API"}
+
+@api_router.get("/properties")
+async def get_properties():
+    conn = get_db_connection()
+    if not conn:
+        logger.info("Using sample properties fallback (DB connection failed)")
+        return SAMPLE_PROPERTIES
+    
+    try:
+        with conn.cursor() as cursor:
+            # Try to fetch from properties table
+            try:
+                cursor.execute("SELECT * FROM properties")
+                rows = cursor.fetchall()
+                if rows:
+                    return rows
+            except Exception as e:
+                logger.warning(f"Error fetching from properties table: {e}")
+        
+        return SAMPLE_PROPERTIES
+    finally:
+        conn.close()
+
+app.include_router(api_router)
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get('PORT', 5001))
+    uvicorn.run(app, host="0.0.0.0", port=port)
