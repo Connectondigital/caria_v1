@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "@/App.css";
+import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
 import {
   ChevronLeft,
@@ -220,7 +221,7 @@ const properties = [
     images: ["/assets/images/properties/prop-16/image-0.jpg"],
     tag: "NEW LISTING",
     region: "KYRENIA",
-    description: "Scenic studio apartment in Esentepe featuring a private garden and access to a communal pool. Located in a project with extensive social facilities and mountain/sea views.\n\nEsentepe'de özel bahçeli ve ortak havuza erişimi olan manzaralı stüdyo daire. Kapsamlı sosyal olanaklara ve dağ/deniz manzarasına sahip bir projede yer almaktadır."
+    description: "Scenic studio apartment in Esentepe featuring a private garden and access to a communal pool. Located in a project with extensive social facilities and mountain/sea views.\n\nEsentepe'de özel bahçeli ve refurbished bir havuza erişimi olan manzaralı stüdyo daire. Kapsamlı sosyal olanaklara ve dağ/deniz manzarasına sahip bir projede yer almaktadır."
   },
   {
     id: 17,
@@ -296,6 +297,516 @@ const properties = [
     region: "KYRENIA",
     description: "Luxury 3-bedroom villa in Edremit, Kyrenia, located near the main road for easy access. Features a sea view, central air conditioning, fireplace, and a private swimming pool.\n\nGirne Edremit'te kolay erişim için ana yola yakın konumda lüks 3 yatak odalı villa. Deniz manzarası, merkezi klima, şömine ve özel yüzme havuzu özelliklerine sahiptir."
   },
+  {
+    "id": 646,
+    "slug": "property-646",
+    "title": "Luxurious studio & 1 & 2 bedroom apartments on the coast of Northern Cyprus",
+    "location": "Cyprus",
+    "price": "£150,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Luxurious 1 & 2 bedroom apartments on the coast of Northern Cyprus. Property within walking distance from the beach in Northern Cyprus. This project is located in the Esentepe region, offering direct views of the sea and the mountains of Northern Cyprus. The project is divided into two phases: • The 1st Phase of the project consists of villas located on the beach • The 2nd phase of the project consists of 14 blocks of studio apartments and 4 Blocks of apartments 1+1 and 2+1, communal swimming pools and decorative step pools. Why need to invest in this property in North Cyprus Kyrenia; • Interest-free installment payment plan for 4 years • Unique project architecture • The first coastline • Good rental income. Features & Amenities; • Private beach • Turkish bath • Spa center • Sauna • Restaurant • Indoor heated swimming pool • Beach infrastructure • Gym • Tennis court"
+  },
+  {
+    "id": 673,
+    "slug": "property-673",
+    "title": "Seafront magnificent project with hotel concept in Long Beach, Iskele in North Cyprus",
+    "location": "Cyprus",
+    "price": "£124,900",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Seafront magnificent project with hotel concept in Long Beach, Iskele in North Cyprus. Located 400 meters from the sea in Long Beach area, it is an apartment-style residential complex with beautiful landscapes and breathtaking views over the Mediterranean Sea, which can offer you a luxurious and 365-days holiday-style life. Complex has the facilities and infrastructure as a 5-star hotel and is perfectly suitable both for holiday home in Northern Cyprus and staying all year round. COMPLETION DATE: A Block delivery date is May 2025, B Block delivery date is August 2025, C and D Block delivery date is May 2026. Reasons to invest in Northern Cyprus in this project: • Full range of services provided on the site • Flexible payment plans: interest free installments up to 5 years • Good rental income and opportunity for whole year renting • High capital appreciation"
+  },
+  {
+    "id": 669,
+    "slug": "property-669",
+    "title": "Exclusive beachfront villas and apartments for sale in North Cyprus",
+    "location": "Cyprus",
+    "price": "£254,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Exclusive beachfront villas and apartments for sale in North Cyprus. Property within walking distance to the beach in North Cyprus. The new spectacular project is located in Esentepe area, the most popular village on the island with breathtaking sea and mountain views, which is surrounded by numerous amenities making this area a rising star for property investment in North Cyprus. The beach is within a few steps of reach. Also, in just 15 minutes drive you can find the 18-hole championship golf course at the 5* Korineum Golf Resort which is one of the best in the Mediterranean. COMPLETION DATE: END OF 2025. 4 reasons to invest in this project in North Cyprus: • High capital appreciation • Interest-free installment payment plan for almost 4 years • Unique project architecture • Good rental income"
+  },
+  {
+    "id": 682,
+    "slug": "property-682",
+    "title": "Brand new apartment flats on the sandy coast of Long Beach, North Cyprus",
+    "location": "Cyprus",
+    "price": "£165,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Brand new apartment flats on the sandy coast of Long Beach, North Cyprus. Residing on the coast of the Mediterranean a substantial new project with direct sea views in Iskele region of Northern Cyprus, Long Beach. The huge new complex includes 6 blocks with a total of 682 units combining various types of apartments, including studios, one-bedroom, two-bedroom and three-bedroom apartments as well as penthouse apartments. There is also a 5-star resort hotel and a casino on premises with the beaches being within walking distance to the project. COMPLETION DATE: June 2026. Why should you invest in North Cyprus in this project? • Popular holiday and short-term rental location • Wide infrastructure • Seaside with sandy beaches"
+  },
+  {
+    "id": 712,
+    "slug": "property-712",
+    "title": "Luxurious properties with uninterrupted sea and mountain views in Tatlisu, North Cyprus",
+    "location": "Cyprus",
+    "price": "£149,500",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Luxurious properties with uninterrupted sea and mountain views in Tatlisu, North Cyprus. New premium class project which is situated in the middle of the sea and mountains, situated in Tatlisu region in North Cyprus, 40 km East of Kyrenia located between the Beşparmak Mountains and the Mediterranean coast. The biggest advantage of this project is its convenient location close to the beach, you will be just a few steps away from the crystal-clear water of the Mediterranean Sea. COMPLETION DATE: December 2025. Why should you invest in this project in North Cyprus? • Wide range of property types • Convenient location close to the beach • Flexible payment plan • Capital appreciation and rental potential"
+  },
+  {
+    "id": 684,
+    "slug": "property-684",
+    "title": "Exclusive new project with luxury apartments in North Cyprus, Esentepe",
+    "location": "Cyprus",
+    "price": "£375,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Exclusive new project with studios and apartments in North Cyprus, Esentepe. Stunning new project with astonishing sea and mountain views in North Cyprus. This new unique project located in the Esentepe area, which is one of the most popular villages of the island, is the place for relaxing and enjoying nature as it is solely focused on being sustainable. Harmony of the sea and the mountain in combination with the numerous amenities around the location have made the area a growing investment place in North Cyprus while being minutes away from the new marina and the beach. COMPLETION DATE: October 2025. Why should you invest in North Cyprus in this project? • Perfect location close to private beach & marina and all amenities • Flexible payment plan • Great rental income"
+  },
+  {
+    "id": 685,
+    "slug": "property-685",
+    "title": "Unique new project with studios and 1-bedroom loft apartments in North Cyprus",
+    "location": "Cyprus",
+    "price": "£165,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Unique new project with studios and 1-bedroom loft apartments in North Cyprus. Dazzling new project with breathtaking sea and mountain views in North Cyprus. This new unique project located in the Esentepe area, which is one of the most popular villages of the island, is the place for becoming one with nature as it is solely focused on being environmentally friendly. Enclosed with the blend of the sea and the mountain, the numerous amenities have made the area a surging investment place in North Cyprus. COMPLETION DATE: December 2025. Why should you invest in North Cyprus in this project? • Perfect location close to private beach & marina and all amenities • Flexible payment plan • Great rental income"
+  },
+  {
+    "id": 710,
+    "slug": "property-710",
+    "title": "1 bedroom apartments with cash back investment opportunity in Esentepe, North Cyprus",
+    "location": "Cyprus",
+    "price": "£136,500",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "1 bedroom apartments with cash back investment opportunity in Esentepe, North Cyprus. This brand-new project is located in Esentepe region which is famous for its large and picturesque green areas and stunning sea and mountain views. Situated on a hill overlooking unbeatable views this project offers you spectacular property at a reasonable price in Northern Cyprus. This place is ideal for nature lovers looking for silence and peace. COMPLETION DATE: 2025. Why should you invest in this project? • Convenient location with stunning sea and mountain views • High rental potential • Instant 10% cash back • Capital appreciation"
+  },
+  {
+    "id": 689,
+    "slug": "property-689",
+    "title": "Unique and modern complex with walking distance to the beach in Iskele, North Cyprus",
+    "location": "Cyprus",
+    "price": "£139,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Unique and modern complex with walking distance to the beach in Iskele, North Cyprus. It's located in the Iskele region, on land with a Turkish title. Within walking distance to the complex you can find a fully equipped sandy Long Beach and another needed facilities and amenities. Here you will experience a combination of elegance, comfort, and privacy. COMPLETION DATE: October 2025. Facilities: • Swimming pool • Cafeteria • Gym • Kids playground • Kids pool • Walking area • Mini market • Parking areas"
+  },
+  {
+    "id": 691,
+    "slug": "property-691",
+    "title": "Outstanding new project with seafront properties in Lapta, North Cyprus",
+    "location": "Cyprus",
+    "price": "£219,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Outstanding new project with seafront properties in Lapta, North Cyprus. From the rocky green mountains and through the valley down to the clean blue sea lies the spirit of this project in North Cyprus. This project is being built at the seafront just as you enter the Lapta strip, to the west of Kyrenia. With this brand-new manner of living, you'll discover peace and calmness at each nook and curve. COMPLETION DATE: March 2025. Why should you invest in North Cyprus in this project? • Seafront location • Private beach & beach club • Wide range of facilities and services • Great rental income and capital appreciation"
+  },
+  {
+    "id": 693,
+    "slug": "property-693",
+    "title": "Exclusive holiday flats for sale in Yeniboğazıçi, North Cyprus",
+    "location": "Cyprus",
+    "price": "£119,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Exclusive holiday flats for sale in Yeniboğazıçi, North Cyprus. This new project located in Yeniboğazıçi region of North Cyprus is a great investment opportunity either for permanent residency or for holiday. With a modern architecture and indoor facilities, it offers you a happy and joyful life. Being so close to historical places, school, hospital, beach and other amenities, this project will provide you with everything you need only a short distance away. COMPLETION DATE: January 2025. Why should you invest in North Cyprus in this project? • Yeni Boğaz is a picturesque area close to local amenities • Very close to the beach • Rental income opportunity • Quick capital appreciation"
+  },
+  {
+    "id": 696,
+    "slug": "property-696",
+    "title": "Unique and luxury villas for sale in Edremit region of Kyrenia, North Cyprus",
+    "location": "Cyprus",
+    "price": "£420,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Unique and luxury villas for sale in Edremit region of Kyrenia, North Cyprus. Within a unique location filled with olive trees, unlimited views of the rocky green mountains and the clean blue sea lies luxurious villas in Edremit, North Cyprus. This project will be built very close to the Kyrenia-Alsancak highway in the north of Kyrenia. With this project you will discover a luxurious lifestyle with everything you need just a short drive away. COMPLETION DATE: FEBRUARY 2025. Facilities: • Optional private swimming pool • Communal swimming pool • Private garden • Fireplace • Parking space • Storage room • Laundry room • Water well • Activity room"
+  },
+  {
+    "id": 697,
+    "slug": "property-697",
+    "title": "Beachfront properties with uninterrupted sea and mountain views in Tatlisu, North Cyprus",
+    "location": "Cyprus",
+    "price": "£124,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Beachfront properties with uninterrupted sea and mountain views in Tatlisu, North Cyprus. New premium class project which is situated in the middle of the sea and mountain, located in Tatlısu region in North Cyprus, 40 km East of Kyrenia located between the Beşparmak Mountains and the Mediterranean coast. The biggest advantage of this project is his beachfront location, you will be just few steps away from the crystal-clear water of the Mediterranean Sea. COMPLETION DATE: 36 MONTHS. Facilities: • Beachfront location • Outdoor swimming pool • Indoor heated pool • Gym • Sauna • Yoga and meditation room"
+  },
+  {
+    "id": 698,
+    "slug": "property-698",
+    "title": "Private boutique project with luxurious villas and bungalows in Esentepe, North Cyprus",
+    "location": "Cyprus",
+    "price": "£479,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Private boutique project with luxurious villas and bungalows in Esentepe, North Cyprus. This stunning project is located in the picturesque Esentepe region with breathtaking sea and mountain views. The area is a government-protected land with very limited construction, making this project a one-of-a-kind unique investment opportunity. Just 700 meters from the golden sands of the famous Alagadi Turtle Beach. COMPLETION DATE: 2025. Why should you invest in this project in North Cyprus? • Perfect location near sandy beach • Unique boutique project with a small number of properties • Great rental income"
+  },
+  {
+    "id": 699,
+    "slug": "property-699",
+    "title": "Luxurious 2- and 3- bedroom villas for sale in Lapta, North Cyprus",
+    "location": "Cyprus",
+    "price": "£399,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Luxurious 2- and 3- bedroom villas for sale in Lapta, North Cyprus. This brand-new unique villa complex is located in the most picturesque part of the North Cyprus island, on the border of the villages of Lapta and Karşıyaka. The project will consist of 17 villas (11 detached and 6 townhouses) which will be built around a huge pool of 980 m2. COMPLETION DATE: APRIL 2025. Why invest in this project in North Cyprus? • Panoramic views of the mountains and the sea • Rental management in the complex • Ready to move in option • Great rental income and capital appreciation"
+  },
+  {
+    "id": 701,
+    "slug": "property-701",
+    "title": "Beachfront and modern-designed apartments for sale in Esentepe, North Cyprus",
+    "location": "Cyprus",
+    "price": "£171,900",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Beachfront and modern-designed apartments for sale in Esentepe, North Cyprus. The brand-new project is located in the most picturesque Esentepe area, on the east coast of North Cyprus. With unstoppable views of the Mediterranean Sea and Beşparmak mountains, a short distance from the beach and peaceful and quiet area. The complex includes 3 three-storey blocks and has 30 apartment units in total. COMPLETION DATE: June 2025. Facilities: • Outdoor pool • Children playground • Landscaped garden • Private rooftop terrace • Gated entry • Parking space"
+  },
+  {
+    "id": 702,
+    "slug": "property-702",
+    "title": "Exclusive apartments with uninterrupted sea view in Esentepe, North Cyprus",
+    "location": "Cyprus",
+    "price": "£176,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Exclusive apartments with uninterrupted sea view in Esentepe, North Cyprus. Our brand-new project is located in Esentepe region which is famous for its large and picturesque green areas and breathtaking sea and mountain views. Situated on a hill overlooking unbeatable views this project offers you spectacular property at a reasonable price in Northern Cyprus. COMPLETION DATE: June 2025. Why should you invest in North Cyprus in this project? • Convenient location with unlimited sea and mountain view • High rental potential • Flexible payment plan • Rich complex infrastructure"
+  },
+  {
+    "id": 703,
+    "slug": "property-703",
+    "title": "Exclusive beachfront project with unlimited facilities in Esentepe, North Cyprus",
+    "location": "Cyprus",
+    "price": "£297,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Exclusive beachfront project with unlimited facilities in Esentepe, North Cyprus. Our brand-new project is located in Esentepe region, the northern cost of North Cyprus. It offers breathtaking sunrise and sunset views. Nestled on the outskirts of Kyrenia mountains and conveniently situated to walk to several beaches and local restaurants. COMPLETION DATE: 2025. Why should you invest in this project in North Cyprus? • Full range of services and unlimited facilities • High rental income and capital appreciation • Beachfront location and direct sea view"
+  },
+  {
+    "id": 705,
+    "slug": "property-705",
+    "title": "Luxurious and isolated row houses and villas for sale in Lapta, Northern Cyprus",
+    "location": "Cyprus",
+    "price": "£189,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Luxurious and isolated row houses and villas for sale in Lapta, Northern Cyprus. The newest row house complex, apartment units as well as luxury villas located in the village of Lapta, in North Cyprus. You can enjoy a wonderful view of the mountains and the sea from your private roof terrace. COMPLETION DATE: 2025. Facilities: • Communal swimming pool • Landscaped gardens • BBQ option on the terrace • Café • Fitness center • Spa • Tennis court • VRF system • Parking area"
+  },
+  {
+    "id": 723,
+    "slug": "property-723",
+    "title": "Centrally located luxury villa project for sale in Çatalköy, Northern Cyprus",
+    "location": "Cyprus",
+    "price": "£812,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Centrally located luxury villa project for sale in Çatalköy, Northern Cyprus. This villa project in Çatalköy, Northern Cyprus is located in a quiet town, away from the city center but close to all amenities. The project will be built to the east of Kyrenia city center and will retain its original beauty. COMPLETION DATE: January 2025. Specifications: • Suspended ceiling • Fully fitted kitchen • Kitchen island • Built-in wardrobes • Fully fitted shower unit and shower screen • En-suite bedrooms • Infinity swimming pool"
+  },
+  {
+    "id": 716,
+    "slug": "property-716",
+    "title": "Modern villas with a private pool and close to the city center in Alsancak, North Cyprus",
+    "location": "Cyprus",
+    "price": "£724,500",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Modern villas with a private pool and close to the city center in Alsancak, North Cyprus. The luxurious villa project located in Alsancak region of North Cyprus. Residents will discover a luxury lifestyle near the Kyrenia city center and benefit from widely evolved infrastructure. COMPLETION DATE: October 2025. Specifications: • 4 bedrooms • 4 bathrooms • Private pool • Garden area • Garage for 2 cars • Roof terrace • Electric Underfloor heating"
+  },
+  {
+    "id": 719,
+    "slug": "property-719",
+    "title": "Bargain holiday apartments for sale in Long Beach, Northern Cyprus",
+    "location": "Cyprus",
+    "price": "£161,240",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Bargain holiday apartments for sale in Long Beach, Northern Cyprus. A brand-new project is underway in the rapidly developing Long Beach area, in Iskele, Northern Cyprus. Located only 400 meters from the sandy beach. COMPLETION DATE: June 2025. Facilities: • Roof terrace for penthouse • Jacuzzi option for penthouse • Fireplace option for penthouse • BBQ on roof terrace • Car parking"
+  },
+  {
+    "id": 721,
+    "slug": "property-721",
+    "title": "2-bedroom apartments for sale with sea and mountain views in Karaağaç, North Cyprus",
+    "location": "Cyprus",
+    "price": "£151,845",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "2-bedroom apartments for sale with sea and mountain views in Karaağaç, North Cyprus. This boutique project is located right on top of the Kyrenia mountains, in Karaağaç region of North Cyprus. COMPLETION DATE: OCTOBER 2025. Facilities: • Swimming pools • Pool bar • Landscaped gardens • Children’s playground • Mini golf course • Walking paths • Private car parking space"
+  },
+  {
+    "id": 725,
+    "slug": "property-725",
+    "title": "Luxury homes at affordable prices in Lapta, North Cyprus",
+    "location": "Cyprus",
+    "price": "£162,400",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Luxury homes at affordable prices in Lapta, North Cyprus. The brand-new project located in the popular region of North Cyprus – Lapta. Lapta region became a cozy and picturesque area that is in demand among foreign property buyers. COMPLETION DATE: April 2025. Facilities: • Swimming pool • Chilling area • Car parking"
+  },
+  {
+    "id": 727,
+    "slug": "property-727",
+    "title": "Boutique project with affordable and spacious apartments in Esentepe, North Cyprus.",
+    "location": "Cyprus",
+    "price": "£174,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Boutique project with affordable and spacious apartments in Esentepe, North Cyprus. Located in the picturesque Esentepe region in Northern Cyprus with wide green areas. COMPLETION DATE: September 2025. Facilities: • Swimming pool • Kids playground • Green areas • Chilling zone • Car parking"
+  },
+  {
+    "id": 728,
+    "slug": "property-728",
+    "title": "New exclusive project only 600 meters away from the sandy beach in Bogaz Iskele, North Cyprus",
+    "location": "Cyprus",
+    "price": "£184,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "New exclusive project only 600 meters away from the sandy beach in Bogaz Iskele, North Cyprus. A brand-new luxurious project is located within walking distance to the sandy beach in the Bogaz area of Iskele region in Northern Cyprus. COMPLETION DATE: December 2025. Facilities: • Outdoor pool • Kids pool • Indoor heated pool • Aqua park • Pool bar • Restaurant • Spa • Gym"
+  },
+  {
+    "id": 735,
+    "slug": "property-735",
+    "title": "Affordable properties with easy access to social facilities in Yeni Boğazıçi, North Cyprus",
+    "location": "Cyprus",
+    "price": "£167,600",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Affordable properties with easy access to social facilities in Yeni Boğazıçi, North Cyprus. The brand-new project is located in the heart of Yeni Boğazıçi, in a peaceful area surrounded by natural beauties. COMPLETION DATE: SEPTEMBER 2025. Facilities: • Outdoor pool • Indoor heated pool • Relaxation areas • Spa • Sauna • Hamam • Fitness center • Pool bar"
+  },
+  {
+    "id": 740,
+    "slug": "property-740",
+    "title": "Affordable brand-new apartments with sea and mountain view in Yeniboğazıçi, North Cyprus",
+    "location": "Cyprus",
+    "price": "£120,640",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Affordable brand-new apartments with sea and mountain view in Yeniboğazıçi, North Cyprus. The brand-new project in Yeniboğazıçi area of North Cyprus is offering an amazing investment opportunity. COMPLETION DATE: December 2025. Facilities: • Outdoor pools • Indoor pools • Children playground • Gym • Tennis court • Sauna • Restaurant"
+  },
+  {
+    "id": 760,
+    "slug": "property-760",
+    "title": "Luxurious modular house at low costs for sale in Dipkarpaz, North Cyprus",
+    "location": "Cyprus",
+    "price": "£98,900",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Luxurious modular house at low costs for sale in Dipkarpaz, North Cyprus. The brand-new project located in Dipkarpaz region in Northern Cyprus, near the picturesque and sandy beaches of Peninsula. COMPLETION DATE: March 2025. Facilities: • Swimming pool • Vitamin Bar • Wellness center • Yoga Activities • Car parking"
+  },
+  {
+    "id": 761,
+    "slug": "property-761",
+    "title": "Luxury new project with 3-bedroom bungalows in North Cyprus, Esentepe",
+    "location": "Cyprus",
+    "price": "£430,000",
+    "beds": 1,
+    "baths": 1,
+    "area": "N/A",
+    "image": "/assets/images/placeholder-teal.png",
+    "images": [
+      "/assets/images/placeholder-teal.png"
+    ],
+    "tag": "NEW 2025",
+    "region": "KYRENIA",
+    "description": "Luxury new project with 3-bedroom bungalows in North Cyprus, Esentepe. Gorgeous new project with amazing sea and mountain views in North Cyprus. This new project is in the Esentepe area, which is one of the island's most popular villages. COMPLETION DATE: 2026. Facilities: • Swimming pool • Landscaped garden • Gated entry • Privat parking spot • Roof terrace with BBQ"
+  }
 ];
 
 // Featured properties for second slider
@@ -467,170 +978,6 @@ const projects = [
 ];
 
 // ============================================
-// SECTION 1: HEADER COMPONENT
-// ============================================
-const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
-
-  // Scroll effect for header
-  useEffect(() => {
-    const handleScroll = () => {
-      // Transition when we leave the very top area
-      setIsScrolled(window.scrollY > 80);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${isScrolled
-        ? 'bg-white/95 backdrop-blur-md shadow-sm'
-        : 'bg-transparent text-white'
-        }`}
-      onMouseLeave={() => setMegaMenuOpen(false)}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-5">
-        <div className="flex items-center justify-between lg:grid lg:grid-cols-3 lg:items-center">
-          {/* Left Navigation */}
-          <nav className="hidden lg:flex items-center space-x-10 justify-start">
-            {['PROPERTIES', 'SERVICES'].map((item) => (
-              <div
-                key={item}
-                onMouseEnter={() => setMegaMenuOpen(true)}
-                className="relative py-2"
-              >
-                <Link
-                  to={item === 'PROPERTIES' ? '/properties' : '/services'}
-                  className={`text-[11px] tracking-[0.25em] font-medium transition-all duration-300 hover:opacity-100 ${isScrolled ? 'text-caria-slate' : 'text-white opacity-80 font-light'}`}
-                >
-                  {item}
-                </Link>
-              </div>
-            ))}
-          </nav>
-
-          {/* Center Logo */}
-          <div className="flex items-center justify-center">
-            <Link to="/" className="flex items-center" data-testid="logo">
-              <img
-                src="/logo.png"
-                alt="Caria Estates"
-                className="h-10 w-auto transition-all duration-700"
-                style={{ filter: isScrolled ? 'none' : 'brightness(0) invert(1)' }}
-              />
-            </Link>
-          </div>
-
-          {/* Right Navigation */}
-          <nav className="hidden lg:flex items-center space-x-10 justify-end">
-            {['ABOUT', 'CONTACT'].map((item) => (
-              <div
-                key={item}
-                onMouseEnter={() => setMegaMenuOpen(true)}
-                className="relative py-2"
-              >
-                <Link
-                  to={item === 'ABOUT' ? '/about' : '/contact'}
-                  className={`text-[11px] tracking-[0.25em] font-medium transition-all duration-300 hover:opacity-100 ${isScrolled ? 'text-caria-slate' : 'text-white opacity-80 font-light'}`}
-                >
-                  {item}
-                </Link>
-              </div>
-            ))}
-          </nav>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden z-10 ${isScrolled ? 'text-caria-slate' : 'text-white'}`}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Unified Mega Menu Panel */}
-      <div
-        className={`absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-50 overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)] ${megaMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}
-      >
-        <div className="max-w-7xl mx-auto px-10 py-16 grid grid-cols-4 gap-12">
-          {/* Properties Column */}
-          <div>
-            <h4 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-6 border-b border-gray-100 pb-2">Properties</h4>
-            <ul className="space-y-4">
-              {["All Listings", "Exclusive Villas", "Sea View Apartments", "New Developments", "Investment Land"].map(link => (
-                <li key={link}>
-                  <Link to="/properties" className="text-sm text-caria-slate hover:text-caria-turquoise transition-colors font-light flex items-center group">
-                    <span className="w-0 group-hover:w-2 h-[1px] bg-caria-turquoise mr-0 group-hover:mr-2 transition-all duration-300"></span>
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services Column */}
-          <div>
-            <h4 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-6 border-b border-gray-100 pb-2">Services</h4>
-            <ul className="space-y-4">
-              {["After Sales", "Property Management", "Legal Consulting", "Decoration Packages", "Transfer Services"].map(link => (
-                <li key={link}>
-                  <Link to="/services" className="text-sm text-caria-slate hover:text-caria-turquoise transition-colors font-light flex items-center group">
-                    <span className="w-0 group-hover:w-2 h-[1px] bg-caria-turquoise mr-0 group-hover:mr-2 transition-all duration-300"></span>
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Destinations Column */}
-          <div>
-            <h4 className="text-[10px] tracking-[0.3em] uppercase text-gray-400 font-bold mb-6 border-b border-gray-100 pb-2">Destinations</h4>
-            <ul className="space-y-4">
-              {["Kyrenia", "Esentepe", "Iskele", "Famagusta", "Nicosia"].map(link => (
-                <li key={link}>
-                  <Link to="/properties" className="text-sm text-caria-slate hover:text-caria-turquoise transition-colors font-light flex items-center group">
-                    <span className="w-0 group-hover:w-2 h-[1px] bg-caria-turquoise mr-0 group-hover:mr-2 transition-all duration-300"></span>
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Visual Column */}
-          <div className="relative rounded-lg overflow-hidden group cursor-pointer h-full min-h-[200px]">
-            <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=600&fit=crop"
-              alt="Luxury Living"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-black/30 flex items-end p-6">
-              <span className="text-white text-[10px] tracking-[0.2em] font-light border-b border-white/40 pb-1">VIEW FEATURED VILLA</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white h-screen fixed inset-0 z-[60] py-24 px-8 overflow-y-auto">
-          <button onClick={() => setMobileMenuOpen(false)} className="absolute top-8 right-8 text-caria-slate"><X size={32} /></button>
-          <nav className="flex flex-col space-y-8">
-            {['PROPERTIES', 'SERVICES', 'ABOUT', 'CONTACT'].map((item) => (
-              <Link key={item} to={`/${item.toLowerCase()}`} className="text-3xl font-serif text-caria-slate tracking-tight">{item}</Link>
-            ))}
-          </nav>
-        </div>
-      )}
-    </header>
-  );
-};
-// ============================================
 // SECTION 2: HERO COMPONENT (Full-screen Video)
 // ============================================
 const Hero = () => {
@@ -728,12 +1075,15 @@ const PropertyCard = ({ property }) => {
       className="property-card block bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden"
       data-testid={`property-card-${property.id}`}
     >
-      {/* Image Container */}
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-64 overflow-hidden bg-caria-mint">
         <img
-          src={property.image}
+          src={property.image || "/assets/images/placeholder-teal.png"}
           alt={property.title}
           className="property-image w-full h-full object-cover"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/assets/images/placeholder-teal.png";
+          }}
         />
         {/* Tag */}
         <span className="absolute top-4 left-4 bg-white px-3 py-1 text-xs font-medium tracking-wider text-caria-slate rounded-sm">
@@ -781,12 +1131,15 @@ const CuratedPropertyCard = ({ property }) => {
       className="curated-property-card flex flex-col h-full bg-white rounded-lg overflow-hidden"
       data-testid={`curated-card-${property.id}`}
     >
-      {/* Large Image Container */}
-      <div className="relative h-60 md:h-80 lg:h-96 overflow-hidden">
+      <div className="relative h-60 md:h-80 lg:h-96 overflow-hidden bg-caria-mint">
         <img
-          src={property.image}
+          src={property.image || "/assets/images/placeholder-teal.png"}
           alt={property.title}
           className="curated-property-image w-full h-full object-cover"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/assets/images/placeholder-teal.png";
+          }}
         />
         {/* Tag Badge */}
         <span className="absolute top-5 left-5 bg-white px-4 py-2 text-xs font-medium tracking-wider text-caria-slate rounded">
@@ -1486,68 +1839,72 @@ const PartnerLogos = () => {
 // ============================================
 const Footer = () => {
   return (
-    <footer className="text-white py-16" style={{ backgroundColor: '#0F6C74' }} data-testid="footer">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Column 1: Contact */}
-          <div>
-            <h4 className="text-sm tracking-wider uppercase mb-6 text-white">Contact</h4>
-            <div className="space-y-4">
-              <div>
-                <p className="font-medium mb-1 text-white opacity-90">Kyrenia Office</p>
-                <p className="text-sm text-white opacity-70">123 Harbor Road, Kyrenia</p>
-              </div>
-              <div>
-                <p className="font-medium mb-1 text-white opacity-90">Iskele Office</p>
-                <p className="text-sm text-white opacity-70">45 Beach Boulevard, Iskele</p>
-              </div>
-              <div>
-                <p className="font-medium mb-1 text-white opacity-90">Famagusta Office</p>
-                <p className="text-sm text-white opacity-70">78 Old Town Street, Famagusta</p>
-              </div>
-              <div className="pt-2">
-                <p className="flex items-center text-sm text-white opacity-90">
-                  <Phone size={14} className="mr-2" />
-                  +90 548 123 4567
-                </p>
-                <p className="flex items-center text-sm text-white opacity-90 mt-1">
-                  <Mail size={14} className="mr-2" />
-                  info@cariaestates.com
-                </p>
-              </div>
+    <footer className="bg-caria-slate text-white pt-24 pb-12 font-sans border-t border-white/5" data-testid="footer">
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-24 mb-20">
+          {/* Column 1: Brand */}
+          <div className="space-y-8">
+            <Link to="/" className="inline-block">
+              <img
+                src="/logo.png"
+                alt="Caria Estates"
+                className="h-16 w-auto brightness-0 invert"
+              />
+            </Link>
+            <p className="text-white/60 text-lg font-serif italic leading-relaxed max-w-xs">
+              "Beyond property, we deliver lifestyle. Northern Cyprus's premium real estate experience."
+            </p>
+          </div>
+
+          {/* Column 2: Regions */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] tracking-[0.4em] uppercase text-white/40 font-bold">LOCATIONS</h4>
+            <div className="grid grid-cols-1 gap-4">
+              <Link to="/properties?region=kyrenia" className="text-sm font-light text-white/70 hover:text-caria-turquoise transition-colors tracking-widest uppercase">Kyrenia</Link>
+              <Link to="/properties?region=esentepe" className="text-sm font-light text-white/70 hover:text-caria-turquoise transition-colors tracking-widest uppercase">Esentepe</Link>
+              <Link to="/properties?region=iskele" className="text-sm font-light text-white/70 hover:text-caria-turquoise transition-colors tracking-widest uppercase">Iskele</Link>
+              <Link to="/properties?region=famagusta" className="text-sm font-light text-white/70 hover:text-caria-turquoise transition-colors tracking-widest uppercase">Famagusta</Link>
             </div>
           </div>
 
-          {/* Column 2: Services */}
-          <div>
-            <h4 className="text-sm tracking-wider uppercase mb-6 text-white">Services</h4>
-            <ul className="space-y-3">
-              <li><Link to="/buy" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Buy in Northern Cyprus</Link></li>
-              <li><Link to="/sell" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Sell your property</Link></li>
-              <li><Link to="/investment" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Investment Consultancy</Link></li>
-              <li><Link to="/legal" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Legal Advisory</Link></li>
-              <li><Link to="/rentals" className="footer-link text-sm text-white opacity-70 hover:opacity-100">Rentals</Link></li>
-              <li><Link to="/developments" className="footer-link text-sm text-white opacity-70 hover:opacity-100">New Developments</Link></li>
-              <li><Link to="/investors" className="footer-link text-sm text-white opacity-70 hover:opacity-100">For Investors</Link></li>
-            </ul>
+          {/* Column 3: Services */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] tracking-[0.4em] uppercase text-white/40 font-bold">SERVICES</h4>
+            <div className="grid grid-cols-1 gap-4">
+              <Link to="/consulting-services" className="text-sm font-light text-white/70 hover:text-caria-turquoise transition-colors tracking-widest uppercase">Legal Consulting</Link>
+              <Link to="/after-sale-services" className="text-sm font-light text-white/70 hover:text-caria-turquoise transition-colors tracking-widest uppercase">After Sales</Link>
+              <Link to="/services#management" className="text-sm font-light text-white/70 hover:text-caria-turquoise transition-colors tracking-widest uppercase">Property Management</Link>
+              <Link to="/home-decoration" className="text-sm font-light text-white/70 hover:text-caria-turquoise transition-colors tracking-widest uppercase">Decoration Packages</Link>
+            </div>
           </div>
 
-          {/* Column 3: Follow Us */}
-          <div>
-            <h4 className="text-sm tracking-wider uppercase mb-6 text-white">Follow Us</h4>
-            <div className="flex space-x-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link text-white opacity-70 hover:opacity-100 transition-opacity" data-testid="social-instagram">
-                <Instagram size={20} />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-link text-white opacity-70 hover:opacity-100 transition-opacity" data-testid="social-facebook">
-                <Facebook size={20} />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link text-white opacity-70 hover:opacity-100 transition-opacity" data-testid="social-linkedin">
-                <Linkedin size={20} />
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="footer-link text-white opacity-70 hover:opacity-100 transition-opacity" data-testid="social-youtube">
-                <Youtube size={20} />
-              </a>
+          {/* Column 4: Contact */}
+          <div className="space-y-8">
+            <h4 className="text-[10px] tracking-[0.4em] uppercase text-white/40 font-bold">CONTACT</h4>
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <p className="text-xs text-white/40 uppercase tracking-widest">Office</p>
+                <p className="text-sm font-light text-white/80 leading-relaxed">
+                  123 Harbor Road, Kyrenia<br />
+                  Northern Cyprus
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs text-white/40 uppercase tracking-widest">Connect</p>
+                <p className="text-sm font-light text-white/80">+90 548 123 4567</p>
+                <p className="text-sm font-light text-white/80">info@cariaestates.com</p>
+              </div>
+              <div className="flex space-x-6 pt-2">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
+                  <Instagram size={18} />
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
+                  <Facebook size={18} />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
+                  <Linkedin size={18} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -1561,14 +1918,13 @@ const Footer = () => {
 // ============================================
 const CopyrightBar = () => {
   return (
-    <div className="border-t py-4" style={{ backgroundColor: '#0F6C74', borderTopColor: 'rgba(255,255,255,0.1)' }} data-testid="copyright">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between text-xs text-white opacity-70">
-          <p>© 2025 Caria Estates. All rights reserved.</p>
-          <div className="flex items-center space-x-4 mt-2 md:mt-0">
-            <Link to="/terms" className="hover:opacity-100 transition-opacity">Terms of Service</Link>
-            <span>·</span>
-            <Link to="/privacy" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
+    <div className="bg-caria-slate border-t border-white/5 py-8" data-testid="copyright">
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] tracking-[0.2em] uppercase text-white/30">
+          <p>© 2025 Caria Estates. Crafted for Excellence.</p>
+          <div className="flex items-center space-x-8">
+            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
           </div>
         </div>
       </div>
@@ -1602,7 +1958,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
       <Hero />
       <IntroSection />
       <RegionTabs activeRegion={activeRegion} setActiveRegion={setActiveRegion} />
@@ -1643,7 +1998,6 @@ const PropertiesPage = () => {
 
   return (
     <div className="min-h-screen bg-white pt-20">
-      <Header />
       <div className="max-w-7xl mx-auto px-6 py-16">
         <h1 className="font-serif text-4xl text-caria-slate mb-8">All Properties</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1683,7 +2037,6 @@ const PropertyDetailPage = () => {
   if (!property) {
     return (
       <div className="min-h-screen bg-white pt-20">
-        <Header />
         <div className="max-w-7xl mx-auto px-6 py-16 text-center">
           <h1 className="font-serif text-4xl text-caria-slate mb-4">Property Not Found</h1>
           <p className="text-gray-600 mb-8">The property you&apos;re looking for doesn&apos;t exist.</p>
@@ -1722,13 +2075,17 @@ const PropertyDetailPage = () => {
       <Header />
 
       {/* HERO SECTION - Image Slider */}
-      <section className="relative h-[70vh] md:h-[80vh] mt-16 md:mt-20">
+      <section className="relative h-[70vh] md:h-[80vh] mt-16 md:mt-20 bg-caria-mint">
         <div className="relative w-full h-full">
           {/* Main Image */}
           <img
-            src={images[currentImageIndex]}
+            src={images[currentImageIndex] || "/assets/images/placeholder-teal.png"}
             alt={property.title}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/assets/images/placeholder-teal.png";
+            }}
           />
 
           {/* Gradient Overlay */}
@@ -2277,11 +2634,15 @@ const ProjectsOverviewPage = () => {
               >
                 <div className="overflow-hidden bg-white">
                   {/* Project Image */}
-                  <div className="relative h-72 overflow-hidden">
+                  <div className="relative h-72 overflow-hidden bg-caria-mint">
                     <img
-                      src={project.image}
+                      src={project.image || "/assets/images/placeholder-teal.png"}
                       alt={project.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/assets/images/placeholder-teal.png";
+                      }}
                     />
                   </div>
 
@@ -2311,10 +2672,10 @@ const ProjectsOverviewPage = () => {
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="border-t border-gray-100" />
+      < div className="border-t border-gray-100" />
 
       {/* WHY INVEST WITH CARIA SECTION */}
-      <section className="py-20 md:py-32 bg-[#F2EDE8]">
+      < section className="py-20 md:py-32 bg-[#F2EDE8]" >
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="font-serif text-3xl md:text-4xl text-center text-caria-slate mb-16">
             Why Invest With Caria
@@ -2380,10 +2741,10 @@ const ProjectsOverviewPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* CONTACT CTA BLOCK */}
-      <section className="py-20 md:py-24 bg-white">
+      < section className="py-20 md:py-24 bg-white" >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 border border-gray-200 rounded-lg p-10 md:p-16">
             <div className="text-center lg:text-left">
@@ -2402,11 +2763,11 @@ const ProjectsOverviewPage = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </section >
 
       <Footer />
       <CopyrightBar />
-    </div>
+    </div >
   );
 };
 
@@ -2468,12 +2829,16 @@ const ProjectDetailPage = () => {
       <Header />
 
       {/* 1) HERO SECTION - FULL SCREEN */}
-      <section className="relative h-screen">
+      <section className="relative h-screen bg-caria-mint">
         <div className="absolute inset-0">
           <img
-            src={project.heroImage || project.image}
+            src={project.heroImage || project.image || "/assets/images/placeholder-teal.png"}
             alt={project.name}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/assets/images/placeholder-teal.png";
+            }}
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
@@ -4357,37 +4722,42 @@ const HomeInsurancePage = () => {
 // MAIN APP COMPONENT
 // ============================================
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="App">
+    <div className={`App ${isMenuOpen ? 'menu-active' : ''}`}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/properties" element={<PropertiesPage />} />
-          <Route path="/properties/:slug" element={<PropertyDetailPage />} />
-          <Route path="/property/:slug" element={<PropertyDetailPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/after-sale-services" element={<AfterSaleServicesPage />} />
-          <Route path="/consulting-services" element={<ConsultingServicesPage />} />
-          <Route path="/home-decoration" element={<HomeDecorationPage />} />
-          <Route path="/transfer-services" element={<TransferPage />} />
-          <Route path="/vacation-planner" element={<VacationPlannerPage />} />
-          <Route path="/home-insurance" element={<HomeInsurancePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/about-us" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/buy" element={<BuyPage />} />
-          <Route path="/sell" element={<Home />} />
-          <Route path="/projects" element={<ProjectsOverviewPage />} />
-          <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-          <Route path="/investment" element={<Home />} />
-          <Route path="/legal" element={<Home />} />
-          <Route path="/rentals" element={<Home />} />
-          <Route path="/rent" element={<Home />} />
-          <Route path="/developments" element={<Home />} />
-          <Route path="/investors" element={<Home />} />
-          <Route path="/terms" element={<Home />} />
-          <Route path="/privacy" element={<Home />} />
-        </Routes>
+        <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+        <div className="mega-menu-blur">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/properties" element={<PropertiesPage />} />
+            <Route path="/properties/:slug" element={<PropertyDetailPage />} />
+            <Route path="/property/:slug" element={<PropertyDetailPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/after-sale-services" element={<AfterSaleServicesPage />} />
+            <Route path="/consulting-services" element={<ConsultingServicesPage />} />
+            <Route path="/home-decoration" element={<HomeDecorationPage />} />
+            <Route path="/transfer-services" element={<TransferPage />} />
+            <Route path="/vacation-planner" element={<VacationPlannerPage />} />
+            <Route path="/home-insurance" element={<HomeInsurancePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about-us" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/buy" element={<BuyPage />} />
+            <Route path="/sell" element={<Home />} />
+            <Route path="/projects" element={<ProjectsOverviewPage />} />
+            <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+            <Route path="/investment" element={<Home />} />
+            <Route path="/legal" element={<Home />} />
+            <Route path="/rentals" element={<Home />} />
+            <Route path="/rent" element={<Home />} />
+            <Route path="/developments" element={<Home />} />
+            <Route path="/investors" element={<Home />} />
+            <Route path="/terms" element={<Home />} />
+            <Route path="/privacy" element={<Home />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );
