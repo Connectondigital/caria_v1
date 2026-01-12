@@ -2072,7 +2072,7 @@ const PropertyDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* HERO SECTION - Image Slider */}
       <section className="relative h-[70vh] md:h-[80vh] mt-16 md:mt-20 bg-caria-mint">
@@ -2430,7 +2430,7 @@ const BuyPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* Hero / Header Strip */}
       <section className="bg-caria-mint pt-24 pb-10">
@@ -2593,7 +2593,7 @@ const BuyPage = () => {
 const ProjectsOverviewPage = () => {
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* HERO SECTION */}
       <section className="relative h-[60vh] md:h-[70vh] mt-16 md:mt-20 overflow-hidden">
@@ -2793,7 +2793,7 @@ const ProjectDetailPage = () => {
   if (!project) {
     return (
       <div className="min-h-screen bg-white pt-20">
-        <Header />
+        <div className="h-16 md:h-20" />
         <div className="max-w-7xl mx-auto px-6 py-16 text-center">
           <h1 className="font-serif text-4xl text-caria-slate mb-4">Project Not Found</h1>
           <p className="text-gray-600 mb-8">The project you&apos;re looking for doesn&apos;t exist.</p>
@@ -2826,7 +2826,7 @@ const ProjectDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION - FULL SCREEN */}
       <section className="relative h-screen bg-caria-mint">
@@ -3224,7 +3224,7 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* HERO SECTION */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-28">
@@ -3318,7 +3318,7 @@ const ServicesPage = () => {
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-[#F4FAF9]">
@@ -3511,7 +3511,7 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-white">
@@ -3764,7 +3764,7 @@ const AfterSaleServicesPage = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] font-sans">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION - Scandinavian Minimalist */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
@@ -3971,7 +3971,7 @@ const HomeDecorationPage = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] font-sans">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION */}
       <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
@@ -4114,7 +4114,7 @@ const ConsultingServicesPage = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] font-sans">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
@@ -4279,7 +4279,7 @@ const TransferPage = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] font-sans">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION */}
       <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
@@ -4425,7 +4425,7 @@ const VacationPlannerPage = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] font-sans">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
@@ -4588,7 +4588,7 @@ const HomeInsurancePage = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFB] font-sans">
-      <Header />
+      <div className="h-16 md:h-20" />
 
       {/* 1) HERO SECTION */}
       <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">

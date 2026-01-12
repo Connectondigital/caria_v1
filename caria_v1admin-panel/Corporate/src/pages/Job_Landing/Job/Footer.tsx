@@ -130,8 +130,7 @@ const Footer = () => {
             <Col className="col-sm-6">
               <div>
                 <p className="copy-rights mb-0">
-                  {new Date().getFullYear()} ©
-                  Caria Estates - Themesbrand
+                  2026 Connect On Digital ❤️
                 </p>
               </div>
             </Col>

@@ -690,7 +690,7 @@ def get_db_connection():
             host=os.environ.get('DB_HOST', 'localhost'),
             user=os.environ.get('DB_USER', 'root'),
             password=os.environ.get('DB_PASSWORD', ''),
-            database=os.environ.get('DB_NAME', 'caria_db'),
+            database=os.environ.get('DB_NAME', 'old_caria'),
             cursorclass=pymysql.cursors.DictCursor
         )
         return connection

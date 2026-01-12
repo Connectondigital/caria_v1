@@ -244,6 +244,24 @@ const Navdata = () => {
                     ]
                 },
                 {
+                    id: "crm",
+                    label: "CRM Yönetimi",
+                    link: "/#",
+                    isChildItem: true,
+                    click: function (e: any) {
+                        e.preventDefault();
+                        setIsCRM(!isCRM);
+                    },
+                    parentId: "apps",
+                    stateVariables: isCRM,
+                    childItems: [
+                        { id: 1, label: "Kişiler", link: "/apps-crm-contacts", parentId: "apps" },
+                        { id: 2, label: "Şirketler", link: "/apps-crm-companies", parentId: "apps" },
+                        { id: 3, label: "Fırsatlar", link: "/apps-crm-deals", parentId: "apps" },
+                        { id: 4, label: "Adaylar", link: "/apps-crm-leads", parentId: "apps" },
+                    ]
+                },
+                {
                     id: "tasks",
                     label: "Görevler",
                     link: "/#",
