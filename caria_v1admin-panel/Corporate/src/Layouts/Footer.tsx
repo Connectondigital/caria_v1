@@ -8,11 +8,11 @@ const Footer = () => {
                 <Container fluid>
                     <Row>
                         <Col sm={6}>
-                            {new Date().getFullYear()} © Connect On Digital ❤️
+                            {new Date().getFullYear()} © Caria Estates. Crafted with ❤️ by Connect On Digital
                         </Col>
                         <Col sm={6}>
                             <div className="text-sm-end d-none d-sm-block">
-                                Premium Corporate Management
+                                Premium Emlak Yönetim Paneli
                             </div>
                         </Col>
                     </Row>

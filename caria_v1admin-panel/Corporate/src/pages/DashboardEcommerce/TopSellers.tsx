@@ -9,16 +9,16 @@ const TopSellers = () => {
             <Col xl={6}>
                 <Card className="card-height-100">
                     <CardHeader className="align-items-center d-flex">
-                        <h4 className="card-title mb-0 flex-grow-1">Top Sellers</h4>
+                        <h4 className="card-title mb-0 flex-grow-1">En İyi Satıcılar</h4>
                         <div className="flex-shrink-0">
                             <UncontrolledDropdown className="card-header-dropdown">
                                 <DropdownToggle tag="a" className="text-reset dropdown-btn" role="button">
-                                    <span className="text-muted">Report<i className="mdi mdi-chevron-down ms-1"></i></span>
+                                    <span className="text-muted">Rapor<i className="mdi mdi-chevron-down ms-1"></i></span>
                                 </DropdownToggle>
                                 <DropdownMenu className="dropdown-menu dropdown-menu-end" end>
-                                    <DropdownItem>Download Report</DropdownItem>
-                                    <DropdownItem>Export</DropdownItem>
-                                    <DropdownItem>Import</DropdownItem>
+                                    <DropdownItem>Raporu İndir</DropdownItem>
+                                    <DropdownItem>Dışa Aktar</DropdownItem>
+                                    <DropdownItem>İçe Aktar</DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </div>
@@ -46,7 +46,7 @@ const TopSellers = () => {
                                             </td>
                                             <td>
                                                 <p className="mb-0">{item.stock}</p>
-                                                <span className="text-muted">Stock</span>
+                                                <span className="text-muted">Stok</span>
                                             </td>
                                             <td>
                                                 <span className="text-muted">${item.amount}</span>
@@ -61,7 +61,7 @@ const TopSellers = () => {
                         </div>
                         <div className="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
                             <div className="col-sm">
-                                <div className="text-muted">Showing <span className="fw-semibold">5</span> of <span className="fw-semibold">25</span> Results
+                                <div className="text-muted"><span className="fw-semibold">5</span> / <span className="fw-semibold">25</span> Sonuç Gösteriliyor
                                 </div>
                             </div>
                             <div className="col-sm-auto mt-3 mt-sm-0">

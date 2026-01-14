@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 const Navdata = () => {
     const history = useNavigate();
     //state data
-    const [isDashboard, setIsDashboard] = useState<boolean>(false);
-    const [isApps, setIsApps] = useState<boolean>(false);
+    const [isDashboard, setIsDashboard] = useState<boolean>(true);
+    const [isApps, setIsApps] = useState<boolean>(true);
     const [isAuth, setIsAuth] = useState<boolean>(false);
     const [isPages, setIsPages] = useState<boolean>(false);
     const [isBaseUi, setIsBaseUi] = useState<boolean>(false);
@@ -21,10 +21,11 @@ const Navdata = () => {
     const [isCalendar, setCalendar] = useState<boolean>(false);
     const [isEmail, setEmail] = useState<boolean>(false);
     const [isSubEmail, setSubEmail] = useState<boolean>(false);
-    const [isEcommerce, setIsEcommerce] = useState<boolean>(false);
+    const [isEcommerce, setIsEcommerce] = useState<boolean>(true);
+    const [isCMS, setIsCMS] = useState<boolean>(true);
     const [isProjects, setIsProjects] = useState<boolean>(false);
-    const [isTasks, setIsTasks] = useState<boolean>(false);
-    const [isCRM, setIsCRM] = useState<boolean>(false);
+    const [isTasks, setIsTasks] = useState<boolean>(true);
+    const [isCRM, setIsCRM] = useState<boolean>(true);
     const [isCrypto, setIsCrypto] = useState<boolean>(false);
     const [isInvoices, setIsInvoices] = useState<boolean>(false);
     const [isSupportTickets, setIsSupportTickets] = useState<boolean>(false);
@@ -77,10 +78,10 @@ const Navdata = () => {
     useEffect(() => {
         document.body.classList.remove('twocolumn-panel');
         if (iscurrentState !== 'Dashboard') {
-            setIsDashboard(false);
+            // setIsDashboard(false); // Retain expanded state
         }
         if (iscurrentState !== 'Apps') {
-            setIsApps(false);
+            // setIsApps(false); // Retain expanded state
         }
         if (iscurrentState !== 'Auth') {
             setIsAuth(false);
@@ -121,24 +122,24 @@ const Navdata = () => {
         }
     }, [
         history,
-        iscurrentState,
-        isDashboard,
-        isApps,
-        isAuth,
-        isPages,
-        isBaseUi,
-        isAdvanceUi,
-        isForms,
-        isTables,
-        isCharts,
-        isIcons,
-        isMaps,
-        isMultiLevel
+        iscurrentState
+        // isDashboard, // Removed from dependencies to avoid loop if changed
+        // isApps,
+        // isAuth,
+        // isPages,
+        // isBaseUi,
+        // isAdvanceUi,
+        // isForms,
+        // isTables,
+        // isCharts,
+        // isIcons,
+        // isMaps,
+        // isMultiLevel
     ]);
 
     const menuItems: any = [
         {
-            label: "Menu",
+            label: "Menü",
             isHeader: true,
         },
         {
@@ -156,7 +157,7 @@ const Navdata = () => {
             subItems: [
                 {
                     id: "analytics",
-                    label: "Analytics",
+                    label: "Analizler",
                     link: "/dashboard-analytics",
                     parentId: "dashboard",
                 },
@@ -195,13 +196,13 @@ const Navdata = () => {
                     childItems: [
                         {
                             id: 1,
-                            label: "Main Calendar",
+                            label: "Ana Takvim",
                             link: "/apps-calendar",
                             parentId: "apps"
                         },
                         {
                             id: 2,
-                            label: "Month Grid",
+                            label: "Ay Görünümü",
                             link: "/apps-calendar-month-grid",
                             parentId: "apps"
                         },
@@ -221,7 +222,7 @@ const Navdata = () => {
                     childItems: [
                         {
                             id: 1,
-                            label: "Mailbox",
+                            label: "Gelen Kutusu",
                             link: "/apps-mailbox",
                             parentId: "apps"
                         },
@@ -239,8 +240,10 @@ const Navdata = () => {
                     parentId: "apps",
                     stateVariables: isEcommerce,
                     childItems: [
-                        { id: 1, label: "İlan Listesi", link: "/apps-ecommerce-products", parentId: "apps" },
-                        { id: 3, label: "Yeni İlan Ekle", link: "/apps-ecommerce-add-product", parentId: "apps" },
+                        { id: 1, label: "Konut", link: "/apps-ecommerce-products", parentId: "apps" },
+                        { id: 2, label: "Ticari", link: "/apps-ecommerce-products", parentId: "apps" },
+                        { id: 3, label: "Arsa", link: "/apps-ecommerce-products", parentId: "apps" },
+                        { id: 4, label: "Yeni Projeler", link: "/apps-ecommerce-products", parentId: "apps" },
                     ]
                 },
                 {
@@ -273,8 +276,8 @@ const Navdata = () => {
                     parentId: "apps",
                     stateVariables: isTasks,
                     childItems: [
-                        { id: 1, label: "Kanban Board", link: "/apps-tasks-kanban", parentId: "apps", },
-                        { id: 2, label: "List View", link: "/apps-tasks-list-view", parentId: "apps", },
+                        { id: 1, label: "Kanban Tahtası", link: "/apps-tasks-kanban", parentId: "apps", },
+                        { id: 2, label: "Liste Görünümü", link: "/apps-tasks-list-view", parentId: "apps", },
                     ]
                 },
                 {
@@ -283,6 +286,25 @@ const Navdata = () => {
                     link: "/apps-todo",
                     parentId: "apps",
                 },
+            ],
+        },
+        {
+            id: "cms",
+            label: "Web Sitesi Yönetimi",
+            icon: "ri-window-line",
+            link: "/#",
+            click: function (e: any) {
+                e.preventDefault();
+                setIsCMS(!isCMS);
+                setIscurrentState('CMS');
+                updateIconSidebar(e);
+            },
+            stateVariables: isCMS,
+            subItems: [
+                { id: "slider-mgmt", label: "Slider Yönetimi", link: "/apps-cms-sliders", parentId: "cms" },
+                { id: "page-content", label: "Web Sitesi Ayarları", link: "/apps-cms-content", parentId: "cms" },
+                { id: "country-guides", label: "Ülke Rehberleri", link: "/apps-cms-country-guides", parentId: "cms" },
+                { id: "seo-settings", label: "SEO Ayarları", link: "/apps-cms-seo", parentId: "cms" },
             ],
         },
     ];

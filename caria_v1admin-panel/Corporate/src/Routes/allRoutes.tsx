@@ -1,6 +1,12 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
+//CMS
+import SliderManagement from "../pages/CMS/SliderManagement";
+import PageContentManagement from "../pages/CMS/PageContentManagement";
+import CountryGuideManagement from "../pages/CMS/CountryGuideManagement";
+import SEOSettings from "../pages/CMS/SEOSettings";
+
 //Dashboard
 import DashboardAnalytics from "../pages/DashboardAnalytics";
 import DashboardCrm from "../pages/DashboardCrm";
@@ -288,7 +294,7 @@ const authProtectedRoutes = [
   { path: "/apps-projects-create", component: <CreateProject /> },
 
   //Task
-  { path:"/apps-tasks-kanban", component: <Kanbanboard/> },
+  { path: "/apps-tasks-kanban", component: <Kanbanboard /> },
   { path: "/apps-tasks-list-view", component: <TaskList /> },
   { path: "/apps-tasks-details", component: <TaskDetails /> },
 
@@ -296,10 +302,13 @@ const authProtectedRoutes = [
   { path: "/apps-api-key", component: <APIKey /> },
 
   //Crm
-  { path: "/apps-crm-contacts", component: <CrmContacts /> },
-  { path: "/apps-crm-companies", component: <CrmCompanies /> },
-  { path: "/apps-crm-deals", component: <CrmDeals /> },
   { path: "/apps-crm-leads", component: <CrmLeads /> },
+
+  //CMS
+  { path: "/apps-cms-sliders", component: <SliderManagement /> },
+  { path: "/apps-cms-content", component: <PageContentManagement /> },
+  { path: "/apps-cms-country-guides", component: <CountryGuideManagement /> },
+  { path: "/apps-cms-seo", component: <SEOSettings /> },
 
   //Invoices
   { path: "/apps-invoices-list", component: <InvoiceList /> },
@@ -464,7 +473,7 @@ const authProtectedRoutes = [
   { path: "*", component: <Navigate to="/dashboard" /> },
 ];
 
-const publicRoutes : any= [
+const publicRoutes: any = [
   // Authentication Page
   { path: "/logout", component: <Logout /> },
   { path: "/login", component: <Login /> },

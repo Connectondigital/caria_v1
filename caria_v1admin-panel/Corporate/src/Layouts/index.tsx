@@ -26,12 +26,12 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from 'reselect';
 
-const Layout = (props : any) => {
+const Layout = (props: any) => {
     const [headerClass, setHeaderClass] = useState<any>("");
-    const dispatch : any = useDispatch();
+    const dispatch: any = useDispatch();
 
     const selectLayoutProperties = createSelector(
-        (state : any) => state.Layout,
+        (state: any) => state.Layout,
         (layout) => ({
             layoutType: layout.layoutType,
             leftSidebarType: layout.leftSidebarType,
@@ -76,6 +76,15 @@ const Layout = (props : any) => {
             leftSidebarImageType ||
             sidebarVisibilitytype
         ) {
+            if (layoutType !== 'vertical') {
+                dispatch(changeLayout('vertical'));
+            }
+            if (leftsidbarSizeType !== 'lg') {
+                dispatch(changeLeftsidebarSizeType('lg'));
+            }
+            if (sidebarVisibilitytype !== 'show') {
+                dispatch(changeSidebarVisibility('show'));
+            }
             window.dispatchEvent(new Event('resize'));
             dispatch(changeLeftsidebarViewType(leftSidebarViewType));
             dispatch(changeLeftsidebarSizeType(leftsidbarSizeType));
@@ -102,7 +111,7 @@ const Layout = (props : any) => {
     /*
     call dark/light mode
     */
-    const onChangeLayoutMode = (value : any) => {
+    const onChangeLayoutMode = (value: any) => {
         if (changeLayoutMode) {
             dispatch(changeLayoutMode(value));
         }

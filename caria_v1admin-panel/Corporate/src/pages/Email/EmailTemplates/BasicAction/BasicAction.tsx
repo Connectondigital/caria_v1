@@ -8,10 +8,10 @@ import avatar03 from "../../../../assets/images/users/avatar-3.jpg";
 
 const BasicAction = () => {
 
-    function changeBackground(e:any) {
+    function changeBackground(e: any) {
         e.target.style.background = "#099885";
     }
-    function bgColor(e:any) {
+    function bgColor(e: any) {
         e.target.style.background = "#0ab39c";
     }
     return (
@@ -100,7 +100,7 @@ const BasicAction = () => {
                                                     <Link to="/#" style={{ color: "#495057" }}>Account</Link>
                                                 </li>
                                             </ul>
-                                            <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "14px", color: "#98a6ad", margin: "0px" }}>2022 Caria Estates. Design & Develop by Themesbrand</p>
+                                            <p style={{ fontFamily: "Roboto, sans-serif", fontSize: "14px", color: "#98a6ad", margin: "0px" }}>2026 © Caria Estates. Crafted with ❤️ by Connect On Digital</p>
                                         </div>
                                     </div>
                                 </td>

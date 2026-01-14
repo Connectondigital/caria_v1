@@ -22,7 +22,7 @@ const NotificationDropdown = () => {
 
     //Tab 
     const [activeTab, setActiveTab] = useState<any>('1');
-    const toggleTab = (tab:any) => {
+    const toggleTab = (tab: any) => {
         if (activeTab !== tab) {
             setActiveTab(tab);
         }
@@ -41,10 +41,10 @@ const NotificationDropdown = () => {
                         <div className="p-3">
                             <Row className="align-items-center">
                                 <Col>
-                                    <h6 className="m-0 fs-16 fw-semibold text-white"> Notifications </h6>
+                                    <h6 className="m-0 fs-16 fw-semibold text-white"> Bildirimler </h6>
                                 </Col>
                                 <div className="col-auto dropdown-tabs">
-                                    <span className="badge bg-light-subtle text-body fs-13"> 4 New</span>
+                                    <span className="badge bg-light-subtle text-body fs-13"> 4 Yeni</span>
                                 </div>
                             </Row>
                         </div>
@@ -57,7 +57,7 @@ const NotificationDropdown = () => {
                                         className={classnames({ active: activeTab === '1' })}
                                         onClick={() => { toggleTab('1'); }}
                                     >
-                                        All (4)
+                                        Hepsi (4)
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
@@ -66,7 +66,7 @@ const NotificationDropdown = () => {
                                         className={classnames({ active: activeTab === '2' })}
                                         onClick={() => { toggleTab('2'); }}
                                     >
-                                        Messages
+                                        Mesajlar
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
@@ -75,7 +75,7 @@ const NotificationDropdown = () => {
                                         className={classnames({ active: activeTab === '3' })}
                                         onClick={() => { toggleTab('3'); }}
                                     >
-                                        Alerts
+                                        Uyarılar
                                     </NavLink>
                                 </NavItem>
                             </Nav>
@@ -100,7 +100,7 @@ const NotificationDropdown = () => {
                                                 </h6>
                                             </Link>
                                             <p className="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                                                <span><i className="mdi mdi-clock-outline"></i> Just 30 sec ago</span>
+                                                <span><i className="mdi mdi-clock-outline"></i> Az önce</span>
                                             </p>
                                         </div>
                                         <div className="px-2 fs-15">
@@ -129,7 +129,7 @@ const NotificationDropdown = () => {
                                         </div>
                                         <div className="px-2 fs-15">
                                             <div className="form-check notification-check">
-                                                <input className="form-check-input" type="checkbox" value="" id="all-notification-check02"/>
+                                                <input className="form-check-input" type="checkbox" value="" id="all-notification-check02" />
                                                 <label className="form-check-label" htmlFor="all-notification-check02"></label>
                                             </div>
                                             {/* <input className="form-check-input" type="checkbox" /> */}
@@ -186,8 +186,8 @@ const NotificationDropdown = () => {
                                 </div>
 
                                 <div className="my-3 text-center">
-                                    <button type="button" className="btn btn-soft-success waves-effect waves-light">View
-                                        All Notifications <i className="ri-arrow-right-line align-middle"></i></button>
+                                    <button type="button" className="btn btn-soft-success waves-effect waves-light">Tüm
+                                        Bildirimleri Gör <i className="ri-arrow-right-line align-middle"></i></button>
                                 </div>
                             </SimpleBar>
 
@@ -209,10 +209,10 @@ const NotificationDropdown = () => {
                                             </p>
                                         </div>
                                         <div className="px-2 fs-15">
-                                        <div className="form-check notification-check">
-                                                    <input className="form-check-input" type="checkbox" value="" id="messages-notification-check01" />
-                                                    <label className="form-check-label" htmlFor="messages-notification-check01"></label>
-                                                </div>
+                                            <div className="form-check notification-check">
+                                                <input className="form-check-input" type="checkbox" value="" id="messages-notification-check01" />
+                                                <label className="form-check-label" htmlFor="messages-notification-check01"></label>
+                                            </div>
                                             {/* <input className="form-check-input" type="checkbox" /> */}
                                         </div>
                                     </div>
@@ -233,10 +233,10 @@ const NotificationDropdown = () => {
                                             </p>
                                         </div>
                                         <div className="px-2 fs-15">
-                                        <div className="form-check notification-check">
-                                                    <input className="form-check-input" type="checkbox" value="" id="messages-notification-check02" />
-                                                    <label className="form-check-label" htmlFor="messages-notification-check02"></label>
-                                                </div>
+                                            <div className="form-check notification-check">
+                                                <input className="form-check-input" type="checkbox" value="" id="messages-notification-check02" />
+                                                <label className="form-check-label" htmlFor="messages-notification-check02"></label>
+                                            </div>
                                             {/* <input className="form-check-input" type="checkbox" /> */}
                                         </div>
                                     </div>
@@ -256,10 +256,10 @@ const NotificationDropdown = () => {
                                             </p>
                                         </div>
                                         <div className="px-2 fs-15">
-                                        <div className="form-check notification-check">
-                                                    <input className="form-check-input" type="checkbox" value="" id="messages-notification-check03" />
-                                                    <label className="form-check-label" htmlFor="messages-notification-check03"></label>
-                                                </div>
+                                            <div className="form-check notification-check">
+                                                <input className="form-check-input" type="checkbox" value="" id="messages-notification-check03" />
+                                                <label className="form-check-label" htmlFor="messages-notification-check03"></label>
+                                            </div>
                                             {/* <input className="form-check-input" type="checkbox" /> */}
                                         </div>
                                     </div>
@@ -279,18 +279,18 @@ const NotificationDropdown = () => {
                                             </p>
                                         </div>
                                         <div className="px-2 fs-15">
-                                        <div className="form-check notification-check">
-                                                    <input className="form-check-input" type="checkbox" value="" id="messages-notification-check04" />
-                                                    <label className="form-check-label" htmlFor="messages-notification-check04"></label>
-                                                </div>
+                                            <div className="form-check notification-check">
+                                                <input className="form-check-input" type="checkbox" value="" id="messages-notification-check04" />
+                                                <label className="form-check-label" htmlFor="messages-notification-check04"></label>
+                                            </div>
                                             {/* <input className="form-check-input" type="checkbox" /> */}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="my-3 text-center">
-                                    <button type="button" className="btn btn-soft-success waves-effect waves-light">View
-                                        All Messages <i className="ri-arrow-right-line align-middle"></i></button>
+                                    <button type="button" className="btn btn-soft-success waves-effect waves-light">Tüm
+                                        Mesajları Gör <i className="ri-arrow-right-line align-middle"></i></button>
                                 </div>
                             </SimpleBar>
                         </TabPane>
@@ -299,7 +299,7 @@ const NotificationDropdown = () => {
                                 <img src={bell} className="img-fluid" alt="user-pic" />
                             </div>
                             <div className="text-center pb-5 mt-2">
-                                <h6 className="fs-18 fw-semibold lh-base">Hey! You have no any notifications </h6>
+                                <h6 className="fs-18 fw-semibold lh-base">Henüz bildiriminiz yok. </h6>
                             </div>
                         </TabPane>
                     </TabContent>

@@ -46,37 +46,37 @@ const ProfileDropdown = () => {
                     <span className="d-flex align-items-center">
                         <img className="rounded-circle header-profile-user" src={avatar1}
                             alt="Header Avatar" />
-                        <span className="text-start ms-xl-2">
-                            <span className="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{userName}</span>
-                            <span className="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                        <span className="ms-2 text-start">
+                            <span className="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Hoş Geldiniz!</span>
+                            <span className="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Kurucu / Yönetici</span>
                         </span>
                     </span>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-end">
-                    <h6 className="dropdown-header">Welcome {userName}!</h6>
+                    <h6 className="dropdown-header">Hoş Geldiniz {userName}!</h6>
                     <DropdownItem className='p-0'>
                         <Link to="/profile" className="dropdown-item">
                             <i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
-                            <span className="align-middle">Profile</span>
+                            <span className="align-middle">Profil</span>
                         </Link>
                     </DropdownItem>
                     <DropdownItem className='p-0'>
                         <Link to="/apps-chat" className="dropdown-item">
                             <i className="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span
-                                className="align-middle">Messages</span>
+                                className="align-middle">Mesajlar</span>
                         </Link>
                     </DropdownItem>
                     <DropdownItem className='p-0'>
-                        <Link to={"#"} className="dropdown-item">
+                        <Link to="/apps-tasks-kanban" className="dropdown-item">
                             <i className="mdi mdi-calendar-check-outline text-muted fs-16 align-middle me-1"></i> <span
-                                className="align-middle">Taskboard</span>
+                                className="align-middle">Görev Sayfası</span>
                         </Link>
                     </DropdownItem>
                     <DropdownItem className='p-0'>
                         <Link to="/pages-faqs" className="dropdown-item">
                             <i
                                 className="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span
-                                    className="align-middle">Help</span>
+                                    className="align-middle">Yardım</span>
                         </Link>
                     </DropdownItem>
                     <div className="dropdown-divider"></div>
@@ -84,28 +84,28 @@ const ProfileDropdown = () => {
                         <Link to="/pages-profile" className="dropdown-item">
                             <i
                                 className="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span
-                                    className="align-middle">Balance : <b>$5971.67</b></span>
+                                    className="align-middle">Bakiye : <b>$5971.67</b></span>
                         </Link>
                     </DropdownItem >
                     <DropdownItem className='p-0'>
                         <Link to="/pages-profile-settings" className="dropdown-item">
                             <span
-                                className="badge bg-success-subtle text-success mt-1 float-end">New</span><i
+                                className="badge bg-success-subtle text-success mt-1 float-end">Yeni</span><i
                                     className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
-                                        className="align-middle">Settings</span>
+                                        className="align-middle">Ayarlar</span>
                         </Link>
                     </DropdownItem>
                     <DropdownItem className='p-0'>
                         <Link to="/auth-lockscreen-basic" className="dropdown-item">
                             <i
-                                className="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Lock screen</span>
+                                className="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Ekranı Kilitle</span>
                         </Link>
                     </DropdownItem>
                     <DropdownItem className='p-0'>
                         <Link to="/logout" className="dropdown-item">
                             <i
                                 className="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
-                                    className="align-middle" data-key="t-logout">Logout</span>
+                                    className="align-middle" data-key="t-logout">Çıkış Yap</span>
                         </Link>
                     </DropdownItem>
                 </DropdownMenu>

@@ -21,27 +21,27 @@ const ecomWidgets = [
     {
         id: 1,
         cardColor: "primary",
-        label: "Total Earnings",
+        label: "Toplam Kazanç",
         badge: "ri-arrow-right-up-line",
         badgeClass: "success",
         percentage: "+16.24",
         counter: 559.25,
-        link: "View net earnings",
+        link: "Net kazancı gör",
         bgcolor: "secondary",
-        icon: "bx bx-dollar-circle",
+        icon: "bx bx-pound",
         decimals: 2,
-        prefix: "$",
+        prefix: "£",
         suffix: "k"
     },
     {
         id: 2,
         cardColor: "secondary",
-        label: "Orders",
+        label: "İlan Talepleri",
         badge: "ri-arrow-right-down-line",
         badgeClass: "danger",
         percentage: "-3.57",
         counter: 36894,
-        link: "View all orders",
+        link: "Tüm talepleri gör",
         bgcolor: "primary",
         icon: "bx bx-shopping-bag",
         decimals: 0,
@@ -52,12 +52,12 @@ const ecomWidgets = [
     {
         id: 3,
         cardColor: "success",
-        label: "Customers",
+        label: "Aday Müşteriler",
         badge: "ri-arrow-right-up-line",
         badgeClass: "success",
         percentage: "+29.08",
         counter: 183.35,
-        link: "See details",
+        link: "Detayları gör",
         bgcolor: "success",
         icon: "bx bx-user-circle",
         decimals: 2,
@@ -67,15 +67,15 @@ const ecomWidgets = [
     {
         id: 4,
         cardColor: "info",
-        label: "My Balance",
+        label: "Satış Öngörüsü",
         badgeClass: "muted",
         percentage: "+0.00",
         counter: 165.89,
-        link: "Withdraw money",
+        link: "Raporu gör",
         bgcolor: "warning",
-        icon: "bx bx-wallet",
+        icon: "bx bx-stats",
         decimals: 2,
-        prefix: "$",
+        prefix: "£",
         suffix: "k"
     },
 ];
@@ -308,12 +308,12 @@ const topCategories = [
 // Revenue Chart Data
 const allRevenueData = [
     {
-        name: "Orders",
+        name: "İlan Talepleri",
         type: "area",
         data: [34, 65, 46, 68, 49, 61, 42, 44, 78, 52, 63, 67],
     },
     {
-        name: "Earnings",
+        name: "Öngörülen Kazanç",
         type: "bar",
         data: [
             89.25, 98.58, 68.74, 108.87, 77.54, 84.03, 51.24, 28.57, 92.57, 42.36,
@@ -321,7 +321,7 @@ const allRevenueData = [
         ],
     },
     {
-        name: "Refunds",
+        name: "İptaller",
         type: "line",
         data: [8, 12, 7, 17, 21, 11, 5, 9, 7, 29, 12, 35],
     },
@@ -329,12 +329,12 @@ const allRevenueData = [
 
 const monthRevenueData = [
     {
-        name: "Orders",
+        name: "Siparişler",
         type: "area",
         data: [54, 85, 66, 18, 29, 31, 12, 14, 38, 72, 33, 27],
     },
     {
-        name: "Earnings",
+        name: "Kazançlar",
         type: "bar",
         data: [
             89.25, 98.58, 68.74, 108.87, 77.54, 84.03, 51.24, 28.57, 92.57, 42.36,
@@ -342,7 +342,7 @@ const monthRevenueData = [
         ],
     },
     {
-        name: "Refunds",
+        name: "İadeler",
         type: "line",
         data: [18, 22, 27, 37, 41, 21, 15, 19, 27, 19, 22, 45],
     },
@@ -350,12 +350,12 @@ const monthRevenueData = [
 
 const halfYearRevenueData = [
     {
-        name: "Orders",
+        name: "Siparişler",
         type: "area",
         data: [34, 65, 46, 68, 49, 61, 42, 44, 78, 52, 63, 67],
     },
     {
-        name: "Earnings",
+        name: "Kazançlar",
         type: "bar",
         data: [
             89.25, 98.58, 68.74, 108.87, 77.54, 84.03, 51.24, 28.57, 92.57, 42.36,
@@ -363,7 +363,7 @@ const halfYearRevenueData = [
         ],
     },
     {
-        name: "Refunds",
+        name: "İadeler",
         type: "line",
         data: [8, 22, 87, 47, 41, 31, 5, 9, 47, 49, 32, 55],
     },
@@ -371,12 +371,12 @@ const halfYearRevenueData = [
 
 const yearRevenueData = [
     {
-        name: "Orders",
+        name: "Siparişler",
         type: "area",
         data: [14, 35, 26, 38, 29, 31, 22, 24, 58, 32, 33, 77],
     },
     {
-        name: "Earnings",
+        name: "Kazançlar",
         type: "bar",
         data: [
             99.25, 88.58, 78.74, 118.87, 87.54, 94.03, 61.24, 58.57, 102.57, 62.36,
@@ -384,7 +384,7 @@ const yearRevenueData = [
         ],
     },
     {
-        name: "Refunds",
+        name: "İadeler",
         type: "line",
         data: [58, 42, 47, 57, 71, 21, 15, 69, 17, 39, 52, 55],
     },

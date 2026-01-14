@@ -9,19 +9,19 @@ const BestSellingProducts = () => {
             <Col xl={6}>
                 <Card>
                     <CardHeader className="align-items-center d-flex">
-                        <h4 className="card-title mb-0 flex-grow-1">Best Selling Products</h4>
+                        <h4 className="card-title mb-0 flex-grow-1">En Çok Satan Ürünler</h4>
                         <div className="flex-shrink-0">
                             <UncontrolledDropdown className="card-header-dropdown">
                                 <DropdownToggle tag="a" className="text-reset" role="button">
-                                    <span className="fw-semibold text-uppercase fs-12">Sort by: </span><span className="text-muted">Today<i className="mdi mdi-chevron-down ms-1"></i></span>
+                                    <span className="fw-semibold text-uppercase fs-12">Sırala: </span><span className="text-muted">Bugün<i className="mdi mdi-chevron-down ms-1"></i></span>
                                 </DropdownToggle>
                                 <DropdownMenu className="dropdown-menu-end" end>
-                                    <DropdownItem>Today</DropdownItem>
-                                    <DropdownItem>Yesterday</DropdownItem>
-                                    <DropdownItem>Last 7 Days</DropdownItem>
-                                    <DropdownItem>Last 30 Days</DropdownItem>
-                                    <DropdownItem>This Month</DropdownItem>
-                                    <DropdownItem>Last Month</DropdownItem>
+                                    <DropdownItem>Bugün</DropdownItem>
+                                    <DropdownItem>Dün</DropdownItem>
+                                    <DropdownItem>Son 7 Gün</DropdownItem>
+                                    <DropdownItem>Son 30 Gün</DropdownItem>
+                                    <DropdownItem>Bu Ay</DropdownItem>
+                                    <DropdownItem>Geçen Ay</DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </div>
@@ -46,19 +46,19 @@ const BestSellingProducts = () => {
                                             </td>
                                             <td>
                                                 <h5 className="fs-14 my-1 fw-normal">${(item.price).toFixed(2)}</h5>
-                                                <span className="text-muted">Price</span>
+                                                <span className="text-muted">Fiyat</span>
                                             </td>
                                             <td>
                                                 <h5 className="fs-14 my-1 fw-normal">{item.orders}</h5>
-                                                <span className="text-muted">Orders</span>
+                                                <span className="text-muted">Siparişler</span>
                                             </td>
                                             <td>
-                                                <h5 className="fs-14 my-1 fw-normal">{item.stock ? item.stock : <span className="badge bg-danger-subtle text-danger">Out of stock</span>} </h5>
-                                                <span className="text-muted">Stock</span>
+                                                <h5 className="fs-14 my-1 fw-normal">{item.stock ? item.stock : <span className="badge bg-danger-subtle text-danger">Stokta yok</span>} </h5>
+                                                <span className="text-muted">Stok</span>
                                             </td>
                                             <td>
                                                 <h5 className="fs-14 my-1 fw-normal">${item.amount}</h5>
-                                                <span className="text-muted">Amount</span>
+                                                <span className="text-muted">Tutar</span>
                                             </td>
                                         </tr>
                                     ))}
@@ -68,7 +68,7 @@ const BestSellingProducts = () => {
 
                         <div className="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
                             <div className="col-sm">
-                                <div className="text-muted">Showing <span className="fw-semibold">5</span> of <span className="fw-semibold">25</span> Results
+                                <div className="text-muted"><span className="fw-semibold">5</span> / <span className="fw-semibold">25</span> Sonuç Gösteriliyor
                                 </div>
                             </div>
                             <div className="col-sm-auto mt-3 mt-sm-0">

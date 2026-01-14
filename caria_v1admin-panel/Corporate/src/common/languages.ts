@@ -6,6 +6,7 @@ import flagrussia from "../assets/images/flags/russia.svg";
 import flagchina from "../assets/images/flags/china.svg";
 import flagfrench from "../assets/images/flags/french.svg";
 import flagarabic from "../assets/images/flags/ae.svg";
+import flagtr from "../assets/images/flags/tr.svg";
 
 
 const languages = {
@@ -24,6 +25,10 @@ const languages = {
   rs: {
     label: "русский",
     flag: flagrussia,
+  },
+  tr: {
+    label: "Türkçe",
+    flag: flagtr,
   },
   en: {
     label: "English",

@@ -40,11 +40,10 @@ import { toast, ToastContainer } from "react-toastify";
 import { createSelector } from "reselect";
 
 const SingleOptions = [
-  { value: 'Watches', label: 'Watches' },
-  { value: 'Headset', label: 'Headset' },
-  { value: 'Sweatshirt', label: 'Sweatshirt' },
-  { value: '20% off', label: '20% off' },
-  { value: '4 star', label: '4 star' },
+  { value: 'Konut', label: 'Konut' },
+  { value: 'Ticari', label: 'Ticari' },
+  { value: 'Arsa', label: 'Arsa' },
+  { value: 'Yeni Projeler', label: 'Yeni Projeler' },
 ];
 
 const EcommerceProducts = (props: any) => {
@@ -53,11 +52,11 @@ const EcommerceProducts = (props: any) => {
   const selectecomproductData = createSelector(
     (state: any) => state.Ecommerce,
     (state) => ({
-      products : state.products
+      products: state.products
     })
   );
   // Inside your component
-  const {products} = useSelector(selectecomproductData);
+  const { products } = useSelector(selectecomproductData);
 
   const [productList, setProductList] = useState<any>([]);
   const [activeTab, setActiveTab] = useState<any>("1");
@@ -213,7 +212,7 @@ const EcommerceProducts = (props: any) => {
       },
     },
     {
-      header: "Product",
+      header: "Gayrimenkul",
       accessorKey: "name",
       enableColumnFilter: false,
       cell: (cell: any) => (
@@ -251,12 +250,12 @@ const EcommerceProducts = (props: any) => {
       ),
     },
     {
-      header: "Stock",
+      header: "Durum",
       accessorKey: "stock",
       enableColumnFilter: false,
     },
     {
-      header: "Price",
+      header: "Fiyat",
       accessorKey: "price",
       enableColumnFilter: false,
       cell: (cell: any) => {
@@ -264,12 +263,12 @@ const EcommerceProducts = (props: any) => {
       },
     },
     {
-      header: "Orders",
+      header: "Talepler",
       accessorKey: "orders",
       enableColumnFilter: false,
     },
     {
-      header: "Rating",
+      header: "Puan",
       accessorKey: "rating",
       enableColumnFilter: false,
       cell: (cell: any) => {
@@ -277,7 +276,7 @@ const EcommerceProducts = (props: any) => {
       },
     },
     {
-      header: "Published",
+      header: "Yayınlanma",
       accessorKey: "publishedDate",
       enableColumnFilter: false,
       cell: (cell: any) => {
@@ -285,7 +284,7 @@ const EcommerceProducts = (props: any) => {
       },
     },
     {
-      header: "Action",
+      header: "İşlem",
       cell: (cell: any) => {
         return (
           <UncontrolledDropdown>
@@ -299,12 +298,12 @@ const EcommerceProducts = (props: any) => {
             <DropdownMenu className="dropdown-menu-end">
               <DropdownItem href="apps-ecommerce-product-details">
                 <i className="ri-eye-fill align-bottom me-2 text-muted"></i>{" "}
-                View
+                Görüntüle
               </DropdownItem>
 
               <DropdownItem href="apps-ecommerce-add-product">
                 <i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{" "}
-                Edit
+                Düzenle
               </DropdownItem>
 
               <DropdownItem divider />
@@ -316,7 +315,7 @@ const EcommerceProducts = (props: any) => {
                 }}
               >
                 <i className="ri-delete-bin-fill align-bottom me-2 text-muted"></i>{" "}
-                Delete
+                Sil
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -326,7 +325,7 @@ const EcommerceProducts = (props: any) => {
   ],
     []
   );
-  document.title = "Products | Caria Estates - React Admin & Dashboard Template";
+  document.title = "Gayrimenkuller | Caria Estates - Yönetim Paneli";
 
   return (
     <div className="page-content">
@@ -346,7 +345,7 @@ const EcommerceProducts = (props: any) => {
         onCloseClick={() => setDeleteModalMulti(false)}
       />
       <Container fluid>
-        <BreadCrumb title="Products" pageTitle="Ecommerce" />
+        <BreadCrumb title="Gayrimenkuller" pageTitle="Gayrimenkul Yönetimi" />
 
         <Row>
           <Col xl={3} lg={4}>
@@ -354,11 +353,11 @@ const EcommerceProducts = (props: any) => {
               <CardHeader >
                 <div className="d-flex mb-3">
                   <div className="flex-grow-1">
-                    <h5 className="fs-16">Filters</h5>
+                    <h5 className="fs-16">Filtreler</h5>
                   </div>
                   <div className="flex-shrink-0">
                     <Link to="#" className="text-decoration-underline">
-                      Clear All
+                      Hepsini Temizle
                     </Link>
                   </div>
                 </div>
@@ -379,74 +378,34 @@ const EcommerceProducts = (props: any) => {
                 <div className="card-body border-bottom">
                   <div>
                     <p className="text-muted text-uppercase fs-12 fw-medium mb-2">
-                      Products
+                      Kategoriler
                     </p>
                     <ul className="list-unstyled mb-0 filter-list">
                       <li>
-                        <Link to="#" className={cate === "Kitchen Storage & Containers" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Kitchen Storage & Containers")}>
+                        <Link to="#" className={cate === "Konut" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Konut")}>
                           <div className="flex-grow-1">
-                            <h5 className="fs-13 mb-0 listname">Grocery</h5>
+                            <h5 className="fs-13 mb-0 listname">Konut</h5>
                           </div>
                         </Link>
                       </li>
                       <li>
-                        <Link to="#" className={cate === "Clothes" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Clothes")}>
+                        <Link to="#" className={cate === "Ticari" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Ticari")}>
                           <div className="flex-grow-1">
-                            <h5 className="fs-13 mb-0 listname">Fashion</h5>
-                          </div>
-                          <div className="flex-shrink-0 ms-2">
-                            <span className="badge bg-light text-muted">5</span>
+                            <h5 className="fs-13 mb-0 listname">Ticari</h5>
                           </div>
                         </Link>
                       </li>
                       <li>
-                        <Link to="#" className={cate === "Watches" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Watches")}>
+                        <Link to="#" className={cate === "Arsa" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Arsa")}>
                           <div className="flex-grow-1">
-                            <h5 className="fs-13 mb-0 listname">Watches</h5>
+                            <h5 className="fs-13 mb-0 listname">Arsa</h5>
                           </div>
                         </Link>
                       </li>
                       <li>
-                        <Link to="#" className={cate === "electronics" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("electronics")}>
+                        <Link to="#" className={cate === "Yeni Projeler" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Yeni Projeler")}>
                           <div className="flex-grow-1">
-                            <h5 className="fs-13 mb-0 listname">Electronics</h5>
-                          </div>
-                          <div className="flex-shrink-0 ms-2">
-                            <span className="badge bg-light text-muted">5</span>
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#" className={cate === "Furniture" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Furniture")}>
-                          <div className="flex-grow-1">
-                            <h5 className="fs-13 mb-0 listname">Furniture</h5>
-                          </div>
-                          <div className="flex-shrink-0 ms-2">
-                            <span className="badge bg-light text-muted">6</span>
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#" className={cate === "Bike Accessories" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Bike Accessories")}>
-                          <div className="flex-grow-1">
-                            <h5 className="fs-13 mb-0 listname">Automotive Accessories</h5>
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#" className={cate === "appliances" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("appliances")}>
-                          <div className="flex-grow-1">
-                            <h5 className="fs-13 mb-0 listname">Appliances</h5>
-                          </div>
-                          <div className="flex-shrink-0 ms-2">
-                            <span className="badge bg-light text-muted">7</span>
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#" className={cate === "Bags, Wallets and Luggage" ? "active d-flex py-1 align-items-center" : "d-flex py-1 align-items-center"} onClick={() => categories("Bags, Wallets and Luggage")} >
-                          <div className="flex-grow-1">
-                            <h5 className="fs-13 mb-0 listname">Kids</h5>
+                            <h5 className="fs-13 mb-0 listname">Yeni Projeler</h5>
                           </div>
                         </Link>
                       </li>
@@ -456,7 +415,7 @@ const EcommerceProducts = (props: any) => {
 
                 <div className="card-body border-bottom">
                   <p className="text-muted text-uppercase fs-12 fw-medium mb-4">
-                    Price
+                    Fiyat
                   </p>
                   <Nouislider range={{ min: 0, max: 100 }} start={[20, 80]} connect />
 
@@ -469,9 +428,9 @@ const EcommerceProducts = (props: any) => {
                     id="product-price-range"
                   /> */}
                   <div className="formCost d-flex gap-2 align-items-center mt-3">
-                    <input className="form-control form-control-sm" type="text" value={`$ ${mincost}`} onChange={(e: any) => setMincost(e.target.value)} id="minCost" readOnly />
+                    <input className="form-control form-control-sm" type="text" value={`£ ${mincost}`} onChange={(e: any) => setMincost(e.target.value)} id="minCost" readOnly />
                     <span className="fw-semibold text-muted">to</span>
-                    <input className="form-control form-control-sm" type="text" value={`$ ${maxcost}`} onChange={(e: any) => setMaxcost(e.target.value)} id="maxCost" readOnly />
+                    <input className="form-control form-control-sm" type="text" value={`£ ${maxcost}`} onChange={(e: any) => setMaxcost(e.target.value)} id="maxCost" readOnly />
                   </div>
                 </div>
 
@@ -483,7 +442,7 @@ const EcommerceProducts = (props: any) => {
                       id="flush-headingBrands"
                     >
                       <span className="text-muted text-uppercase fs-12 fw-medium">
-                        Brands
+                        Bölgeler
                       </span>{" "}
                       <span className="badge bg-success rounded-pill align-middle ms-1">
                         2
@@ -504,7 +463,7 @@ const EcommerceProducts = (props: any) => {
                           <input
                             type="text"
                             className="form-control bg-light border-0"
-                            placeholder="Search Brands..."
+                            placeholder="Bölge Ara..."
                           />
                           <i className="ri-search-line search-icon"></i>
                         </div>
@@ -520,7 +479,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productBrandRadio5"
                             >
-                              Boat
+                              Girne
                             </label>
                           </div>
                           <div className="form-check">
@@ -533,7 +492,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productBrandRadio4"
                             >
-                              OnePlus
+                              İskele
                             </label>
                           </div>
                           <div className="form-check">
@@ -546,7 +505,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productBrandRadio3"
                             >
-                              Realme
+                              Gazimağusa
                             </label>
                           </div>
                           <div className="form-check">
@@ -559,7 +518,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productBrandRadio2"
                             >
-                              Sony
+                              Lefkoşa
                             </label>
                           </div>
                           <div className="form-check">
@@ -573,7 +532,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productBrandRadio1"
                             >
-                              JBL
+                              Esentepe
                             </label>
                           </div>
 
@@ -582,7 +541,7 @@ const EcommerceProducts = (props: any) => {
                               type="button"
                               className="btn btn-link text-decoration-none text-uppercase fw-medium p-0"
                             >
-                              1,235 More
+                              Daha Fazla
                             </button>
                           </div>
                         </div>
@@ -599,7 +558,7 @@ const EcommerceProducts = (props: any) => {
                       id="flush-headingDiscount"
                     >
                       <span className="text-muted text-uppercase fs-12 fw-medium">
-                        Discount
+                        İndirim
                       </span>{" "}
                       <span className="badge bg-success rounded-pill align-middle ms-1">
                         1
@@ -623,7 +582,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productdiscountRadio6"
                             >
-                              50% or more
+                              %50 ve üzeri
                             </label>
                           </div>
                           <div className="form-check">
@@ -636,7 +595,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productdiscountRadio5"
                             >
-                              40% or more
+                              %40 ve üzeri
                             </label>
                           </div>
                           <div className="form-check">
@@ -649,7 +608,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productdiscountRadio4"
                             >
-                              30% or more
+                              %30 ve üzeri
                             </label>
                           </div>
                           <div className="form-check">
@@ -663,7 +622,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productdiscountRadio3"
                             >
-                              20% or more
+                              %20 ve üzeri
                             </label>
                           </div>
                           <div className="form-check">
@@ -676,7 +635,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productdiscountRadio2"
                             >
-                              10% or more
+                              %10 ve üzeri
                             </label>
                           </div>
                           <div className="form-check">
@@ -689,7 +648,7 @@ const EcommerceProducts = (props: any) => {
                               className="form-check-label"
                               htmlFor="productdiscountRadio1"
                             >
-                              Less than 10%
+                              %10'dan az
                             </label>
                           </div>
                         </div>
@@ -706,7 +665,7 @@ const EcommerceProducts = (props: any) => {
                       id="flush-headingRating"
                     >
                       <span className="text-muted text-uppercase fs-12 fw-medium">
-                        Rating
+                        Değerlendirme
                       </span>{" "}
                       <span className="badge bg-success rounded-pill align-middle ms-1">
                         1
@@ -746,7 +705,7 @@ const EcommerceProducts = (props: any) => {
                                 <i className="mdi mdi-star text-warning"></i>
                                 <i className="mdi mdi-star"></i>
                               </span>{" "}
-                              4 & Above
+                              4 ve üzeri
                             </label>
                           </div>
                           <div className="form-check">
@@ -773,7 +732,7 @@ const EcommerceProducts = (props: any) => {
                                 <i className="mdi mdi-star"></i>
                                 <i className="mdi mdi-star"></i>
                               </span>{" "}
-                              3 & Above
+                              3 ve üzeri
                             </label>
                           </div>
                           <div className="form-check">
@@ -800,7 +759,7 @@ const EcommerceProducts = (props: any) => {
                                 <i className="mdi mdi-star"></i>
                                 <i className="mdi mdi-star"></i>
                               </span>{" "}
-                              2 & Above
+                              2 ve üzeri
                             </label>
                           </div>
                           <div className="form-check">

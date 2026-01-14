@@ -54,12 +54,12 @@ const Login = (props: any) => {
         enableReinitialize: true,
 
         initialValues: {
-            email: userLogin.email || "admin@themesbrand.com" || '',
+            email: userLogin.email || "admin@cariaestates.com" || '',
             password: userLogin.password || "123456" || '',
         },
         validationSchema: Yup.object({
-            email: Yup.string().required("Please Enter Your Email"),
-            password: Yup.string().required("Please Enter Your Password"),
+            email: Yup.string().required("Lütfen E-posta Adresinizi Giriniz"),
+            password: Yup.string().required("Lütfen Şifrenizi Giriniz"),
         }),
         onSubmit: (values) => {
             dispatch(loginUser(values, props.router.navigate));
@@ -100,10 +100,10 @@ const Login = (props: any) => {
                                 <div className="text-center mt-sm-5 mb-4 text-white-50">
                                     <div>
                                         <Link to="/" className="d-inline-block auth-logo">
-                                            <img src={logoLight} alt="" height="100" />
+                                            <img src={logoLight} alt="" height="400" />
                                         </Link>
                                     </div>
-                                    <p className="mt-3 fs-15 fw-medium">Caria Estates - Admin Management</p>
+                                    <p className="mt-3 fs-15 fw-medium">Caria Estates - Yönetim Paneli</p>
                                 </div>
                             </Col>
                         </Row>
@@ -113,8 +113,8 @@ const Login = (props: any) => {
                                 <Card className="mt-4">
                                     <CardBody className="p-4">
                                         <div className="text-center mt-2">
-                                            <h5 className="text-primary">Welcome Back !</h5>
-                                            <p className="text-muted">Sign in to continue to Caria Corporate.</p>
+                                            <h5 className="text-primary">Tekrar Hoş Geldiniz!</h5>
+                                            <p className="text-muted">Caria Estates Yönetim Paneline giriş yapın.</p>
                                         </div>
                                         {error && error ? (<Alert color="danger"> {error} </Alert>) : null}
                                         <div className="p-2 mt-4">
@@ -127,11 +127,11 @@ const Login = (props: any) => {
                                                 action="#">
 
                                                 <div className="mb-3">
-                                                    <Label htmlFor="email" className="form-label">Email</Label>
+                                                    <Label htmlFor="email" className="form-label">E-posta</Label>
                                                     <Input
                                                         name="email"
                                                         className="form-control"
-                                                        placeholder="Enter email"
+                                                        placeholder="E-posta adresinizi girin"
                                                         type="email"
                                                         onChange={validation.handleChange}
                                                         onBlur={validation.handleBlur}
@@ -147,16 +147,16 @@ const Login = (props: any) => {
 
                                                 <div className="mb-3">
                                                     <div className="float-end">
-                                                        <Link to="/forgot-password" className="text-muted">Forgot password?</Link>
+                                                        <Link to="/forgot-password" className="text-muted">Şifrenizi mi unuttunuz?</Link>
                                                     </div>
-                                                    <Label className="form-label" htmlFor="password-input">Password</Label>
+                                                    <Label className="form-label" htmlFor="password-input">Şifre</Label>
                                                     <div className="position-relative auth-pass-inputgroup mb-3">
                                                         <Input
                                                             name="password"
                                                             value={validation.values.password || ""}
                                                             type={passwordShow ? "text" : "password"}
                                                             className="form-control pe-5"
-                                                            placeholder="Enter Password"
+                                                            placeholder="Şifrenizi girin"
                                                             onChange={validation.handleChange}
                                                             onBlur={validation.handleBlur}
                                                             invalid={
@@ -172,21 +172,21 @@ const Login = (props: any) => {
 
                                                 <div className="form-check">
                                                     <Input className="form-check-input" type="checkbox" value="" id="auth-remember-check" />
-                                                    <Label className="form-check-label" htmlFor="auth-remember-check">Remember me</Label>
+                                                    <Label className="form-check-label" htmlFor="auth-remember-check">Beni Hatırla</Label>
                                                 </div>
 
                                                 <div className="mt-4">
                                                     <Button color="primary"
                                                         disabled={loader && true}
                                                         className="btn btn-primary w-100" type="submit">
-                                                        {loader && <Spinner size="sm" className='me-2'> Loading... </Spinner>}
-                                                        Sign In
+                                                        {loader && <Spinner size="sm" className='me-2'> Yükleniyor... </Spinner>}
+                                                        Giriş Yap
                                                     </Button>
                                                 </div>
 
                                                 <div className="mt-4 text-center">
                                                     <div className="signin-other-title">
-                                                        <h5 className="fs-13 mb-4 title">Sign In with</h5>
+                                                        <h5 className="fs-13 mb-4 title">Şununla giriş yapın:</h5>
                                                     </div>
                                                     <div>
                                                         <Link
@@ -219,7 +219,7 @@ const Login = (props: any) => {
                                 </Card>
 
                                 <div className="mt-4 text-center">
-                                    <p className="mb-0">Don't have an account ? <Link to="/register" className="fw-semibold text-primary text-decoration-underline"> Signup </Link> </p>
+                                    <p className="mb-0">Hesabınız yok mu? <Link to="/register" className="fw-semibold text-primary text-decoration-underline"> Kayıt Ol </Link> </p>
                                 </div>
 
                             </Col>

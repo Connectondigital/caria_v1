@@ -93,9 +93,10 @@ const EcommerceAddProduct = (props: any) => {
   const productCategory = [
     {
       options: [
-        { label: "Konut (Daire, Villa)", value: "Konut" },
-        { label: "Ticari (Ofis, Dükkan)", value: "Ticari" },
+        { label: "Konut", value: "Konut" },
+        { label: "Ticari", value: "Ticari" },
         { label: "Arsa", value: "Arsa" },
+        { label: "Yeni Projeler", value: "Yeni Projeler" },
       ],
     },
   ];
@@ -174,8 +175,15 @@ const EcommerceAddProduct = (props: any) => {
       product_tags: "",
       image: "",
       kocan_tipi: "",
+      kapali_alan: "",
+      arsa_alani: "",
       oda_sayisi: "",
-      kat_sayisi: "",
+      banyo_sayisi: "",
+      bolge: "",
+      ozellikler_ic: [],
+      ozellikler_dis: [],
+      pdf_brosur: "",
+      danisman_id: "",
       lat: "35.126",
       lng: "33.938"
     },
@@ -214,7 +222,7 @@ const EcommerceAddProduct = (props: any) => {
   return (
     <div className="page-content">
       <Container fluid>
-        <BreadCrumb title="İlan Oluştur" pageTitle="E-ticaret" />
+        <BreadCrumb title="İlan Oluştur" pageTitle="Gayrimenkul Yönetimi" />
 
         <Row>
           <Col lg={8}>
@@ -234,7 +242,7 @@ const EcommerceAddProduct = (props: any) => {
                       type="text"
                       className="form-control"
                       id="product-title-input"
-                      placeholder="Enter product title"
+                      placeholder="İlan başlığını giriniz"
                       name="name"
                       value={validation.values.name || ""}
                       onBlur={validation.handleBlur}
@@ -308,8 +316,8 @@ const EcommerceAddProduct = (props: any) => {
                     </div>
                   </div>
                   <div>
-                    <h5 className="fs-14 mb-1">Product Gallery</h5>
-                    <p className="text-muted">Add Product Gallery Images.</p>
+                    <h5 className="fs-14 mb-1">İlan Galerisi</h5>
+                    <p className="text-muted">İlan Galerisi Resimlerini Ekleyin.</p>
 
                     <Dropzone
                       onDrop={(acceptedFiles) => {
@@ -403,14 +411,14 @@ const EcommerceAddProduct = (props: any) => {
                               className="form-control"
                               id="manufacturer-name-input"
                               name="manufacturer_name"
-                              placeholder="Enter manufacturer name"
+                              placeholder="İlan Sahibi / Firma adını giriniz"
                               value={validation.values.manufacturer_name || ""}
                               onBlur={validation.handleBlur}
                               onChange={validation.handleChange}
                               invalid={validation.errors.manufacturer_name && validation.touched.manufacturer_name ? true : false}
                             />
                             {validation.errors.manufacturer_name && validation.touched.manufacturer_name ? (
-                              <FormFeedback type="invalid">{validation.errors.manufacturer_name}</FormFeedback>
+                              <FormFeedback type="invalid">Lütfen ilan sahibi/firma adını giriniz</FormFeedback>
                             ) : null}
                           </div>
                         </Col>
@@ -427,14 +435,14 @@ const EcommerceAddProduct = (props: any) => {
                               className="form-control"
                               id="manufacturer-brand-input"
                               name="manufacturer_brand"
-                              placeholder="Enter manufacturer brand"
+                              placeholder="Marka veya şube adını giriniz"
                               value={validation.values.manufacturer_brand || ""}
                               onBlur={validation.handleBlur}
                               onChange={validation.handleChange}
                               invalid={validation.errors.manufacturer_brand && validation.touched.manufacturer_brand ? true : false}
                             />
                             {validation.errors.manufacturer_brand && validation.touched.manufacturer_brand ? (
-                              <FormFeedback type="invalid">{validation.errors.manufacturer_brand}</FormFeedback>
+                              <FormFeedback type="invalid">Lütfen marka/şube adını giriniz</FormFeedback>
                             ) : null}
                           </div>
                         </Col>
@@ -453,7 +461,7 @@ const EcommerceAddProduct = (props: any) => {
                                 type="text"
                                 className="form-control"
                                 id="product-stock-input"
-                                placeholder="Enter Stocks"
+                                placeholder="Stok adedi"
                                 name="stock"
                                 value={validation.values.stock || ""}
                                 onBlur={validation.handleBlur}
@@ -461,7 +469,7 @@ const EcommerceAddProduct = (props: any) => {
                                 invalid={validation.errors.stock && validation.touched.stock ? true : false}
                               />
                               {validation.errors.stock && validation.touched.stock ? (
-                                <FormFeedback type="invalid">{validation.errors.stock}</FormFeedback>
+                                <FormFeedback type="invalid">Lütfen stok adedi giriniz</FormFeedback>
                               ) : null}
                             </div>
                           </div>
@@ -480,7 +488,7 @@ const EcommerceAddProduct = (props: any) => {
                                 className="input-group-text"
                                 id="product-price-addon"
                               >
-                                $
+                                £
                               </span>
                               <Input
                                 type="text"
@@ -521,7 +529,7 @@ const EcommerceAddProduct = (props: any) => {
                                 type="text"
                                 className="form-control"
                                 id="product-Discount-input"
-                                placeholder="Enter Discount"
+                                placeholder="İndirim oranı"
                                 name="product_discount"
                                 value={validation.values.product_discount || ""}
                                 onBlur={validation.handleBlur}
@@ -529,7 +537,7 @@ const EcommerceAddProduct = (props: any) => {
                                 invalid={validation.errors.product_discount && validation.touched.product_discount ? true : false}
                               />
                               {validation.errors.product_discount && validation.touched.product_discount ? (
-                                <FormFeedback type="invalid">{validation.errors.product_discount}</FormFeedback>
+                                <FormFeedback type="invalid">Lütfen indirim oranı giriniz</FormFeedback>
                               ) : null}
                             </div>
                           </div>
@@ -547,7 +555,7 @@ const EcommerceAddProduct = (props: any) => {
                               type="text"
                               className="form-control"
                               id="product-orders-input"
-                              placeholder="Enter orders"
+                              placeholder="Sıralama numarası"
                               name="orders"
                               value={validation.values.orders || ""}
                               onBlur={validation.handleBlur}
@@ -555,7 +563,7 @@ const EcommerceAddProduct = (props: any) => {
                               invalid={validation.errors.orders && validation.touched.orders ? true : false}
                             />
                             {validation.errors.orders && validation.touched.orders ? (
-                              <FormFeedback type="invalid">{validation.errors.orders}</FormFeedback>
+                              <FormFeedback type="invalid">Lütfen sıralama numarası giriniz</FormFeedback>
                             ) : null}
                           </div>
                         </Col>
@@ -563,7 +571,7 @@ const EcommerceAddProduct = (props: any) => {
                       <Row>
                         <Col lg={4}>
                           <div className="mb-3">
-                            <Label className="form-label" htmlFor="kocan-tipi-input">Koçan Tipi</Label>
+                            <Label className="form-label" htmlFor="kocan-tipi-input">Tapu Türü</Label>
                             <Input
                               type="select"
                               className="form-control"
@@ -582,14 +590,14 @@ const EcommerceAddProduct = (props: any) => {
                         </Col>
                         <Col lg={4}>
                           <div className="mb-3">
-                            <Label className="form-label" htmlFor="oda-sayisi-input">Oda Sayısı</Label>
+                            <Label className="form-label" htmlFor="kapali-alan-input">Kapalı Alan (m2)</Label>
                             <Input
                               type="text"
                               className="form-control"
-                              id="oda-sayisi-input"
-                              name="oda_sayisi"
-                              placeholder="Örn: 3+1"
-                              value={validation.values.oda_sayisi || ""}
+                              id="kapali-alan-input"
+                              name="kapali_alan"
+                              placeholder="Örn: 120"
+                              value={validation.values.kapali_alan || ""}
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                             />
@@ -597,17 +605,170 @@ const EcommerceAddProduct = (props: any) => {
                         </Col>
                         <Col lg={4}>
                           <div className="mb-3">
-                            <Label className="form-label" htmlFor="kat-sayisi-input">Kat Sayısı</Label>
+                            <Label className="form-label" htmlFor="arsa-alani-input">Arsa Alanı (m2)</Label>
                             <Input
-                              type="number"
+                              type="text"
                               className="form-control"
-                              id="kat-sayisi-input"
-                              name="kat_sayisi"
-                              placeholder="Bina kat sayısı"
-                              value={validation.values.kat_sayisi || ""}
+                              id="arsa-alani-input"
+                              name="arsa_alani"
+                              placeholder="Örn: 500"
+                              value={validation.values.arsa_alani || ""}
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                             />
+                          </div>
+                        </Col>
+                      </Row>
+
+                      <Row>
+                        <Col lg={4}>
+                          <div className="mb-3">
+                            <Label className="form-label" htmlFor="oda-sayisi-input">Oda Sayısı</Label>
+                            <Input
+                              type="select"
+                              className="form-control"
+                              id="oda-sayisi-input"
+                              name="oda_sayisi"
+                              value={validation.values.oda_sayisi || ""}
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                            >
+                              <option value="">Seçiniz</option>
+                              {["1+0", "1+1", "2+1", "3+1", "4+1", "4+2", "5+1", "5+2", "6+1", "6+2"].map(opt => (
+                                <option key={opt} value={opt}>{opt}</option>
+                              ))}
+                            </Input>
+                          </div>
+                        </Col>
+                        <Col lg={4}>
+                          <div className="mb-3">
+                            <Label className="form-label" htmlFor="banyo-sayisi-input">Banyo Sayısı</Label>
+                            <Input
+                              type="select"
+                              className="form-control"
+                              id="banyo-sayisi-input"
+                              name="banyo_sayisi"
+                              value={validation.values.banyo_sayisi || ""}
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                            >
+                              <option value="">Seçiniz</option>
+                              {["1", "2", "3", "4", "5+"].map(opt => (
+                                <option key={opt} value={opt}>{opt}</option>
+                              ))}
+                            </Input>
+                          </div>
+                        </Col>
+                        <Col lg={4}>
+                          <div className="mb-3">
+                            <Label className="form-label" htmlFor="bolge-input">Bölge</Label>
+                            <Input
+                              type="select"
+                              className="form-control"
+                              id="bolge-input"
+                              name="bolge"
+                              value={validation.values.bolge || ""}
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                            >
+                              <option value="">Seçiniz</option>
+                              {["Girne", "İskele", "Gazimağusa", "Lefkoşa", "Esentepe", "Tatlısu"].map(opt => (
+                                <option key={opt} value={opt}>{opt}</option>
+                              ))}
+                            </Input>
+                          </div>
+                        </Col>
+                      </Row>
+
+                      <hr />
+                      <h5 className="fs-14 mb-3">Özellik Havuzu</h5>
+                      <Row>
+                        <Col lg={6}>
+                          <Label className="form-label">Dış Özellikler</Label>
+                          <div className="d-flex flex-wrap gap-3 mb-3">
+                            {["Özel Havuz", "Ortak Havuz", "Deniz/Dağ Manzaralı", "Otopark", "Bahçeli"].map(feat => (
+                              <div className="form-check" key={feat}>
+                                <Input
+                                  type="checkbox"
+                                  className="form-check-input"
+                                  id={`feat-ext-${feat}`}
+                                  value={feat}
+                                  onChange={(e: any) => {
+                                    const { checked, value } = e.target;
+                                    const currentFeats = [...validation.values.ozellikler_dis];
+                                    if (checked) {
+                                      validation.setFieldValue("ozellikler_dis", [...currentFeats, value]);
+                                    } else {
+                                      validation.setFieldValue("ozellikler_dis", currentFeats.filter(f => f !== value));
+                                    }
+                                  }}
+                                />
+                                <Label className="form-check-label" htmlFor={`feat-ext-${feat}`}>{feat}</Label>
+                              </div>
+                            ))}
+                          </div>
+                        </Col>
+                        <Col lg={6}>
+                          <Label className="form-label">İç Özellikler</Label>
+                          <div className="d-flex flex-wrap gap-3 mb-3">
+                            {["Akıllı Ev", "Yerden Isıtma", "Klima", "Ankastre", "Ebeveyn Banyosu"].map(feat => (
+                              <div className="form-check" key={feat}>
+                                <Input
+                                  type="checkbox"
+                                  className="form-check-input"
+                                  id={`feat-int-${feat}`}
+                                  value={feat}
+                                  onChange={(e: any) => {
+                                    const { checked, value } = e.target;
+                                    const currentFeats = [...validation.values.ozellikler_ic];
+                                    if (checked) {
+                                      validation.setFieldValue("ozellikler_ic", [...currentFeats, value]);
+                                    } else {
+                                      validation.setFieldValue("ozellikler_ic", currentFeats.filter(f => f !== value));
+                                    }
+                                  }}
+                                />
+                                <Label className="form-check-label" htmlFor={`feat-int-${feat}`}>{feat}</Label>
+                              </div>
+                            ))}
+                          </div>
+                        </Col>
+                      </Row>
+
+                      <hr />
+                      <Row>
+                        <Col lg={6}>
+                          <div className="mb-3">
+                            <Label className="form-label" htmlFor="pdf-brosur-input">PDF Broşür</Label>
+                            <Input
+                              type="file"
+                              className="form-control"
+                              id="pdf-brosur-input"
+                              accept="application/pdf"
+                              onChange={(e: any) => {
+                                // Handle file upload logic if needed, for now just setting a placeholder
+                                validation.setFieldValue("pdf_brosur", e.target.files[0]?.name || "");
+                              }}
+                            />
+                          </div>
+                        </Col>
+                        <Col lg={6}>
+                          <div className="mb-3">
+                            <Label className="form-label" htmlFor="danisman-input">Danışman Ata</Label>
+                            <Input
+                              type="select"
+                              className="form-control"
+                              id="danisman-input"
+                              name="danisman_id"
+                              value={validation.values.danisman_id || ""}
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                            >
+                              <option value="">Danışman Seçiniz</option>
+                              <option value="1">Admin User</option>
+                              <option value="2">Ali Veli</option>
+                              <option value="3">Ayşe Fatma</option>
+                            </Input>
                           </div>
                         </Col>
                       </Row>
@@ -765,9 +926,9 @@ const EcommerceAddProduct = (props: any) => {
                 <p className="text-muted mb-2">
                   {" "}
                   <Link to="#" className="float-end text-decoration-underline">
-                    Add New
+                    Yeni Ekle
                   </Link>
-                  Select product category
+                  İlan kategorisi seçin
                 </p>
 
 

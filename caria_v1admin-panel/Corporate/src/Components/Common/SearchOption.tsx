@@ -12,7 +12,7 @@ import image5 from "../../assets/images/users/avatar-5.jpg";
 
 const SearchOption = () => {
     const [value, setValue] = useState<any>("");
-    const onChangeData = (value:any) => {
+    const onChangeData = (value: any) => {
         setValue(value);
     };
 
@@ -20,61 +20,61 @@ const SearchOption = () => {
         const searchOptions = document.getElementById("search-close-options") as HTMLElement;
         const dropdown = document.getElementById("search-dropdown") as HTMLElement;
         const searchInput = document.getElementById("search-options") as HTMLInputElement;
-      
+
         const handleFocus = () => {
-          const inputLength = searchInput.value.length;
-          if (inputLength > 0) {
-            dropdown.classList.add("show");
-            searchOptions.classList.remove("d-none");
-          } else {
-            dropdown.classList.remove("show");
-            searchOptions.classList.add("d-none");
-          }
+            const inputLength = searchInput.value.length;
+            if (inputLength > 0) {
+                dropdown.classList.add("show");
+                searchOptions.classList.remove("d-none");
+            } else {
+                dropdown.classList.remove("show");
+                searchOptions.classList.add("d-none");
+            }
         };
-      
+
         const handleKeyUp = () => {
-          const inputLength = searchInput.value.length;
-          if (inputLength > 0) {
-            dropdown.classList.add("show");
-            searchOptions.classList.remove("d-none");
-          } else {
-            dropdown.classList.remove("show");
-            searchOptions.classList.add("d-none");
-          }
+            const inputLength = searchInput.value.length;
+            if (inputLength > 0) {
+                dropdown.classList.add("show");
+                searchOptions.classList.remove("d-none");
+            } else {
+                dropdown.classList.remove("show");
+                searchOptions.classList.add("d-none");
+            }
         };
-      
+
         const handleClick = () => {
-          searchInput.value = "";
-          dropdown.classList.remove("show");
-          searchOptions.classList.add("d-none");
-        };
-      
-        const handleBodyClick = (e: MouseEvent) => {
-          const target = e.target as HTMLElement;
-          if (target.getAttribute("id") !== "search-options") {
+            searchInput.value = "";
             dropdown.classList.remove("show");
             searchOptions.classList.add("d-none");
-          }
         };
-      
+
+        const handleBodyClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (target.getAttribute("id") !== "search-options") {
+                dropdown.classList.remove("show");
+                searchOptions.classList.add("d-none");
+            }
+        };
+
         searchInput.addEventListener("focus", handleFocus);
         searchInput.addEventListener("keyup", handleKeyUp);
         searchOptions.addEventListener("click", handleClick);
         document.body.addEventListener("click", handleBodyClick);
-      
+
         return () => {
-          searchInput.removeEventListener("focus", handleFocus);
-          searchInput.removeEventListener("keyup", handleKeyUp);
-          searchOptions.removeEventListener("click", handleClick);
-          document.body.removeEventListener("click", handleBodyClick);
+            searchInput.removeEventListener("focus", handleFocus);
+            searchInput.removeEventListener("keyup", handleKeyUp);
+            searchOptions.removeEventListener("click", handleClick);
+            document.body.removeEventListener("click", handleBodyClick);
         };
-      }, []);
+    }, []);
 
     return (
         <React.Fragment>
             <form className="app-search d-none d-md-block">
                 <div className="position-relative">
-                    <Input type="text" className="form-control" placeholder="Search..."
+                    <Input type="text" className="form-control" placeholder="Ara..."
                         id="search-options"
                         value={value}
                         onChange={e => {
@@ -88,7 +88,7 @@ const SearchOption = () => {
                     <SimpleBar style={{ height: "320px" }}>
 
                         <div className="dropdown-header">
-                            <h6 className="text-overflow text-muted mb-0 text-uppercase">Recent Searches</h6>
+                            <h6 className="text-overflow text-muted mb-0 text-uppercase">Son Aramalar</h6>
                         </div>
 
                         <div className="dropdown-item bg-transparent text-wrap">
@@ -99,30 +99,31 @@ const SearchOption = () => {
                         </div>
 
                         <div className="dropdown-header mt-2">
-                            <h6 className="text-overflow text-muted mb-1 text-uppercase">Pages</h6>
+                            <h6 className="text-overflow text-muted mb-1 text-uppercase">Sayfalar</h6>
                         </div>
 
 
                         <Link to="#" className="dropdown-item notify-item">
                             <i className="ri-bubble-chart-line align-middle fs-18 text-muted me-2"></i>
-                            <span>Analytics Dashboard</span>
+                            <span>Analiz Masası</span>
                         </Link>
 
 
                         <Link to="#" className="dropdown-item notify-item">
                             <i className="ri-lifebuoy-line align-middle fs-18 text-muted me-2"></i>
-                            <span>Help Center</span>
+                            <small>Dün 21:47</small>
                         </Link>
 
 
                         <Link to="#" className="dropdown-item notify-item">
                             <i className="ri-user-settings-line align-middle fs-18 text-muted me-2"></i>
-                            <span>My account settings</span>
+                            <span>Hesap Ayarlarım</span>
                         </Link>
 
 
                         <div className="dropdown-header mt-2">
-                            <h6 className="text-overflow text-muted mb-2 text-uppercase">Members</h6>
+                            <h6 className="text-overflow text-muted mb-2 text-uppercase">Üyeler</h6>
+                            <span className="fw-semibold">yeni koleksiyon</span> eklendi
                         </div>
 
                         <div className="notification-list">
@@ -132,8 +133,8 @@ const SearchOption = () => {
                                     <img src={image2} className="me-3 rounded-circle avatar-xs"
                                         alt="user-pic" />
                                     <div className="flex-grow-1">
-                                        <h6 className="m-0">Angela Bernier</h6>
-                                        <span className="fs-11 mb-0 text-muted">Manager</span>
+                                        <h6 className="mb-1 lh-base">James Price tarafından satın alındı</h6>
+                                        <small className="mb-0 text-muted">25 Kas, 2021</small>
                                     </div>
                                 </div>
                             </Link>
@@ -143,8 +144,8 @@ const SearchOption = () => {
                                     <img src={image3} className="me-3 rounded-circle avatar-xs"
                                         alt="user-pic" />
                                     <div className="flex-grow-1">
-                                        <h6 className="m-0">David Grasso</h6>
-                                        <span className="fs-11 mb-0 text-muted">Web Designer</span>
+                                        <h6 className="mb-1 lh-base">Favori Ürün</h6>
+                                        <small className="mb-0 text-muted">Bugün 14:14</small>
                                     </div>
                                 </div>
                             </Link>
@@ -163,7 +164,7 @@ const SearchOption = () => {
                     </SimpleBar>
 
                     <div className="text-center pt-3 pb-1">
-                        <Link to="/pages-search-results" className="btn btn-primary btn-sm">View All Results <i
+                        <Link to="/pages-search-results" className="btn btn-primary btn-sm">Tüm Sonuçları Gör <i
                             className="ri-arrow-right-line ms-1"></i></Link>
                     </div>
                 </div>

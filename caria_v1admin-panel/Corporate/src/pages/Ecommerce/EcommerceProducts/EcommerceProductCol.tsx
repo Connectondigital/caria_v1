@@ -46,7 +46,7 @@ const Price = (cell: any) => {
   const value = cell.value !== undefined ? cell.value : (cell.getValue ? cell.getValue() : 0);
   return (
     <React.Fragment>
-      {"$ " + (value || 0).toLocaleString()}
+      {"£ " + (value || 0).toLocaleString()}
     </React.Fragment>
   );
 };

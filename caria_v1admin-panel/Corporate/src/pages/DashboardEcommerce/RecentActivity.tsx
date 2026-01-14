@@ -15,7 +15,7 @@ import gitbox from "../../assets/images/giftbox.png";
 import SimpleBar from "simplebar-react";
 import { topCategories } from "../../common/data";
 
-const RecentActivity = (props : any) => {
+const RecentActivity = (props: any) => {
   return (
     <React.Fragment>
       <div className={props.rightColumn ? "col-auto layout-rightside-col d-block" : "col-auto layout-rightside-col d-none"} id="layout-rightside-coll">
@@ -25,7 +25,7 @@ const RecentActivity = (props : any) => {
             <CardBody className="p-0">
               <div className="p-3">
                 <h6 className="text-muted mb-0 text-uppercase fw-semibold">
-                  Recent Activity
+                  Son Aktiviteler
                 </h6>
               </div>
               <SimpleBar style={{ maxHeight: "410px" }} className="p-3 pt-0">
@@ -37,11 +37,11 @@ const RecentActivity = (props : any) => {
                       </div>
                     </div>
                     <div className="flex-grow-1 ms-3">
-                      <h6 className="mb-1 lh-base">Purchase by James Price</h6>
+                      <h6 className="mb-1 lh-base">James Price tarafından satın alındı</h6>
                       <p className="text-muted mb-1">
                         Product noise evolve smartwatch{" "}
                       </p>
-                      <small className="mb-0 text-muted">02:14 PM Today</small>
+                      <small className="mb-0 text-muted">Bugün 14:14</small>
                     </div>
                   </div>
                   <div className="acitivity-item py-3 d-flex">
@@ -52,10 +52,9 @@ const RecentActivity = (props : any) => {
                     </div>
                     <div className="flex-grow-1 ms-3">
                       <h6 className="mb-1 lh-base">
-                        Added new{" "}
-                        <span className="fw-semibold">style collection</span>
+                        <span className="fw-semibold">yeni koleksiyon</span> eklendi
                       </h6>
-                      <p className="text-muted mb-1">By Nesta Technologies</p>
+                      <p className="text-muted mb-1">Nesta Technologies tarafından</p>
                       <div className="d-inline-flex gap-2 border border-dashed p-2 mb-2">
                         <Link
                           to="/apps-ecommerce-product-details"
@@ -89,7 +88,7 @@ const RecentActivity = (props : any) => {
                         </Link>
                       </div>
                       <p className="mb-0 text-muted">
-                        <small>9:47 PM Yesterday</small>
+                        <small>Dün 21:47</small>
                       </p>
                     </div>
                   </div>
@@ -103,12 +102,12 @@ const RecentActivity = (props : any) => {
                     </div>
                     <div className="flex-grow-1 ms-3">
                       <h6 className="mb-1 lh-base">
-                        Natasha Carey have liked the products
+                        Natasha Carey ürünleri beğendi
                       </h6>
                       <p className="text-muted mb-1">
                         Allow users to like products in your WooCommerce store.
                       </p>
-                      <small className="mb-0 text-muted">25 Dec, 2021</small>
+                      <small className="mb-0 text-muted">25 Ara, 2021</small>
                     </div>
                   </div>
                   <div className="acitivity-item py-3 d-flex">
@@ -121,7 +120,7 @@ const RecentActivity = (props : any) => {
                     </div>
                     <div className="flex-grow-1 ms-3">
                       <h6 className="mb-1 lh-base">
-                        Today offers by{" "}
+                        Günün fırsatları:{" "}
                         <Link
                           to="/apps-ecommerce-seller-details"
                           className="link-secondary"
@@ -133,7 +132,7 @@ const RecentActivity = (props : any) => {
                         Offer is valid on orders of Rs.500 Or above for selected
                         products only.
                       </p>
-                      <small className="mb-0 text-muted">12 Dec, 2021</small>
+                      <small className="mb-0 text-muted">12 Ara, 2021</small>
                     </div>
                   </div>
                   <div className="acitivity-item py-3 d-flex">
@@ -145,11 +144,11 @@ const RecentActivity = (props : any) => {
                       </div>
                     </div>
                     <div className="flex-grow-1 ms-3">
-                      <h6 className="mb-1 lh-base">Favoried Product</h6>
+                      <h6 className="mb-1 lh-base">Favori Ürün</h6>
                       <p className="text-muted mb-2">
                         Esther James have favorited product.
                       </p>
-                      <small className="mb-0 text-muted">25 Nov, 2021</small>
+                      <small className="mb-0 text-muted">25 Kas, 2021</small>
                     </div>
                   </div>
                   <div className="acitivity-item py-3 d-flex">
@@ -162,8 +161,7 @@ const RecentActivity = (props : any) => {
                     </div>
                     <div className="flex-grow-1 ms-3">
                       <h6 className="mb-1 lh-base">
-                        Flash sale starting{" "}
-                        <span className="text-primary">Tomorrow.</span>
+                        Flaş indirim <span className="text-primary">yarın</span> başlıyor.
                       </h6>
                       <p className="text-muted mb-0">
                         Flash sale by{" "}
@@ -171,7 +169,7 @@ const RecentActivity = (props : any) => {
                           Zoetic Fashion
                         </Link>
                       </p>
-                      <small className="mb-0 text-muted">22 Oct, 2021</small>
+                      <small className="mb-0 text-muted">22 Eki, 2021</small>
                     </div>
                   </div>
                   <div className="acitivity-item py-3 d-flex">
@@ -183,18 +181,18 @@ const RecentActivity = (props : any) => {
                       </div>
                     </div>
                     <div className="flex-grow-1 ms-3">
-                      <h6 className="mb-1 lh-base">Monthly sales report</h6>
+                      <h6 className="mb-1 lh-base">Aylık satış raporu</h6>
                       <p className="text-muted mb-2">
-                        <span className="text-danger">2 days left</span>{" "}
-                        notification to submit the monthly sales report.{" "}
+                        <span className="text-danger">2 gün kaldı</span>{" "}
+                        aylık satış raporunu göndermek için bildirim.{" "}
                         <Link
                           to="#"
                           className="link-warning text-decoration-underline"
                         >
-                          Reports Builder
+                          Rapor Oluşturucu
                         </Link>
                       </p>
-                      <small className="mb-0 text-muted">15 Oct</small>
+                      <small className="mb-0 text-muted">15 Eki</small>
                     </div>
                   </div>
                   <div className="acitivity-item d-flex">
@@ -206,12 +204,12 @@ const RecentActivity = (props : any) => {
                       />
                     </div>
                     <div className="flex-grow-1 ms-3">
-                      <h6 className="mb-1 lh-base">Frank Hook Commented</h6>
+                      <h6 className="mb-1 lh-base">Frank Hook yorum yaptı</h6>
                       <p className="text-muted mb-2 fst-italic">
                         " A product that has reviews is more likable to be sold
                         than a product. "
                       </p>
-                      <small className="mb-0 text-muted">26 Aug, 2021</small>
+                      <small className="mb-0 text-muted">26 Ağu, 2021</small>
                     </div>
                   </div>
                 </div>
@@ -219,7 +217,7 @@ const RecentActivity = (props : any) => {
 
               <div className="p-3 mt-2">
                 <h6 className="text-muted mb-3 text-uppercase fw-semibold">
-                  Top 10 Categories
+                  En İyi 10 Kategori
                 </h6>
 
                 <ol className="ps-3 text-muted">
@@ -234,20 +232,20 @@ const RecentActivity = (props : any) => {
                 </ol>
                 <div className="mt-3 text-center">
                   <Link to="#" className="text-muted text-decoration-underline">
-                    View all Categories
+                    Tüm Kategorileri Gör
                   </Link>
                 </div>
               </div>
               <div className="p-3">
                 <h6 className="text-muted mb-3 text-uppercase fw-semibold">
-                  Products Reviews
+                  Ürün İncelemeleri
                 </h6>
                 <ReviewSlider />
               </div>
 
               <div className="p-3">
                 <h6 className="text-muted mb-3 text-uppercase fw-semibold">
-                  Customer Reviews
+                  Müşteri Yorumları
                 </h6>
                 <div className="bg-light px-3 py-2 rounded-2 mb-2">
                   <div className="d-flex align-items-center">
@@ -267,7 +265,7 @@ const RecentActivity = (props : any) => {
                 </div>
                 <div className="text-center">
                   <div className="text-muted">
-                    Total <span className="fw-medium">5.50k</span> reviews
+                    Toplam <span className="fw-medium">5.50k</span> yorum
                   </div>
                 </div>
 
@@ -382,7 +380,7 @@ const RecentActivity = (props : any) => {
                             className="progress-bar bg-danger"
                             role="progressbar"
                             style={{ width: "7.42%" }}
-                          
+
                           ></div>
                         </div>
                       </div>
@@ -400,16 +398,16 @@ const RecentActivity = (props : any) => {
                 <CardBody>
                   <img src={gitbox} alt="" />
                   <div className="mt-4">
-                    <h5>Invite New Seller</h5>
+                    <h5>Yeni Satıcı Davet Et</h5>
                     <p className="text-muted lh-base">
-                      Refer a new seller to us and earn $100 per refer.
+                      Yeni bir satıcıyı bize yönlendirin ve her referans için 100$ kazanın.
                     </p>
                     <button
                       type="button"
                       className="btn btn-primary btn-label rounded-pill"
                     >
                       <i className="ri-mail-fill label-icon align-middle rounded-pill fs-16 me-2"></i>{" "}
-                      Invite Now
+                      Şimdi Davet Et
                     </button>
                   </div>
                 </CardBody>

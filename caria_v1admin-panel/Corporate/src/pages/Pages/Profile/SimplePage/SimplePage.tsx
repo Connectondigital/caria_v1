@@ -32,13 +32,13 @@ const SimplePage = () => {
     const [activeTab, setActiveTab] = useState('1');
     const [activityTab, setActivityTab] = useState('1');
 
-    const toggleTab = (tab:any) => {
+    const toggleTab = (tab: any) => {
         if (activeTab !== tab) {
             setActiveTab(tab);
         }
     };
 
-    const toggleActivityTab = (tab:any) => {
+    const toggleActivityTab = (tab: any) => {
         if (activityTab !== tab) {
             setActivityTab(tab);
         }
@@ -48,7 +48,7 @@ const SimplePage = () => {
 
     return (
         <React.Fragment>
-           <div className="page-content">
+            <div className="page-content">
                 <Container fluid>
                     <div className="profile-foreground position-relative mx-n4 mt-n4">
                         <div className="profile-wid-bg">
@@ -67,7 +67,7 @@ const SimplePage = () => {
                             <Col>
                                 <div className="p-2">
                                     <h3 className="text-white mb-1">Anna Adame</h3>
-                                    <p className="text-white text-opacity-75">Owner & Founder</p>
+                                    <p className="text-white text-opacity-75">Kurucu / Yönetici</p>
                                     <div className="hstack text-white-50 gap-1">
                                         <div className="me-2"><i
                                             className="ri-map-pin-user-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>California,

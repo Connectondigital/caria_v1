@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "@/App.css";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -980,57 +980,77 @@ const projects = [
 // ============================================
 // SECTION 2: HERO COMPONENT (Full-screen Video)
 // ============================================
-const Hero = () => {
+const Hero = ({ sliders, content }) => {
+  const getSetting = (key, defaultValue) => {
+    const setting = content?.find(c => c.content_key === key);
+    return setting ? setting.value_tr : defaultValue;
+  };
+
+  const heroTitle = getSetting('hero_title', 'CARIA ESTATES');
+  const heroSubtitle = getSetting('hero_subtitle', 'Exclusive Mediterranean Living');
+  const heroBtnText = getSetting('hero_btn_text', 'Explore Properties');
+  const sliderBtnText = getSetting('hero_slider_btn_text', 'Explore More');
+
+  const hasSliders = sliders && sliders.length > 0;
+
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center" data-testid="hero-section">
-      {/* Background Video Layer */}
-      <div className="absolute inset-0 z-[-1]">
+      {/* Background Layer: Always Video as Primary */}
+      <div className="absolute inset-0 z-0">
         <video
           autoPlay
           muted
           loop
           playsInline
           poster="https://images.unsplash.com/photo-1694967832949-09984640b143?w=1920&h=1080&fit=crop"
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/assets/videos/Media1.mp4" type="video/mp4" />
+          <source src="/assets/videos/caria-vid.mp4" type="video/mp4" />
         </video>
-        {/* Cinematic Overlay Layer */}
-        <div className="absolute inset-0 bg-black/40 z-0" />
+
+        {/* Cinematic Overlay (Clear and Sharp) */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
       </div>
 
-      {/* Centered Content Layer */}
-      <div className="relative z-10 text-center px-6">
-        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-light tracking-wide mb-8">
-          CARIA ESTATES <sup className="text-2xl md:text-3xl">®</sup>
+      {/* Centered Content Layer: Always "CARIA ESTATES" as requested */}
+      <div className="relative z-20 text-center px-6 max-w-5xl">
+        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-light tracking-wide mb-8 drop-shadow-xl">
+          {heroTitle.toUpperCase()} <sup className="text-2xl md:text-3xl">®</sup>
         </h1>
-        <p className="text-white/90 text-lg md:text-xl font-light tracking-widest mb-12 max-w-2xl mx-auto uppercase">
-          Exclusive Mediterranean Living
+        <p className="text-white text-lg md:text-xl font-light tracking-[0.25em] mb-12 max-w-2xl mx-auto uppercase drop-shadow-lg">
+          {heroSubtitle}
         </p>
-        <Link
-          to="/properties"
-          className="px-10 py-4 border border-white text-white text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-caria-slate transition-all duration-500"
-        >
-          Explore Properties
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <Link
+            to="/properties"
+            className="min-w-[220px] px-10 py-4 border border-white text-white text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-caria-slate transition-all duration-500 shadow-lg font-medium"
+          >
+            {heroBtnText}
+          </Link>
+        </div>
       </div>
     </section>
   );
 };
 
+
+
+
 // ============================================
 // SECTION 2: INTRO SECTION (Mint Background)
 // ============================================
-const IntroSection = () => {
+const IntroSection = ({ content }) => {
+  const introText = content?.find(c => c.content_key === 'intro_text')?.value_tr ||
+    "Caria Estates provides expert guidance and luxury real estate services in Northern Cyprus. We combine local insight with global standards to offer a refined, transparent property experience. Whether you are seeking a coastal retreat, investment opportunity, or your dream Mediterranean home, our dedicated team is here to guide you every step of the way.";
+
   return (
-    <section className="bg-caria-mint py-24 md:py-32" data-testid="intro-section">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <p className="text-caria-slate text-base md:text-lg leading-relaxed font-light" data-testid="intro-text">
-          Caria Estates provides expert guidance and luxury real estate services in Northern Cyprus.
-          We combine local insight with global standards to offer a refined, transparent property experience.
-          Whether you are seeking a coastal retreat, investment opportunity, or your dream Mediterranean home,
-          our dedicated team is here to guide you every step of the way.
-        </p>
+    <section className="bg-caria-mint py-16 md:py-24 border-b border-black/5" data-testid="intro-section">
+      <div className="max-w-5xl mx-auto px-8 lg:px-12 text-center">
+        <div
+          className="text-caria-slate text-lg md:text-xl leading-relaxed font-light cms-content italic"
+          data-testid="intro-text"
+          dangerouslySetInnerHTML={{ __html: introText }}
+        />
       </div>
     </section>
   );
@@ -1211,7 +1231,7 @@ const CuratedListings = ({ activeRegion, properties }) => {
 
   return (
     <section className="bg-white py-16 md:py-24" data-testid="curated-listings">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-12">
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
           <div>
@@ -1260,15 +1280,15 @@ const CuratedListings = ({ activeRegion, properties }) => {
           ))}
         </div>
 
-        {/* Property Slider - 2 large cards side by side on desktop */}
+        {/* Property Slider - Large cards */}
         <div
           ref={sliderRef}
-          className="flex space-x-8 overflow-x-auto hide-scrollbar scroll-container scroll-snap-x pb-4"
+          className="flex gap-10 overflow-x-auto hide-scrollbar scroll-container scroll-snap-x pb-8"
         >
           {filteredProperties.map((property) => (
             <div
               key={property.id}
-              className="flex-none w-full md:w-[48%] scroll-snap-start"
+              className="flex-none w-full md:w-[48%] xl:w-[49%] scroll-snap-start"
             >
               <CuratedPropertyCard property={property} />
             </div>
@@ -1282,10 +1302,11 @@ const CuratedListings = ({ activeRegion, properties }) => {
 // ============================================
 // SECTION 5: ADVANCED SEARCH BAR
 // ============================================
-const AdvancedSearchBar = () => {
+const AdvancedSearchBar = ({ properties }) => {
   const [location, setLocation] = useState('');
   const [priceMin, setPriceMin] = useState('');
   const [priceMax, setPriceMax] = useState('');
+  const navigate = useNavigate();
 
   const clearAll = () => {
     setLocation('');
@@ -1293,9 +1314,18 @@ const AdvancedSearchBar = () => {
     setPriceMax('');
   };
 
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (location) params.append('q', location);
+    if (priceMin) params.append('minPrice', priceMin);
+    if (priceMax) params.append('maxPrice', priceMax);
+
+    navigate(`/properties?${params.toString()}`);
+  };
+
   return (
-    <section className="bg-caria-mint py-16 md:py-24" data-testid="search-section">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="bg-caria-mint pb-20 md:pb-28" data-testid="search-section">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-12">
         {/* Section Title */}
         <h2 className="font-serif text-3xl md:text-4xl text-caria-slate text-center mb-12" data-testid="search-title">
           Where would you love to live?
@@ -1354,6 +1384,7 @@ const AdvancedSearchBar = () => {
                   Clear All
                 </button>
                 <button
+                  onClick={handleSearch}
                   className="flex-1 px-4 py-3 text-white text-xs tracking-wider uppercase rounded-sm flex items-center justify-center transition-all"
                   style={{ backgroundColor: '#3BB2B8' }}
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3299A0'}
@@ -1471,9 +1502,9 @@ const ContactAgentSlider = () => {
 
 
               {/* Agent Info */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-white font-medium">{agent.name}</p>
-                <p className="text-white/70 text-sm">{agent.region}</p>
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <p className="text-white font-serif text-xl mb-1">{agent.name}</p>
+                <p className="text-white/70 text-xs tracking-widest uppercase">{agent.region}</p>
               </div>
             </div>
           ))}
@@ -1522,7 +1553,7 @@ const FeaturedPropertiesSlider = ({ featuredProperties }) => {
 
   return (
     <section className="bg-caria-mint py-16 md:py-24" data-testid="featured-section">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-12">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-4 md:mb-0" data-testid="featured-title">
@@ -1815,17 +1846,25 @@ const NewsletterBar = () => {
 // SECTION 12: PARTNER LOGOS
 // ============================================
 const PartnerLogos = () => {
+  const partners = [
+    { name: "Forbes Global Properties", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200&h=100&fit=crop&q=60" },
+    { name: "Luxury Portfolio", img: "https://images.unsplash.com/photo-1582408921715-18e7806365c1?w=200&h=100&fit=crop&q=60" },
+    { name: "Leading Real Estate", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=200&h=100&fit=crop&q=60" },
+    { name: "Who's Who in Luxury", img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=200&h=100&fit=crop&q=60" },
+    { name: "British Chambers", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=200&h=100&fit=crop&q=60" }
+  ];
+
   return (
-    <section className="bg-white py-12" data-testid="partners-section">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="flex items-center justify-center space-x-12 md:space-x-16 opacity-50">
-          {partners.map((partner) => (
-            <div
-              key={partner.id}
-              className="w-24 h-12 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-400"
-              data-testid={`partner-${partner.id}`}
-            >
-              {partner.name}
+    <section className="bg-white py-20 border-t border-gray-50" data-testid="partners-section">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-12">
+        <div className="flex flex-wrap items-center justify-between gap-12 opacity-50 hover:opacity-100 transition-opacity duration-700">
+          {partners.map((partner, idx) => (
+            <div key={idx} className="grayscale hover:grayscale-0 transition-all duration-500">
+              <img
+                src={partner.img}
+                alt={partner.name}
+                className="h-10 md:h-12 w-auto object-contain"
+              />
             </div>
           ))}
         </div>
@@ -1837,7 +1876,20 @@ const PartnerLogos = () => {
 // ============================================
 // SECTION 13: FOOTER
 // ============================================
-const Footer = () => {
+const Footer = ({ content }) => {
+  const getSetting = (key, defaultValue) => {
+    const setting = content?.find(c => c.content_key === key);
+    return setting ? setting.value_tr : defaultValue;
+  };
+
+  const address = getSetting('footer_address', '123 Harbor Road, Kyrenia\nNorthern Cyprus');
+  const phone = getSetting('footer_phone', '+90 548 123 4567');
+  const email = getSetting('footer_email', 'info@cariaestates.com');
+  const slogan = getSetting('footer_slogan', '"Beyond property, we deliver lifestyle. Northern Cyprus\'s premium real estate experience."');
+  const instagram = getSetting('social_instagram', 'https://instagram.com');
+  const facebook = getSetting('social_facebook', 'https://facebook.com');
+  const linkedin = getSetting('social_linkedin', 'https://linkedin.com');
+
   return (
     <footer className="bg-caria-slate text-white pt-24 pb-12 font-sans border-t border-white/5" data-testid="footer">
       <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
@@ -1852,7 +1904,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-white/60 text-lg font-serif italic leading-relaxed max-w-xs">
-              "Beyond property, we deliver lifestyle. Northern Cyprus's premium real estate experience."
+              {slogan}
             </p>
           </div>
 
@@ -1884,25 +1936,24 @@ const Footer = () => {
             <div className="space-y-6">
               <div className="space-y-2">
                 <p className="text-xs text-white/40 uppercase tracking-widest">Office</p>
-                <p className="text-sm font-light text-white/80 leading-relaxed">
-                  123 Harbor Road, Kyrenia<br />
-                  Northern Cyprus
-                </p>
+                <div className="text-sm font-light text-white/80 leading-relaxed whitespace-pre-line">
+                  {address}
+                </div>
               </div>
               <div className="space-y-2">
                 <p className="text-xs text-white/40 uppercase tracking-widest">Connect</p>
-                <p className="text-sm font-light text-white/80">+90 548 123 4567</p>
-                <p className="text-sm font-light text-white/80">info@cariaestates.com</p>
+                <p className="text-sm font-light text-white/80">{phone}</p>
+                <p className="text-sm font-light text-white/80">{email}</p>
               </div>
               <div className="flex space-x-6 pt-2">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
-                  <Instagram size={18} />
+                <a href={instagram} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all transform hover:scale-110">
+                  <Instagram size={22} />
                 </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
-                  <Facebook size={18} />
+                <a href={facebook} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all transform hover:scale-110">
+                  <Facebook size={22} />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
-                  <Linkedin size={18} />
+                <a href={linkedin} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-all transform hover:scale-110">
+                  <Linkedin size={22} />
                 </a>
               </div>
             </div>
@@ -1939,18 +1990,31 @@ const Home = () => {
   const [activeRegion, setActiveRegion] = useState("DISCOVER ALL");
   const [allProperties, setAllProperties] = useState([...properties]);
   const [featured, setFeatured] = useState([...featuredProperties]);
+  const [sliders, setSliders] = useState([]);
+  const [guides, setGuides] = useState([]);
+  const [siteContent, setSiteContent] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API}/properties`);
-        if (response.data && response.data.length > 0) {
-          setAllProperties(response.data);
-          // For demo, we just split them or filter
-          setFeatured(response.data.filter(p => p.tag === 'PREMIUM' || p.tag === 'EXCLUSIVE'));
+        const [propsRes, slidersRes, guidesRes, contentRes] = await Promise.all([
+          axios.get(`${API}/properties`),
+          axios.get(`${API}/cms/sliders`),
+          axios.get(`${API}/cms/country-guides`),
+          axios.get(`${API}/cms/content`)
+        ]);
+
+        if (propsRes.data && propsRes.data.length > 0) {
+          setAllProperties(propsRes.data);
+          setFeatured(propsRes.data.filter(p => p.tag === 'PREMIUM' || p.tag === 'EXCLUSIVE'));
         }
+
+        if (slidersRes.data) setSliders(slidersRes.data);
+        if (guidesRes.data) setGuides(guidesRes.data);
+        if (contentRes.data) setSiteContent(contentRes.data);
+
       } catch (error) {
-        console.error("Error fetching properties:", error);
+        console.error("Error fetching home data:", error);
       }
     };
     fetchData();
@@ -1958,11 +2022,14 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <Hero />
-      <IntroSection />
+      <Hero sliders={sliders} content={siteContent} />
+      <IntroSection content={siteContent} />
+      <AdvancedSearchBar properties={allProperties} />
       <RegionTabs activeRegion={activeRegion} setActiveRegion={setActiveRegion} />
       <CuratedListings activeRegion={activeRegion} properties={allProperties} />
-      <AdvancedSearchBar />
+
+
+
       <ContactAgentSlider />
       <FeaturedPropertiesSlider featuredProperties={featured} />
       <WhyChooseSection />
@@ -1970,7 +2037,7 @@ const Home = () => {
       <JoinUsSection />
       <NewsletterBar />
       <PartnerLogos />
-      <Footer />
+      <Footer content={siteContent} />
       <CopyrightBar />
     </div>
   );
@@ -1980,30 +2047,81 @@ const Home = () => {
 // PLACEHOLDER PAGES
 // ============================================
 const PropertiesPage = () => {
-  const [allProperties, setAllProperties] = useState([...properties, ...featuredProperties]);
+  const [allProperties, setAllProperties] = useState([]);
+  const [filteredProperties, setFilteredProperties] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchAll = async () => {
       try {
         const response = await axios.get(`${API}/properties`);
-        if (response.data && response.data.length > 0) {
-          setAllProperties(response.data);
+        const data = (response.data && response.data.length > 0) ? response.data : [...properties, ...featuredProperties];
+        setAllProperties(data);
+
+        // Handle query params
+        const params = new URLSearchParams(location.search);
+        const q = params.get('q');
+        const minP = params.get('minPrice');
+        const maxP = params.get('maxPrice');
+        const region = params.get('region');
+        const country = params.get('country');
+
+        let filtered = data;
+        if (q) {
+          filtered = filtered.filter(p =>
+            p.title.toLowerCase().includes(q.toLowerCase()) ||
+            p.location.toLowerCase().includes(q.toLowerCase())
+          );
         }
+        if (minP) {
+          const min = parseInt(minP.replace(/[^0-9]/g, ''));
+          filtered = filtered.filter(p => parseInt(p.price.replace(/[^0-9]/g, '')) >= min);
+        }
+        if (maxP) {
+          const max = parseInt(maxP.replace(/[^0-9]/g, ''));
+          filtered = filtered.filter(p => parseInt(p.price.replace(/[^0-9]/g, '')) <= max);
+        }
+        if (region) {
+          filtered = filtered.filter(p => p.region?.toLowerCase() === region.toLowerCase());
+        }
+        if (country) {
+          // If country logic is needed, add here
+          filtered = filtered.filter(p => p.location?.toLowerCase().includes(country.toLowerCase()));
+        }
+
+        setFilteredProperties(filtered);
       } catch (e) {
         console.error(e);
+        setAllProperties([...properties, ...featuredProperties]);
+        setFilteredProperties([...properties, ...featuredProperties]);
       }
     };
     fetchAll();
-  }, []);
+  }, [location.search]);
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white">
+      <div className="h-20" />
+      <section className="bg-caria-mint py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <h1 className="font-serif text-4xl text-caria-slate mb-4">Properties</h1>
+          <p className="text-gray-600 tracking-wider uppercase text-sm">
+            {filteredProperties.length} listings found
+          </p>
+        </div>
+      </section>
+
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <h1 className="font-serif text-4xl text-caria-slate mb-8">All Properties</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allProperties.map((property) => (
+          {filteredProperties.map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}
+          {filteredProperties.length === 0 && (
+            <div className="col-span-full py-20 text-center">
+              <p className="text-gray-400 text-lg">No properties match your search criteria.</p>
+              <Link to="/properties" className="text-caria-turquoise hover:underline mt-4 inline-block">View all properties</Link>
+            </div>
+          )}
         </div>
       </div>
       <Footer />
@@ -2018,6 +2136,9 @@ const PropertiesPage = () => {
 const PropertyDetailPage = () => {
   const { slug } = useParams();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [property, setProperty] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [relatedProperties, setRelatedProperties] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -2025,14 +2146,38 @@ const PropertyDetailPage = () => {
     message: "I would like to schedule a viewing for this property."
   });
 
-  // Find property by slug from all properties
-  const allProps = [...properties, ...featuredProperties];
-  const property = allProps.find(p => p.slug === slug);
+  useEffect(() => {
+    const fetchProperty = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${API}/properties/${slug}`);
+        if (response.data) {
+          setProperty(response.data);
 
-  // Get related properties (same region, excluding current)
-  const relatedProperties = allProps
-    .filter(p => p.region === property?.region && p.id !== property?.id)
-    .slice(0, 3);
+          // Fetch all for related
+          const allRes = await axios.get(`${API}/properties`);
+          const related = allRes.data.filter(p => p.region === response.data.region && p.slug !== slug).slice(0, 3);
+          setRelatedProperties(related);
+        }
+      } catch (err) {
+        console.error("Error fetching property:", err);
+        // Fallback
+        const allStatic = [...properties, ...featuredProperties];
+        const staticProp = allStatic.find(p => p.slug === slug);
+        setProperty(staticProp);
+        if (staticProp) {
+          setRelatedProperties(allStatic.filter(p => p.region === staticProp.region && p.slug !== slug).slice(0, 3));
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProperty();
+  }, [slug]);
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
   if (!property) {
     return (
@@ -2375,9 +2520,24 @@ const BuyPage = () => {
   const [maxPrice, setMaxPrice] = useState("");
   const [beds, setBeds] = useState("");
   const [sort, setSort] = useState("newest");
+  const [allProps, setAllProps] = useState([]);
 
-  // Combine all properties
-  const allProps = [...properties, ...featuredProperties];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${API}/properties`);
+        if (response.data && response.data.length > 0) {
+          setAllProps(response.data);
+        } else {
+          setAllProps([...properties, ...featuredProperties]);
+        }
+      } catch (e) {
+        console.error(e);
+        setAllProps([...properties, ...featuredProperties]);
+      }
+    };
+    fetchData();
+  }, []);
 
   // Helper function to extract numeric price
   const extractPrice = (priceStr) => {
@@ -3183,6 +3343,23 @@ const ProjectDetailPage = () => {
 // SERVICES PAGE
 // ============================================
 const ServicesPage = () => {
+  const [topHtml, setTopHtml] = useState(null);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await axios.get(`${API}/cms/content`);
+        const item = response.data.find(i => i.content_key === 'hizmetler_ust_metin');
+        if (item) {
+          setTopHtml(item.value_tr);
+        }
+      } catch (error) {
+        console.error("Error fetching services content:", error);
+      }
+    };
+    fetchContent();
+  }, []);
+
   const services = [
     {
       id: 1,
@@ -3232,9 +3409,13 @@ const ServicesPage = () => {
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-caria-slate font-light mb-8">
             Services
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12">
-            Premium real estate, investment, lifestyle and after-sales services tailored for international buyers in Northern Cyprus.
-          </p>
+          {topHtml ? (
+            <div className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12 cms-content" dangerouslySetInnerHTML={{ __html: topHtml }} />
+          ) : (
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12">
+              Premium real estate, investment, lifestyle and after-sales services tailored for international buyers in Northern Cyprus.
+            </p>
+          )}
           <div className="w-24 h-px bg-gray-200 mx-auto" />
         </div>
       </section>
@@ -3316,6 +3497,35 @@ const ServicesPage = () => {
 // ABOUT US PAGE
 // ============================================
 const AboutPage = () => {
+  const [aboutHtml, setAboutHtml] = useState("");
+  const [visionHtml, setVisionHtml] = useState("");
+  const [missionHtml, setMissionHtml] = useState("");
+  const [siteContent, setSiteContent] = useState([]);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const response = await axios.get(`${API}/cms/content`);
+        setSiteContent(response.data);
+        const about = response.data.find(i => i.content_key === 'hakkimizda_metni');
+        const vision = response.data.find(i => i.content_key === 'vizyonumuz_metni');
+        const mission = response.data.find(i => i.content_key === 'misyonumuz_metni');
+
+        if (about) setAboutHtml(about.value_tr);
+        if (vision) setVisionHtml(vision.value_tr);
+        if (mission) setMissionHtml(mission.value_tr);
+      } catch (error) {
+        console.error("Error fetching about content:", error);
+      }
+    };
+    fetchContent();
+  }, []);
+
+  const getSetting = (key, defaultValue) => {
+    const setting = siteContent?.find(c => c.content_key === key);
+    return setting ? setting.value_tr : defaultValue;
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <div className="h-16 md:h-20" />
@@ -3324,30 +3534,33 @@ const AboutPage = () => {
       <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-[#F4FAF9]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-caria-slate font-light mb-8">
-            About Us
+            {getSetting('about_title', 'About Us')}
           </h1>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            Caria Estates is built on trust, experience and a commitment to delivering exceptional real estate services in Northern Cyprus.
+            {getSetting('about_subtitle', 'Caria Estates is built on trust, experience and a commitment to delivering exceptional real estate services in Northern Cyprus.')}
           </p>
         </div>
       </section>
 
-      {/* 2) OUR GOAL SECTION - Centered Content */}
+      {/* 2) OUR GOAL SECTION - Dynamic Content from CMS */}
       <section className="py-20 md:py-32">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center space-y-8">
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-              Simply put, your satisfaction is our goal. When you buy your vacation home with us, we aim to bring happiness to your family by assisting you to make decisions with no regrets.
-            </p>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-              We understand that buying a property abroad is not easy. For this reason, we work on your behalf to make your buying experience smooth from beginning to end. Together with you, we avoid obstacles and prevent unpleasant surprises.
-            </p>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-              From the first moment you contact us, we support you with travel arrangements, property tours, and personalized guidance based on your interests. For Caria Estates, closing the transaction is not the end of the story — it is the beginning. We continue supporting you after your move, even late at night if needed.
-            </p>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-              With our experience, professionalism, and strong background, we provide exceptional service and long-lasting customer satisfaction.
-            </p>
+          <div className="text-center space-y-8 cms-content">
+            {aboutHtml ? (
+              <div dangerouslySetInnerHTML={{ __html: aboutHtml }} />
+            ) : (
+              <div className="space-y-8">
+                <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                  Simply put, your satisfaction is our goal. When you buy your vacation home with us, we aim to bring happiness to your family by assisting you to make decisions with no regrets.
+                </p>
+                <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                  We understand that buying a property abroad is not easy. For this reason, we work on your behalf to make your buying experience smooth from beginning to end. Together with you, we avoid obstacles and prevent unpleasant surprises.
+                </p>
+                <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                  With our experience, professionalism, and strong background, we provide exceptional service and long-lasting customer satisfaction.
+                </p>
+              </div>
+            )}
           </div>
           <div className="w-24 h-px bg-gray-200 mx-auto mt-16" />
         </div>
@@ -3381,8 +3594,30 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* 5) OUR GOAL SECTION - Card Version */}
-      <section className="py-20 md:py-32 bg-[#F4FAF9]">
+      {/* 5) VISION & MISSION SECTION */}
+      {(visionHtml || missionHtml) && (
+        <section className="py-20 md:py-32 bg-[#F4FAF9]">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {visionHtml && (
+                <div className="bg-white p-8 md:p-12 rounded-lg shadow-sm">
+                  <h2 className="font-serif text-3xl text-caria-slate mb-6">Vizyonumuz</h2>
+                  <div className="text-gray-600 leading-relaxed cms-content" dangerouslySetInnerHTML={{ __html: visionHtml }} />
+                </div>
+              )}
+              {missionHtml && (
+                <div className="bg-white p-8 md:p-12 rounded-lg shadow-sm">
+                  <h2 className="font-serif text-3xl text-caria-slate mb-6">Misyonumuz</h2>
+                  <div className="text-gray-600 leading-relaxed cms-content" dangerouslySetInnerHTML={{ __html: missionHtml }} />
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 6) OUR GOAL SECTION - Card Version (Previously 5) */}
+      <section className="py-20 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="bg-white rounded-lg overflow-hidden shadow-sm">
             {/* Image */}
@@ -3475,17 +3710,29 @@ const ContactPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Thank you for contacting us! We will get back to you within the same day.");
-    // Reset form
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      region: "",
-      message: ""
-    });
+    try {
+      await axios.post(`${API}/inquiries`, {
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        status: "new"
+      });
+      alert("Thank you for contacting us! We will get back to you within the same day.");
+      // Reset form
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        region: "",
+        message: ""
+      });
+    } catch (err) {
+      console.error("Inquiry error:", err);
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   const offices = [
@@ -4746,21 +4993,96 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/buy" element={<BuyPage />} />
             <Route path="/sell" element={<Home />} />
-            <Route path="/projects" element={<ProjectsOverviewPage />} />
-            <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-            <Route path="/investment" element={<Home />} />
-            <Route path="/legal" element={<Home />} />
-            <Route path="/rentals" element={<Home />} />
-            <Route path="/rent" element={<Home />} />
-            <Route path="/developments" element={<Home />} />
-            <Route path="/investors" element={<Home />} />
-            <Route path="/terms" element={<Home />} />
-            <Route path="/privacy" element={<Home />} />
+            <Route path="/:slug" element={<DynamicPage />} />
           </Routes>
         </div>
       </BrowserRouter>
     </div>
   );
 }
+
+const DynamicPage = () => {
+  const { slug } = useParams();
+  const [page, setPage] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPage = async () => {
+      try {
+        const res = await axios.get(`${API}/cms/pages/${slug}`);
+        setPage(res.data);
+      } catch (err) {
+        console.error("Page not found:", slug);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPage();
+  }, [slug]);
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+
+  // Fallback for special slugs or missing pages
+  if (!page) {
+    if (slug === 'home' || !slug) return <Home />;
+    return <Home />;
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      <div className="h-16 md:h-20" />
+
+      {/* Dynamic Banner Section */}
+      {page.banner_url && (
+        <section className="relative h-[45vh] lg:h-[55vh] flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0">
+            {page.banner_url.endsWith('.mp4') ? (
+              <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+                <source src={page.banner_url} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={page.banner_url} alt={page.title} className="w-full h-full object-cover" />
+            )}
+            <div className="absolute inset-0 bg-black/40" />
+          </div>
+          <div className="relative z-10 text-center px-6">
+            <h1 className="font-serif text-4xl md:text-6xl text-white font-light tracking-tight mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+              {page.banner_title || page.title}
+            </h1>
+            <div className="w-20 h-1 bg-caria-turquoise mx-auto" />
+          </div>
+        </section>
+      )}
+
+      {/* Main Content Area */}
+      <section className="py-16 md:py-24 bg-caria-beige/10">
+        <div className="max-w-5xl mx-auto px-6">
+          {!page.banner_url && (
+            <div className="mb-12">
+              <h1 className="font-serif text-4xl md:text-5xl text-caria-slate font-light mb-6">
+                {page.title}
+              </h1>
+              <div className="w-16 h-1 bg-caria-turquoise" />
+            </div>
+          )}
+          <div
+            className="prose prose-lg max-w-none text-gray-700 leading-relaxed cms-content"
+            dangerouslySetInnerHTML={{
+              __html: page.content_html ? page.content_html
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'")
+                .replace(/&amp;/g, '&') : ""
+            }}
+          />
+        </div>
+      </section>
+
+      <Footer />
+      <CopyrightBar />
+    </div>
+  );
+};
 
 export default App;

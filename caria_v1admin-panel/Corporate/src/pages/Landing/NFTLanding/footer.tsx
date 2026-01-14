@@ -67,7 +67,7 @@ const Footer = () => {
 
                             <div>
                                 <p className="copy-rights mb-0">
-                                    {new Date().getFullYear()} © Caria Estates - Themesbrand
+                                    2026 © Caria Estates. Crafted with ❤️ by Connect On Digital
                                 </p>
                             </div>
                         </Col>
