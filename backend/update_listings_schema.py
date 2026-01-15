@@ -11,7 +11,7 @@ def update_schema():
         ("ozellikler_ic", "TEXT"),
         ("ozellikler_dis", "TEXT"),
         ("pdf_brosur", "TEXT"),
-        ("danisman_id", "INTEGER"),
+        ("advisor_id", "INTEGER"),
         ("status", "TEXT"),
         ("description", "TEXT")
     ]

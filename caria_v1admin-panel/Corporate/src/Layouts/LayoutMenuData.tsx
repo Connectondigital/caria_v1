@@ -144,149 +144,21 @@ const Navdata = () => {
         },
         {
             id: "dashboard",
-            label: "Gösterge Panelleri",
+            label: "Komuta Merkezi",
             icon: "ri-dashboard-2-line",
-            link: "/#",
-            stateVariables: isDashboard,
-            click: function (e: any) {
-                e.preventDefault();
-                setIsDashboard(!isDashboard);
-                setIscurrentState('Dashboard');
-                updateIconSidebar(e);
-            },
-            subItems: [
-                {
-                    id: "analytics",
-                    label: "Analizler",
-                    link: "/dashboard-analytics",
-                    parentId: "dashboard",
-                },
-                {
-                    id: "crm",
-                    label: "CRM",
-                    link: "/dashboard-crm",
-                    parentId: "dashboard",
-                },
-            ],
+            link: "/dashboard",
         },
         {
-            id: "apps",
-            label: "Uygulamalar",
-            icon: "ri-apps-2-line",
-            link: "/#",
-            click: function (e: any) {
-                e.preventDefault();
-                setIsApps(!isApps);
-                setIscurrentState('Apps');
-                updateIconSidebar(e);
-            },
-            stateVariables: isApps,
-            subItems: [
-                {
-                    id: "calendar",
-                    label: "Takvim",
-                    link: "/#",
-                    parentId: "apps",
-                    isChildItem: true,
-                    click: function (e: any) {
-                        e.preventDefault();
-                        setCalendar(!isCalendar);
-                    },
-                    stateVariables: isCalendar,
-                    childItems: [
-                        {
-                            id: 1,
-                            label: "Ana Takvim",
-                            link: "/apps-calendar",
-                            parentId: "apps"
-                        },
-                        {
-                            id: 2,
-                            label: "Ay Görünümü",
-                            link: "/apps-calendar-month-grid",
-                            parentId: "apps"
-                        },
-                    ]
-                },
-                {
-                    id: "mailbox",
-                    label: "E-Posta",
-                    link: "/#",
-                    parentId: "apps",
-                    isChildItem: true,
-                    click: function (e: any) {
-                        e.preventDefault();
-                        setEmail(!isEmail);
-                    },
-                    stateVariables: isEmail,
-                    childItems: [
-                        {
-                            id: 1,
-                            label: "Gelen Kutusu",
-                            link: "/apps-mailbox",
-                            parentId: "apps"
-                        },
-                    ]
-                },
-                {
-                    id: "appsecommerce",
-                    label: "Gayrimenkul Yönetimi",
-                    link: "/#",
-                    isChildItem: true,
-                    click: function (e: any) {
-                        e.preventDefault();
-                        setIsEcommerce(!isEcommerce);
-                    },
-                    parentId: "apps",
-                    stateVariables: isEcommerce,
-                    childItems: [
-                        { id: 1, label: "Konut", link: "/apps-ecommerce-products", parentId: "apps" },
-                        { id: 2, label: "Ticari", link: "/apps-ecommerce-products", parentId: "apps" },
-                        { id: 3, label: "Arsa", link: "/apps-ecommerce-products", parentId: "apps" },
-                        { id: 4, label: "Yeni Projeler", link: "/apps-ecommerce-products", parentId: "apps" },
-                    ]
-                },
-                {
-                    id: "crm",
-                    label: "CRM Yönetimi",
-                    link: "/#",
-                    isChildItem: true,
-                    click: function (e: any) {
-                        e.preventDefault();
-                        setIsCRM(!isCRM);
-                    },
-                    parentId: "apps",
-                    stateVariables: isCRM,
-                    childItems: [
-                        { id: 1, label: "Kişiler", link: "/apps-crm-contacts", parentId: "apps" },
-                        { id: 2, label: "Şirketler", link: "/apps-crm-companies", parentId: "apps" },
-                        { id: 3, label: "Fırsatlar", link: "/apps-crm-deals", parentId: "apps" },
-                        { id: 4, label: "Adaylar", link: "/apps-crm-leads", parentId: "apps" },
-                    ]
-                },
-                {
-                    id: "tasks",
-                    label: "Görevler",
-                    link: "/#",
-                    isChildItem: true,
-                    click: function (e: any) {
-                        e.preventDefault();
-                        setIsTasks(!isTasks);
-                    },
-                    parentId: "apps",
-                    stateVariables: isTasks,
-                    childItems: [
-                        { id: 1, label: "Kanban Tahtası", link: "/apps-tasks-kanban", parentId: "apps", },
-                        { id: 2, label: "Liste Görünümü", link: "/apps-tasks-list-view", parentId: "apps", },
-                    ]
-                },
-                {
-                    id: "todo",
-                    label: "Yapılacaklar",
-                    link: "/apps-todo",
-                    parentId: "apps",
-                },
-            ],
+            id: "properties",
+            label: "Gayrimenkul İlanları",
+            icon: "ri-home-4-line",
+            link: "/apps-ecommerce-products",
+        },
+        {
+            id: "inquiries",
+            label: "İlan Talepleri",
+            icon: "ri-customer-service-2-line",
+            link: "/apps-crm-leads",
         },
         {
             id: "cms",
@@ -301,9 +173,12 @@ const Navdata = () => {
             },
             stateVariables: isCMS,
             subItems: [
+                { id: "homepage-mgmt", label: "Anasayfa Blok Yönetimi", link: "/apps-cms-homepage", parentId: "cms" },
                 { id: "slider-mgmt", label: "Slider Yönetimi", link: "/apps-cms-sliders", parentId: "cms" },
-                { id: "page-content", label: "Web Sitesi Ayarları", link: "/apps-cms-content", parentId: "cms" },
-                { id: "country-guides", label: "Ülke Rehberleri", link: "/apps-cms-country-guides", parentId: "cms" },
+                { id: "page-content", label: "Sayfa Yönetimi", link: "/apps-cms-content", parentId: "cms" },
+                { id: "menu-mgmt", label: "Menü Yönetimi", link: "/apps-cms-menus", parentId: "cms" },
+                { id: "advisor-mgmt", label: "Danışman Yönetimi", link: "/apps-cms-advisors", parentId: "cms" },
+                { id: "site-settings", label: "Site Ayarları", link: "/apps-cms-content", parentId: "cms" },
                 { id: "seo-settings", label: "SEO Ayarları", link: "/apps-cms-seo", parentId: "cms" },
             ],
         },

@@ -37,7 +37,7 @@ export const TRASH_MAIL = "/trash/mail";
 
 // Ecommerce
 // Product
-export const GET_PRODUCTS = "/product";
+export const GET_PRODUCTS = "/api/properties";
 export const DELETE_PRODUCT = "/delete/product";
 export const ADD_NEW_PRODUCT = "/add/product";
 export const UPDATE_PRODUCT = "/update/product";
@@ -86,7 +86,7 @@ export const UPDATE_COMPANIES = "/apps/company";
 export const DELETE_COMPANIES = "/apps/company";
 
 // Lead
-export const GET_LEADS = "/apps/lead";
+export const GET_LEADS = "/api/inquiries";
 export const ADD_NEW_LEAD = "/apps/lead";
 export const UPDATE_LEAD = "/apps/lead";
 export const DELETE_LEAD = "/apps/lead";

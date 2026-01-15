@@ -26,11 +26,10 @@ import {
   MessageSquare,
   ChevronDown,
   Calendar,
-  Building2,
-  TrendingUp
+  Building2
 } from "lucide-react";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 // ============================================
@@ -38,68 +37,32 @@ const API = `${BACKEND_URL}/api`;
 // ============================================
 const properties = [];
 const featuredProperties = [];
-const agents = [
-  {
-    id: 1,
-    name: "Pilar Anguita",
-    title: "Luxury Real Estate Advisor",
-    image_url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&fit=crop",
-    slug: "pilar-anguita",
-    region: "Kyrenia"
-  },
-  {
-    id: 2,
-    name: "Metehan Bakirci",
-    title: "Senior Sales Associate",
-    image_url: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop",
-    slug: "metehan-bakirci",
-    region: "Iskele"
-  }
-];
-const blogArticles = [
-  {
-    id: 1,
-    title: "North Cyprus Property Market Trends for 2025",
-    image: "https://images.unsplash.com/photo-1549517045-bc93de075e53?w=800&h=800&fit=crop",
-    slug: "market-trends-2025"
-  },
-  {
-    id: 2,
-    title: "Luxury Living: Top Coastal Villas in Kyrenia",
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=800&fit=crop",
-    slug: "luxury-villas-kyrenia"
-  },
-  {
-    id: 3,
-    title: "North Cyprus Citizenship & Real Estate Guide",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?w=800&h=800&fit=crop",
-    slug: "citizenship-guide"
-  }
-];
+const agents = [];
+const blogArticles = [];
 const partners = [];
 const projects = [];
 
 // ============================================
 // SECTION 2: HERO COMPONENT (Full-screen Video)
 // ============================================
-const Hero = ({ sliders, content, blocks }) => {
+const Hero = ({ sliders, content }) => {
   const getSetting = (key, defaultValue) => {
     const setting = content?.find(c => c.content_key === key);
     return setting ? setting.value_tr : defaultValue;
   };
 
-  const heroBlock = blocks?.find(b => b.block_type === 'hero');
-  const heroTitle = heroBlock?.title || getSetting('hero_title', 'CARIA ESTATES');
-  const heroSubtitle = heroBlock?.subtitle || getSetting('hero_subtitle', 'Exclusive Mediterranean Living');
+  const heroTitle = getSetting('hero_title', 'CARIA ESTATES');
+  const heroSubtitle = getSetting('hero_subtitle', 'Exclusive Mediterranean Living');
   const heroBtnText = getSetting('hero_btn_text', 'Explore Properties');
-  const videoUrl = heroBlock?.video_url || "/assets/videos/caria-vid.mp4";
+  const sliderBtnText = getSetting('hero_slider_btn_text', 'Explore More');
+
+  const hasSliders = sliders && sliders.length > 0;
 
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center" data-testid="hero-section">
       {/* Background Layer: Always Video as Primary */}
       <div className="absolute inset-0 z-0">
         <video
-          key={videoUrl}
           autoPlay
           muted
           loop
@@ -107,7 +70,7 @@ const Hero = ({ sliders, content, blocks }) => {
           poster="https://images.unsplash.com/photo-1694967832949-09984640b143?w=1920&h=1080&fit=crop"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src={videoUrl} type="video/mp4" />
+          <source src="/assets/videos/caria-vid.mp4" type="video/mp4" />
         </video>
 
         {/* Cinematic Overlay (Clear and Sharp) */}
@@ -141,9 +104,8 @@ const Hero = ({ sliders, content, blocks }) => {
 // ============================================
 // SECTION 2: INTRO SECTION (Mint Background)
 // ============================================
-const IntroSection = ({ content, blocks }) => {
-  const introBlock = blocks?.find(b => b.block_type === 'intro');
-  const introText = introBlock?.content || content?.find(c => c.content_key === 'intro_text')?.value_tr ||
+const IntroSection = ({ content }) => {
+  const introText = content?.find(c => c.content_key === 'intro_text')?.value_tr ||
     "Caria Estates provides expert guidance and luxury real estate services in Northern Cyprus. We combine local insight with global standards to offer a refined, transparent property experience. Whether you are seeking a coastal retreat, investment opportunity, or your dream Mediterranean home, our dedicated team is here to guide you every step of the way.";
 
   return (
@@ -305,24 +267,22 @@ const CuratedPropertyCard = ({ property }) => {
 // ============================================
 // SECTION 4: CURATED LISTINGS SLIDER (Strand-style)
 // ============================================
-const CuratedListings = ({ activeRegion, setActiveRegion, properties = [] }) => {
+const CuratedListings = ({ activeRegion, properties }) => {
   const sliderRef = useRef(null);
   const [activeTag, setActiveTag] = useState('All');
 
-  if (!Array.isArray(properties)) return null;
-
   // Extract unique tags from properties
-  const tags = ['All', ...new Set((properties || []).filter(p => p && p.tag).map(p => p.tag))];
+  const tags = ['All', ...new Set(properties.map(p => p.tag))];
 
   // Filter by region first
   const filteredByRegion = activeRegion === "DISCOVER ALL"
     ? properties
-    : (properties || []).filter(p => p && p.region === activeRegion);
+    : properties.filter(p => p.region === activeRegion);
 
   // Then filter by tag
   const filteredProperties = activeTag === "All"
     ? filteredByRegion
-    : (filteredByRegion || []).filter(p => p && p.tag === activeTag);
+    : filteredByRegion.filter(p => p.tag === activeTag);
 
   const scroll = (direction) => {
     if (sliderRef.current) {
@@ -335,76 +295,72 @@ const CuratedListings = ({ activeRegion, setActiveRegion, properties = [] }) => 
   };
 
   return (
-    <>
-      <AdvancedSearchBar properties={properties} />
-      <RegionTabs activeRegion={activeRegion} setActiveRegion={setActiveRegion} />
-      <section className="bg-white py-16 md:py-24" data-testid="curated-listings">
-        <div className="max-w-[1440px] mx-auto px-8 lg:px-12">
-          {/* Header Row */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
-            <div>
-              <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-3" data-testid="curated-title">
-                Curated Listings
-              </h2>
-              <p className="text-gray-500 text-sm max-w-md">
-                Explore our handpicked selection of exceptional properties across Northern Cyprus
-              </p>
-            </div>
-
-            {/* Navigation Buttons - Desktop only */}
-            <div className="hidden md:flex items-center space-x-3">
-              <button
-                onClick={() => scroll('left')}
-                className="slider-nav-btn w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-caria-slate hover:text-white hover:border-caria-slate"
-                data-testid="curated-prev"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="slider-nav-btn w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-caria-slate hover:text-white hover:border-caria-slate"
-                data-testid="curated-next"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
+    <section className="bg-white py-16 md:py-24" data-testid="curated-listings">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-12">
+        {/* Header Row */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
+          <div>
+            <h2 className="font-serif text-3xl md:text-4xl text-caria-slate mb-3" data-testid="curated-title">
+              Curated Listings
+            </h2>
+            <p className="text-gray-500 text-sm max-w-md">
+              Explore our handpicked selection of exceptional properties across Northern Cyprus
+            </p>
           </div>
 
-          {/* Filter Chips */}
-          <div className="flex flex-wrap gap-3 mb-8">
-            {(tags || []).map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setActiveTag(tag)}
-                className={`px-4 py-2 text-xs tracking-wider uppercase rounded-full transition-all ${activeTag === tag
-                  ? 'text-white'
-                  : 'bg-caria-mint text-gray-600 hover:bg-gray-200'
-                  }`}
-                style={activeTag === tag ? { backgroundColor: '#3BB2B8' } : {}}
-                data-testid={`curated-filter-${tag.toLowerCase().replace(' ', '-')}`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-
-          {/* Property Slider - Large cards */}
-          <div
-            ref={sliderRef}
-            className="flex gap-10 overflow-x-auto hide-scrollbar scroll-container scroll-snap-x pb-8"
-          >
-            {(filteredProperties || []).map((property) => (
-              <div
-                key={property.id}
-                className="flex-none w-full md:w-[48%] xl:w-[49%] scroll-snap-start"
-              >
-                <CuratedPropertyCard property={property} />
-              </div>
-            ))}
+          {/* Navigation Buttons - Desktop only */}
+          <div className="hidden md:flex items-center space-x-3">
+            <button
+              onClick={() => scroll('left')}
+              className="slider-nav-btn w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-caria-slate hover:text-white hover:border-caria-slate"
+              data-testid="curated-prev"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="slider-nav-btn w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-caria-slate hover:text-white hover:border-caria-slate"
+              data-testid="curated-next"
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
         </div>
-      </section>
-    </>
+
+        {/* Filter Chips */}
+        <div className="flex flex-wrap gap-3 mb-8">
+          {tags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setActiveTag(tag)}
+              className={`px-4 py-2 text-xs tracking-wider uppercase rounded-full transition-all ${activeTag === tag
+                ? 'text-white'
+                : 'bg-caria-mint text-gray-600 hover:bg-gray-200'
+                }`}
+              style={activeTag === tag ? { backgroundColor: '#3BB2B8' } : {}}
+              data-testid={`curated-filter-${tag.toLowerCase().replace(' ', '-')}`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
+        {/* Property Slider - Large cards */}
+        <div
+          ref={sliderRef}
+          className="flex gap-10 overflow-x-auto hide-scrollbar scroll-container scroll-snap-x pb-8"
+        >
+          {filteredProperties.map((property) => (
+            <div
+              key={property.id}
+              className="flex-none w-full md:w-[48%] xl:w-[49%] scroll-snap-start"
+            >
+              <CuratedPropertyCard property={property} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -535,13 +491,13 @@ const ContactAgentSlider = ({ advisors = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Use DB advisors if available, fallback to static agents for legacy
-  const displayAdvisors = (advisors && advisors.length > 0) ? advisors : agents;
+  const displayAdvisors = advisors.length > 0 ? advisors : agents;
 
   const filters = ['All', 'Kyrenia', 'Esentepe', 'Iskele', 'Famagusta'];
 
   const filteredAgents = activeFilter === 'All'
-    ? (displayAdvisors || [])
-    : (displayAdvisors || []).filter(a => a && a.region?.toUpperCase() === activeFilter.toUpperCase());
+    ? displayAdvisors
+    : displayAdvisors.filter(a => a.region?.toUpperCase() === activeFilter.toUpperCase());
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % filteredAgents.length);
@@ -581,7 +537,7 @@ const ContactAgentSlider = ({ advisors = [] }) => {
 
         {/* Filter Chips */}
         <div className="flex space-x-4 mb-8">
-          {(filters || []).map((filter) => (
+          {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
@@ -598,7 +554,7 @@ const ContactAgentSlider = ({ advisors = [] }) => {
 
         {/* Agent Cards Slider */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {(filteredAgents || []).map((agent) => (
+          {filteredAgents.map((agent) => (
             <Link
               to={`/advisor/${agent.slug || 'pilar-anguita'}`}
               key={agent.id}
@@ -650,8 +606,8 @@ const FeaturedPropertiesSlider = ({ featuredProperties }) => {
   const filters = ['All', 'Kyrenia', 'Esentepe', 'Iskele', 'Famagusta'];
 
   const filteredProperties = activeFilter === 'All'
-    ? (featuredProperties || [])
-    : (featuredProperties || []).filter(p => p && (p.region === activeFilter || (p.location && p.location.includes(activeFilter))));
+    ? featuredProperties
+    : featuredProperties.filter(p => p.region === activeFilter || p.location.includes(activeFilter));
 
   const scroll = (direction) => {
     if (sliderRef.current) {
@@ -693,7 +649,7 @@ const FeaturedPropertiesSlider = ({ featuredProperties }) => {
 
         {/* Filter Chips */}
         <div className="flex space-x-4 mb-8">
-          {(filters || []).map((filter) => (
+          {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
@@ -713,7 +669,7 @@ const FeaturedPropertiesSlider = ({ featuredProperties }) => {
           ref={sliderRef}
           className="flex space-x-6 overflow-x-auto hide-scrollbar scroll-container pb-4"
         >
-          {(filteredProperties || []).map((property) => (
+          {filteredProperties.map((property) => (
             <div key={property.id} className="flex-none w-80 md:w-96">
               <PropertyCard property={property} />
             </div>
@@ -831,7 +787,7 @@ const BlogSlider = () => {
           ref={sliderRef}
           className="flex space-x-6 overflow-x-auto hide-scrollbar scroll-container pb-4"
         >
-          {(blogArticles || []).map((article) => (
+          {blogArticles.map((article) => (
             <article
               key={article.id}
               className="blog-card flex-none w-72 bg-white rounded-lg overflow-hidden shadow-md cursor-pointer"
@@ -970,7 +926,7 @@ const PartnerLogos = () => {
     <section className="bg-white py-20 border-t border-gray-50" data-testid="partners-section">
       <div className="max-w-[1440px] mx-auto px-8 lg:px-12">
         <div className="flex flex-wrap items-center justify-between gap-12 opacity-50 hover:opacity-100 transition-opacity duration-700">
-          {(partners || []).map((partner, idx) => (
+          {partners.map((partner, idx) => (
             <div key={idx} className="grayscale hover:grayscale-0 transition-all duration-500">
               <img
                 src={partner.img}
@@ -1096,47 +1052,9 @@ const CopyrightBar = () => {
 };
 
 // ============================================
-// SECTION 2.5: STATS SECTION
-// ============================================
-const StatsSection = ({ blocks }) => {
-  const statsBlock = blocks?.find(b => b.block_type === 'stats');
-  let stats = [];
-  try {
-    stats = statsBlock?.content ? JSON.parse(statsBlock.content) : [];
-  } catch (e) {
-    console.error("Stats parse error:", e);
-  }
-
-  // Fallback if empty
-  if (stats.length === 0) {
-    stats = [
-      { value: '15+', label: 'Years Experience' },
-      { value: '12+', label: 'Premium Agents' },
-      { value: '100%', label: 'Commitment' }
-    ];
-  }
-
-  return (
-    <section className="bg-caria-slate py-16 md:py-20 text-white" data-testid="stats-section">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="flex flex-col items-center space-y-2">
-              <span className="text-4xl md:text-6xl font-serif text-white">{stat.value}</span>
-              <span className="text-[10px] tracking-[0.4em] uppercase text-white/40 font-bold">{stat.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ============================================
 // HOME PAGE COMPONENT
 // ============================================
 const Home = () => {
-  console.log("Home is rendering");
   const [activeRegion, setActiveRegion] = useState("DISCOVER ALL");
   const [allProperties, setAllProperties] = useState([...properties]);
   const [featured, setFeatured] = useState([...featuredProperties]);
@@ -1150,50 +1068,34 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const fetchProperties = async () => {
-          try {
-            const res = await axios.get(`${API}/properties`);
-            if (res.data && res.data.length > 0) {
-              setAllProperties(res.data);
-              setFeatured(res.data.filter(p => p.tag === 'PREMIUM' || p.tag === 'EXCLUSIVE'));
-            }
-          } catch (e) { console.error("Properties fetch failed", e); }
+          const res = await axios.get(`${API}/properties`);
+          if (res.data && res.data.length > 0) {
+            setAllProperties(res.data);
+            setFeatured(res.data.filter(p => p.tag === 'PREMIUM' || p.tag === 'EXCLUSIVE'));
+          }
         };
 
         const fetchSliders = async () => {
-          try {
-            const res = await axios.get(`${API}/cms/sliders`);
-            if (res.data) setSliders(res.data);
-          } catch (e) { console.error("Sliders fetch failed", e); }
+          const res = await axios.get(`${API}/cms/sliders`);
+          if (res.data) setSliders(res.data);
         };
 
         const fetchGuides = async () => {
-          try {
-            const res = await axios.get(`${API}/cms/country-guides`);
-            if (res.data) setGuides(res.data);
-          } catch (e) { console.error("Guides fetch failed", e); }
+          const res = await axios.get(`${API}/cms/country-guides`);
+          if (res.data) setGuides(res.data);
         };
 
         const fetchContent = async () => {
-          try {
-            const res = await axios.get(`${API}/cms/content`);
-            if (res.data) setSiteContent(res.data);
-          } catch (e) { console.error("Content fetch failed", e); }
+          const res = await axios.get(`${API}/cms/content`);
+          if (res.data) setSiteContent(res.data);
         };
 
         const fetchHomepage = async () => {
           try {
-            // BYPASS BLOCKS ROUTE: Fetch from pages logic
-            const res = await axios.get(`${API}/cms/pages/home`);
-            if (res.data && res.data.content_html) {
-              try {
-                const parsedBlocks = JSON.parse(res.data.content_html);
-                setHomepageBlocks(parsedBlocks);
-              } catch (e) {
-                console.error("Home block parse failed", e);
-              }
-            }
+            const res = await axios.get(`${API}/cms/homepage`);
+            if (res.data) setHomepageBlocks(res.data);
           } catch (e) {
-            console.error("Homepage page fetch failed", e);
+            console.error("Homepage blocks fetch failed", e);
           }
         };
 
@@ -1223,30 +1125,22 @@ const Home = () => {
     fetchData();
   }, []);
 
-  if (!allProperties || !siteContent) {
-    return (
-      <div className="min-h-screen bg-aria-mint flex items-center justify-center">
-        <div className="text-aria-slate tracking-[0.3em] uppercase animate-pulse">Loading experience...</div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen">
-      <Hero sliders={sliders} content={siteContent} blocks={homepageBlocks} />
-      <IntroSection content={siteContent} blocks={homepageBlocks} />
-      <StatsSection blocks={homepageBlocks} />
-      <CuratedListings
-        activeRegion={activeRegion}
-        setActiveRegion={setActiveRegion}
-        properties={allProperties}
-      />
-      <ContactAgentSlider advisors={advisors || []} />
-      <FeaturedPropertiesSlider featuredProperties={featured || []} />
-      <ServicesSection blocks={homepageBlocks || []} />
+      <Hero sliders={sliders} content={siteContent} />
+      <IntroSection content={siteContent} />
+      <AdvancedSearchBar properties={allProperties} />
+      <RegionTabs activeRegion={activeRegion} setActiveRegion={setActiveRegion} />
+      <CuratedListings activeRegion={activeRegion} properties={allProperties} />
+
+      <ServicesSection blocks={homepageBlocks} />
+      <ContactAgentSlider advisors={advisors} />
+      <FeaturedPropertiesSlider featuredProperties={featured} />
       <WhyChooseSection />
-      <BlogSlider articles={blogArticles || []} />
+      <BlogSlider />
       <JoinUsSection />
+      <NewsletterBar />
+      <PartnerLogos />
       <Footer content={siteContent} />
       <CopyrightBar />
     </div>
@@ -4401,11 +4295,11 @@ const ServicesSection = ({ blocks }) => {
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="font-serif text-3xl md:text-4xl text-caria-slate text-center mb-16">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {((blocks && blocks.length > 0) ? (blocks || []) : (defaultServices || [])).map((service, idx) => (
+          {defaultServices.map((service, idx) => (
             <div key={idx} className="p-8 border border-gray-100 rounded-lg hover:shadow-lg transition-all">
               <div className="text-[#1BAFA2] mb-6">{service.icon}</div>
-              <h3 className="font-serif text-2xl text-caria-slate mb-4">{service.title || service.name}</h3>
-              <p className="text-gray-600">{service.desc || service.description || service.content}</p>
+              <h3 className="font-serif text-2xl text-caria-slate mb-4">{service.title}</h3>
+              <p className="text-gray-600">{service.desc}</p>
             </div>
           ))}
         </div>

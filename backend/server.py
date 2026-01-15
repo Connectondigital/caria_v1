@@ -17,14 +17,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:3001",
-        "http://127.0.0.1:3001",
-        "http://localhost:3002",
-        "http://127.0.0.1:3002",
-    ],
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -89,6 +82,28 @@ class Page(BaseModel):
     banner_title: Optional[str] = ""
     banner_url: Optional[str] = ""
     active: int = 1
+    gallery_json: Optional[str] = "[]"
+
+class HomepageBlock(BaseModel):
+    id: Optional[int] = None
+    block_type: str
+    title: Optional[str] = ""
+    subtitle: Optional[str] = ""
+    content: Optional[str] = ""
+    image_url: Optional[str] = ""
+    video_url: Optional[str] = ""
+    display_order: int = 0
+    active: bool = True
+
+class Advisor(BaseModel):
+    id: Optional[int] = None
+    name: str
+    slug: str
+    title: Optional[str] = ""
+    email: Optional[str] = ""
+    phone: Optional[str] = ""
+    bio_html: Optional[str] = ""
+    image_url: Optional[str] = ""
 
 # Helper to seed initial pages if missing
 def seed_initial_pages(db):
@@ -145,13 +160,14 @@ class Property(BaseModel):
     ozellikler_ic: Optional[str] = ""
     ozellikler_dis: Optional[str] = ""
     pdf_brosur: Optional[str] = ""
-    danisman_id: Optional[int] = None
+    advisor_id: Optional[int] = None
     status: Optional[str] = "published"
     description: Optional[str] = ""
-    beds_room_count: Optional[int] = 0
-    baths_count: Optional[int] = 0
+    beds_room_count: Optional[str] = "1"
+    baths_count: Optional[str] = "1"
     plot_area: Optional[str] = ""
     closed_area: Optional[str] = ""
+    is_featured: bool = False
 
 # Routes
 api_router = APIRouter(prefix="/api")
@@ -174,19 +190,19 @@ async def add_property(item: Property, db: sqlite3.Connection = Depends(get_db))
         cursor.execute("""
             UPDATE listings SET 
             slug=?, title=?, location=?, price=?, beds=?, baths=?, area=?, plotSize=?, reference=?, image=?, tag=?, region=?, 
-            kocan_tipi=?, ozellikler_ic=?, ozellikler_dis=?, pdf_brosur=?, danisman_id=?, status=?, description=?,
-            beds_room_count=?, baths_count=?, plot_area=?, closed_area=?
+            kocan_tipi=?, ozellikler_ic=?, ozellikler_dis=?, pdf_brosur=?, advisor_id=?, status=?, description=?,
+            beds_room_count=?, baths_count=?, plot_area=?, closed_area=?, is_featured=?
             WHERE id=?
         """, (item.slug, item.title, item.location, item.price, item.beds, item.baths, item.area, item.plotSize, item.reference, item.image, item.tag, item.region, 
-              item.kocan_tipi, item.ozellikler_ic, item.ozellikler_dis, item.pdf_brosur, item.danisman_id, item.status, item.description,
-              item.beds_room_count, item.baths_count, item.plot_area, item.closed_area, item.id))
+              item.kocan_tipi, item.ozellikler_ic, item.ozellikler_dis, item.pdf_brosur, item.advisor_id, item.status, item.description,
+              item.beds_room_count, item.baths_count, item.plot_area, item.closed_area, item.is_featured, item.id))
     else:
         cursor.execute("""
-            INSERT INTO listings (slug, title, location, price, beds, baths, area, plotSize, reference, image, tag, region, kocan_tipi, ozellikler_ic, ozellikler_dis, pdf_brosur, danisman_id, status, description, beds_room_count, baths_count, plot_area, closed_area)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO listings (slug, title, location, price, beds, baths, area, plotSize, reference, image, tag, region, kocan_tipi, ozellikler_ic, ozellikler_dis, pdf_brosur, advisor_id, status, description, beds_room_count, baths_count, plot_area, closed_area, is_featured)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (item.slug, item.title, item.location, item.price, item.beds, item.baths, item.area, item.plotSize, item.reference, item.image, item.tag, item.region, 
-              item.kocan_tipi, item.ozellikler_ic, item.ozellikler_dis, item.pdf_brosur, item.danisman_id, item.status, item.description,
-              item.beds_room_count, item.baths_count, item.plot_area, item.closed_area))
+              item.kocan_tipi, item.ozellikler_ic, item.ozellikler_dis, item.pdf_brosur, item.advisor_id, item.status, item.description,
+              item.beds_room_count, item.baths_count, item.plot_area, item.closed_area, item.is_featured))
     db.commit()
     return {"status": "success", "id": cursor.lastrowid if not item.id else item.id}
 
@@ -344,6 +360,7 @@ async def get_pages(db: sqlite3.Connection = Depends(get_db)):
     return [dict(row) for row in rows]
 
 @api_router.get("/cms/pages/{slug}")
+@api_router.get("/pages/{slug}")
 async def get_page_by_slug(slug: str, db: sqlite3.Connection = Depends(get_db)):
     cursor = db.cursor()
     cursor.execute("SELECT * FROM pages WHERE slug = ?", (slug,))
@@ -357,14 +374,14 @@ async def save_page(item: Page, db: sqlite3.Connection = Depends(get_db)):
     cursor = db.cursor()
     if item.id:
         cursor.execute("""
-            UPDATE pages SET title=?, slug=?, content_html=?, banner_title=?, banner_url=?, active=?, updated_at=CURRENT_TIMESTAMP
+            UPDATE pages SET title=?, slug=?, content_html=?, banner_title=?, banner_url=?, active=?, gallery_json=?, updated_at=CURRENT_TIMESTAMP
             WHERE id=?
-        """, (item.title, item.slug, item.content_html, item.banner_title, item.banner_url, item.active, item.id))
+        """, (item.title, item.slug, item.content_html, item.banner_title, item.banner_url, item.active, item.gallery_json, item.id))
     else:
         cursor.execute("""
-            INSERT INTO pages (title, slug, content_html, banner_title, banner_url, active)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """, (item.title, item.slug, item.content_html, item.banner_title, item.banner_url, item.active))
+            INSERT INTO pages (title, slug, content_html, banner_title, banner_url, active, gallery_json)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (item.title, item.slug, item.content_html, item.banner_title, item.banner_url, item.active, item.gallery_json))
     db.commit()
     return {"status": "success", "id": cursor.lastrowid if not item.id else item.id}
 
@@ -406,6 +423,87 @@ async def delete_menu(id: int, db: sqlite3.Connection = Depends(get_db)):
     db.commit()
     return {"status": "success"}
 
+# Homepage Blocks Endpoints
+@api_router.get("/cms/homepage")
+@api_router.get("/homepage/blocks")
+async def get_homepage_blocks(db: sqlite3.Connection = Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM homepage_blocks WHERE active = 1 ORDER BY display_order ASC")
+    rows = cursor.fetchall()
+    return [dict(row) for row in rows]
+
+@api_router.post("/cms/homepage")
+@api_router.post("/homepage/blocks")
+async def save_homepage_block(item: HomepageBlock, db: sqlite3.Connection = Depends(get_db)):
+    cursor = db.cursor()
+    if item.id:
+        cursor.execute("""
+            UPDATE homepage_blocks SET 
+            block_type=?, title=?, subtitle=?, content=?, image_url=?, video_url=?, display_order=?, active=?, updated_at=CURRENT_TIMESTAMP
+            WHERE id=?
+        """, (item.block_type, item.title, item.subtitle, item.content, item.image_url, item.video_url, item.display_order, item.active, item.id))
+    else:
+        cursor.execute("""
+            INSERT INTO homepage_blocks (block_type, title, subtitle, content, image_url, video_url, display_order, active)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """, (item.block_type, item.title, item.subtitle, item.content, item.image_url, item.video_url, item.display_order, item.active))
+    db.commit()
+    return {"status": "success", "id": cursor.lastrowid if not item.id else item.id}
+
+@api_router.delete("/cms/homepage/{id}")
+async def delete_homepage_block(id: int, db: sqlite3.Connection = Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM homepage_blocks WHERE id=?", (id,))
+    db.commit()
+    return {"status": "success"}
+
+# Advisor Endpoints
+@api_router.get("/advisors")
+async def get_advisors(db: sqlite3.Connection = Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM advisors")
+    rows = cursor.fetchall()
+    return [dict(row) for row in rows]
+
+@api_router.get("/advisors/{slug}")
+async def get_advisor_by_slug(slug: str, db: sqlite3.Connection = Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM advisors WHERE slug = ?", (slug,))
+    row = cursor.fetchone()
+    if not row:
+        raise HTTPException(status_code=404, detail="Advisor not found")
+    
+    advisor = dict(row)
+    
+    # Also fetch this advisor's listings
+    cursor.execute("SELECT * FROM listings WHERE advisor_id = ?", (advisor['id'],))
+    advisor['listings'] = [dict(r) for r in cursor.fetchall()]
+    
+    return advisor
+
+@api_router.post("/advisors")
+async def save_advisor(item: Advisor, db: sqlite3.Connection = Depends(get_db)):
+    cursor = db.cursor()
+    if item.id:
+        cursor.execute("""
+            UPDATE advisors SET name=?, slug=?, title=?, email=?, phone=?, bio_html=?, image_url=?
+            WHERE id=?
+        """, (item.name, item.slug, item.title, item.email, item.phone, item.bio_html, item.image_url, item.id))
+    else:
+        cursor.execute("""
+            INSERT INTO advisors (name, slug, title, email, phone, bio_html, image_url)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (item.name, item.slug, item.title, item.email, item.phone, item.bio_html, item.image_url))
+    db.commit()
+    return {"status": "success", "id": cursor.lastrowid if not item.id else item.id}
+
+@api_router.delete("/advisors/{id}")
+async def delete_advisor(id: int, db: sqlite3.Connection = Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM advisors WHERE id=?", (id,))
+    db.commit()
+    return {"status": "success"}
+
 app.include_router(api_router)
 
 if __name__ == "__main__":
@@ -414,4 +512,4 @@ if __name__ == "__main__":
     with sqlite3.connect(DB_PATH) as conn:
         seed_initial_pages(conn)
     port = int(os.environ.get('PORT', 5001))
-    uvicorn.run(app, host="127.0.0.1", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)

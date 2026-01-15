@@ -27,7 +27,7 @@ code {
     --caria-beige-medium: #E8E0D7;
     --caria-beige-dark: #D9D2CA;
     --caria-gold: #B8860B;
-    
+
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -63,6 +63,7 @@ code {
     * {
         @apply border-border;
     }
+
     body {
         @apply bg-background text-foreground;
     }
@@ -73,7 +74,7 @@ code {
         display: contents !important;
     }
 
-    [data-debug-wrapper="true"] > * {
+    [data-debug-wrapper="true"]>* {
         margin-left: inherit;
         margin-right: inherit;
         margin-top: inherit;
@@ -109,4 +110,29 @@ code {
 /* Smooth scroll */
 html {
     scroll-behavior: smooth;
+}
+
+/* CMS Content Styles */
+.cms-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cms-content ol {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cms-content p {
+    margin-bottom: 1rem;
+}
+
+.cms-content strong {
+    font-weight: 600;
+}
+
+.cms-content em {
+    font-style: italic;
 }

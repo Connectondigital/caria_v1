@@ -12,7 +12,7 @@ const SliderManagement = () => {
 
     const fetchSliders = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:5001/api/cms/sliders');
+            const response = await axios.get('/cms/sliders');
             setSliders(response.data);
         } catch (error) {
             console.error("Error fetching sliders:", error);
@@ -25,7 +25,7 @@ const SliderManagement = () => {
 
     const handleAddSlider = async () => {
         try {
-            await axios.post('http://127.0.0.1:5001/api/cms/sliders', newSlider);
+            await axios.post('/cms/sliders', newSlider);
             toggle();
             fetchSliders();
         } catch (error) {

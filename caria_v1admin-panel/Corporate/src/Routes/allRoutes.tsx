@@ -6,6 +6,9 @@ import SliderManagement from "../pages/CMS/SliderManagement";
 import PageContentManagement from "../pages/CMS/PageContentManagement";
 import CountryGuideManagement from "../pages/CMS/CountryGuideManagement";
 import SEOSettings from "../pages/CMS/SEOSettings";
+import HomepageManagement from "../pages/CMS/HomepageManagement";
+import AdvisorManagement from "../pages/CMS/AdvisorManagement";
+import MenuManagement from "../pages/CMS/MenuManagement";
 
 //Dashboard
 import DashboardAnalytics from "../pages/DashboardAnalytics";
@@ -309,6 +312,9 @@ const authProtectedRoutes = [
   { path: "/apps-cms-content", component: <PageContentManagement /> },
   { path: "/apps-cms-country-guides", component: <CountryGuideManagement /> },
   { path: "/apps-cms-seo", component: <SEOSettings /> },
+  { path: "/apps-cms-homepage", component: <HomepageManagement /> },
+  { path: "/apps-cms-advisors", component: <AdvisorManagement /> },
+  { path: "/apps-cms-menus", component: <MenuManagement /> },
 
   //Invoices
   { path: "/apps-invoices-list", component: <InvoiceList /> },

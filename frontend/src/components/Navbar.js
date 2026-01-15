@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
+    console.log("Navbar is rendering");
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeMegaMenu, setActiveMegaMenu] = useState(null); // 'buy', 'properties', 'services'
 
@@ -41,19 +42,20 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
     useEffect(() => {
         const fetchNavbarData = async () => {
             try {
+                const apiBase = "http://localhost:5001/api";
                 // Fetch dynamic menus
-                const menuRes = await fetch('http://127.0.0.1:5001/api/cms/menus');
+                const menuRes = await fetch(`${apiBase}/cms/menus`);
                 const menuData = await menuRes.json();
                 setDynamicMenus(menuData);
 
-                const response = await fetch('http://127.0.0.1:5001/api/cms/country-guides');
+                const response = await fetch(`${apiBase}/cms/country-guides`);
                 const data = await response.json();
                 if (data && data.length > 0) {
                     setCountries(data.map(g => ({ name: g.country_name_tr, slug: g.slug })));
                 }
 
                 // Fetch site content for contact info
-                const contentRes = await fetch('http://127.0.0.1:5001/api/cms/content');
+                const contentRes = await fetch(`${apiBase}/cms/content`);
                 const contentData = await contentRes.json();
                 setSiteContent(contentData);
             } catch (e) {
@@ -152,9 +154,9 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
                                 { label: "VIEWING TRIP", path: "/contact" },
                                 { label: "ABOUT US", path: "/about" },
                                 { label: "CONTACT", path: "/contact" },
-                                ...dynamicMenus
-                                    .filter(m => m.menu_type === 'header')
-                                    .map(m => ({ label: m.title.toUpperCase(), path: m.url }))
+                                ...(dynamicMenus || [])
+                                    .filter(m => m && m.menu_type === 'header')
+                                    .map(m => ({ label: (m.title || "").toUpperCase(), path: m.url }))
                             ].map((item) => (
                                 <div
                                     key={item.label}
@@ -162,7 +164,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
                                     onMouseEnter={() => item.mega ? setActiveMegaMenu(item.mega) : closeMegaMenu()}
                                 >
                                     <Link
-                                        to={item.path}
+                                        to={item.path || "#"}
                                         className={`text-[11px] tracking-[0.2em] font-semibold transition-all duration-300 hover:text-caria-turquoise flex items-center gap-1.5 ${isScrolled || activeMegaMenu ? "text-caria-slate" : "text-white"
                                             }`}
                                     >
@@ -331,9 +333,9 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
                                 { label: "VIEWING TRIP", path: "/contact" },
                                 { label: "ABOUT US", path: "/about" },
                                 { label: "CONTACT", path: "/contact" },
-                                ...dynamicMenus
-                                    .filter(m => m.menu_type === 'header')
-                                    .map(m => ({ label: m.title.toUpperCase(), path: m.url }))
+                                ...(dynamicMenus || [])
+                                    .filter(m => m && m.menu_type === 'header')
+                                    .map(m => ({ label: (m.title || "").toUpperCase(), path: m.url }))
                             ].map((item) => (
                                 <div key={item.label} className="flex flex-col">
                                     <div className="flex items-center justify-between group">
